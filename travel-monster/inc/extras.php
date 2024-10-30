@@ -463,10 +463,10 @@ if (!function_exists('travel_monster_sticky_header')):
      * Travel monster Sticky Header
      */
     function travel_monster_sticky_header() {
-        $defaults = travel_monster_get_general_defaults();
+        $defaults     = travel_monster_get_general_defaults();
         $header_width = get_theme_mod('header_width_layout', $defaults['header_width_layout']);
-        $add_class = 'fullwidth' === $header_width ? 'container-full' : 'container';
-        $ed_sticky = get_theme_mod('ed_sticky_header', $defaults['ed_sticky_header']);
+        $add_class    = 'fullwidth' === $header_width ? 'container-full' : 'container';
+        $ed_sticky    = get_theme_mod('ed_sticky_header', $defaults['ed_sticky_header']);
         if ($ed_sticky) { ?>
 		<div class="sticky-holder">
 			<div class="<?php echo esc_attr($add_class); ?>">

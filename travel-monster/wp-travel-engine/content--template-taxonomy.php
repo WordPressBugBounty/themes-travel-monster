@@ -19,11 +19,12 @@
 		<div class="wp-travel-engine-archive-outer-wrap">
 			<?php
             global $post;
-            $termchildren = get_terms(
+            $selected_order = ! empty( $_GET['wte_orderby'] ) ? sanitize_text_field( wp_unslash( $_GET['wte_orderby'] ) ) : 'ASC';
+            $termchildren   = get_terms(
                 $taxonomy,
                 array(
-                    'orderby' => apply_filters( "wpte_{$taxonomy}_terms_order_by", 'date' ),
-                    'order'   => apply_filters( "wpte_{$taxonomy}_terms_order", 'ASC' ),
+                    'orderby' => apply_filters( "wpte_{$taxonomy}_terms_order_by", 'name' ),
+                    'order'   => apply_filters( "wpte_{$taxonomy}_terms_order", $selected_order ),
                 )
             );
             $terms_by_ids = array();
@@ -56,6 +57,46 @@
                                 $content = apply_filters( 'the_content', $post->post_content );
                                 echo $content;
                         ?>
+                    </div>
+                </div>
+                <div class="wp-travel-toolbar clearfix">
+                    <div class="wte-filter-foundposts"></div>
+                    <div class="wp-travel-engine-toolbar wte-filterby-dropdown">
+                        <form class="wte-ordering" method="get">
+                            <span><?php esc_html_e( 'Sort:', 'travel-monster' ); ?></span>
+                            <div class="wpte-trip__adv-field wpte__select-field">
+                                <?php
+                                $selected_label = $selected_order === 'ASC' ?
+                                                __( 'a - z', 'travel-monster' ) :
+                                                __( 'z - a', 'travel-monster' );
+                                ?>
+                                <span class="wpte__input"><?php echo esc_html( $selected_label ); ?></span>
+                                <input type="hidden" class="wpte__input-value" name="wte_orderby" value="<?php echo esc_attr( $selected_order ); ?>">
+                                <div id="sort-options" class="wpte__select-options">
+                                    <ul>
+                                        <li class="wpte__select-options__label"><?php esc_html_e( 'Name', 'travel-monster' ); ?></li>
+                                        <li data-value="ASC" 
+                                            data-label="<?php esc_attr_e( 'a - z', 'travel-monster' ); ?>"
+                                            <?php
+                                            if ( $selected_order === 'ASC' ) {
+                                                echo 'class="selected"';}
+                                            ?>
+                                            >
+                                            <span><?php esc_html_e( 'a - z', 'travel-monster' ); ?></span>
+                                        </li>
+                                        <li data-value="DESC"
+                                            data-label="<?php esc_attr_e( 'z - a', 'travel-monster' ); ?>"
+                                            <?php
+                                            if ( $selected_order === 'DESC' ) {
+                                                echo 'class="selected"';}
+                                            ?>
+                                            >
+                                            <span><?php esc_html_e( 'z - a', 'travel-monster' ); ?></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="<?php echo esc_attr( $taxonomy ); ?>-holder wpte-trip-list-wrapper">

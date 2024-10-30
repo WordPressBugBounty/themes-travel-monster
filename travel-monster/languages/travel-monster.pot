@@ -2,37 +2,42 @@
 # This file is distributed under the GNU General Public License v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Travel Monster 1.2.0\n"
+"Project-Id-Version: Travel Monster 1.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/travel-monster\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-18T08:33:52+00:00\n"
+"POT-Creation-Date: 2024-10-29T10:59:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.10.0\n"
+"X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: travel-monster\n"
 
 #. Theme Name of the theme
+#: style.css
 msgid "Travel Monster"
 msgstr ""
 
 #. Theme URI of the theme
+#: style.css
 msgid "https://wptravelengine.com/wordpress-travel-themes/travel-monster/"
 msgstr ""
 
 #. Description of the theme
+#: style.css
 msgid "Travel Monster is a free travel and tour booking WordPress theme for travel agencies. It is powered by the WP Travel Engine plugin, the most popular travel booking plugin. You can use the Travel Monster theme to create websites such as travel agencies, tour operators, trekking, camping, mountaineering, surfing, city tour, rafting, jungle safari, hiking, tourism, summer holidays, winter holidays, wine tours, cruise websites, beach holidays, etc. You can create itineraries, destinations, activities, trip types. etc. Your website visitors can quickly search for tours and book them. Travel Monster is mobile-friendly, SEO-optimized, translation-ready and RTL-ready. Plus, it is compatible with Elementor and Gutenberg, offering more flexibility to customise your website. Check the demos here: https://wptravelengine.com/travel-monster-demo/. Documentation at https://docs.wptravelengine.com/docs-category/travel-monster/, and get support at https://wptravelengine.com/support/."
 msgstr ""
 
 #. Author of the theme
-#: inc/template-functions.php:790
+#: style.css
+#: inc/template-functions.php:791
 #: inc/tgmpa/recommended-plugins.php:51
 msgid "WP Travel Engine"
 msgstr ""
 
 #. Author URI of the theme
+#: style.css
 msgid "https://wordpress.org/themes/author/wptravelengine/"
 msgstr ""
 
@@ -166,7 +171,7 @@ msgid "%1$s is now installed and ready to use. Click below to see theme document
 msgstr ""
 
 #: inc/custom-functions.php:210
-msgid "Go to the getting started."
+msgid "Go to the dashboard."
 msgstr ""
 
 #: inc/custom-functions.php:211
@@ -898,36 +903,50 @@ msgstr ""
 msgid "Trip Advisor"
 msgstr ""
 
-#: inc/customizer/sections/header.php:750
+#: inc/customizer/sections/header.php:730
+msgid "WeChat"
+msgstr ""
+
+#: inc/customizer/sections/header.php:731
+#: inc/customizer/sections/social-network.php:305
+msgid "Weibo"
+msgstr ""
+
+#: inc/customizer/sections/header.php:732
+#: inc/customizer/sections/social-network.php:326
+msgid "QQ"
+msgstr ""
+
+#: inc/customizer/sections/header.php:753
 msgid "You can add links to your social media profiles %1$s here. %2$s"
 msgstr ""
 
-#: inc/customizer/sections/header.php:771
+#: inc/customizer/sections/header.php:774
 msgid "Mobile Header Settings"
 msgstr ""
 
-#: inc/customizer/sections/header.php:795
+#: inc/customizer/sections/header.php:798
 msgid "Menu Label"
 msgstr ""
 
-#: inc/customizer/sections/header.php:821
+#: inc/customizer/sections/header.php:824
 msgid "Show Search"
 msgstr ""
 
-#: inc/customizer/sections/header.php:842
+#: inc/customizer/sections/header.php:845
 msgid "Show Phone Number"
 msgstr ""
 
-#: inc/customizer/sections/header.php:863
+#: inc/customizer/sections/header.php:866
 msgid "Show Email Address"
 msgstr ""
 
-#: inc/customizer/sections/header.php:884
+#: inc/customizer/sections/header.php:887
 msgid "Show Social Media"
 msgstr ""
 
 #: inc/customizer/sections/page.php:16
-#: inc/template-functions.php:330
+#: inc/template-functions.php:331
 msgid "Page"
 msgstr ""
 
@@ -1118,6 +1137,10 @@ msgstr ""
 msgid "Social Networks"
 msgstr ""
 
+#: inc/customizer/sections/social-network.php:35
+msgid "Social Network Accounts"
+msgstr ""
+
 #: inc/customizer/sections/social-network.php:36
 msgid "Add the links to your social media accounts and display them across your site."
 msgstr ""
@@ -1132,6 +1155,10 @@ msgstr ""
 
 #: inc/customizer/sections/social-network.php:200
 msgid "Whatsapp"
+msgstr ""
+
+#: inc/customizer/sections/social-network.php:284
+msgid "We Chat"
 msgstr ""
 
 #: inc/customizer/sections/title.php:15
@@ -1241,12 +1268,12 @@ msgstr ""
 msgid "Book Now"
 msgstr ""
 
-#: inc/defaults.php:428
+#: inc/defaults.php:427
 #: inc/extras.php:383
 msgid "Menu"
 msgstr ""
 
-#: inc/defaults.php:450
+#: inc/defaults.php:452
 msgid "Secured Payment:"
 msgstr ""
 
@@ -1368,44 +1395,44 @@ msgstr ""
 msgid "%1$s %2$s%3$s%4$s"
 msgstr ""
 
-#: inc/template-functions.php:303
+#: inc/template-functions.php:304
 msgid "Post Navigation"
 msgstr ""
 
-#: inc/template-functions.php:307
+#: inc/template-functions.php:308
 msgid "Previous Article"
 msgstr ""
 
-#: inc/template-functions.php:312
+#: inc/template-functions.php:313
 msgid "Next Article"
 msgstr ""
 
-#: inc/template-functions.php:328
+#: inc/template-functions.php:329
 msgid "Previous"
 msgstr ""
 
-#: inc/template-functions.php:329
+#: inc/template-functions.php:330
 msgid "Next"
 msgstr ""
 
 #. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-functions.php:526
+#: inc/template-functions.php:527
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr ""
 
-#: inc/template-functions.php:539
+#: inc/template-functions.php:540
 msgid "Pages:"
 msgstr ""
 
-#: inc/template-functions.php:619
+#: inc/template-functions.php:620
 msgid "View All Articles"
 msgstr ""
 
-#: inc/template-functions.php:789
+#: inc/template-functions.php:790
 msgid " Travel Monster by "
 msgstr ""
 
-#: inc/template-functions.php:791
+#: inc/template-functions.php:792
 msgid "%1$s Powered by %2$s%3$s"
 msgstr ""
 
@@ -1885,11 +1912,31 @@ msgstr ""
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
 msgstr ""
 
-#: wp-travel-engine/content--template-taxonomy.php:98
+#: wp-travel-engine/content--template-taxonomy.php:66
+msgid "Sort:"
+msgstr ""
+
+#: wp-travel-engine/content--template-taxonomy.php:70
+#: wp-travel-engine/content--template-taxonomy.php:79
+#: wp-travel-engine/content--template-taxonomy.php:85
+msgid "a - z"
+msgstr ""
+
+#: wp-travel-engine/content--template-taxonomy.php:71
+#: wp-travel-engine/content--template-taxonomy.php:88
+#: wp-travel-engine/content--template-taxonomy.php:94
+msgid "z - a"
+msgstr ""
+
+#: wp-travel-engine/content--template-taxonomy.php:77
+msgid "Name"
+msgstr ""
+
+#: wp-travel-engine/content--template-taxonomy.php:139
 msgid "View All"
 msgstr ""
 
-#: wp-travel-engine/content--template-taxonomy.php:105
+#: wp-travel-engine/content--template-taxonomy.php:146
 msgid "(%d Trip)"
 msgid_plural "(%d Trips)"
 msgstr[0] ""

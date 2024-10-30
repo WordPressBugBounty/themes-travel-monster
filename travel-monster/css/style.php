@@ -643,10 +643,95 @@ if ( ! function_exists( 'travel_monster_gutenberg_inline_style' ) ) :
         $primary_font   = wp_parse_args( get_theme_mod( 'primary_font' ), $typo_defaults['primary_font'] );
         $button         = wp_parse_args( get_theme_mod( 'button' ), $typo_defaults['button'] );
 
-        $primary_font_family       = travel_monster_get_font_family( $primary_font );
-        $btn_font_family           = travel_monster_get_font_family( $button );
+        $primary_font_family = travel_monster_get_font_family( $primary_font );
+        $btn_font_family     = travel_monster_get_font_family( $button );
+        $heading_one         = wp_parse_args( get_theme_mod( 'heading_one' ), $typo_defaults['heading_one'] );
+        $heading_two         = wp_parse_args( get_theme_mod( 'heading_two' ), $typo_defaults['heading_two'] );
+        $heading_three       = wp_parse_args( get_theme_mod( 'heading_three' ), $typo_defaults['heading_three'] );
+        $heading_four        = wp_parse_args( get_theme_mod( 'heading_four' ), $typo_defaults['heading_four'] );
+        $heading_five        = wp_parse_args( get_theme_mod( 'heading_five' ), $typo_defaults['heading_five'] );
+        $heading_six         = wp_parse_args( get_theme_mod( 'heading_six' ), $typo_defaults['heading_six'] );
+
+        $heading_one_font_family   = travel_monster_get_font_family( $heading_one );
+        $heading_two_font_family   = travel_monster_get_font_family( $heading_two );
+        $heading_three_font_family = travel_monster_get_font_family( $heading_three );
+        $heading_four_font_family  = travel_monster_get_font_family( $heading_four );
+        $heading_five_font_family  = travel_monster_get_font_family( $heading_five );
+        $heading_six_font_family   = travel_monster_get_font_family( $heading_six );
 
         $btnFontFamily = $btn_font_family === '"Default Family"' ? 'inherit' : $btn_font_family;
+        $h1FontFamily   = $heading_one_font_family === '"Default Family"' ? 'inherit' : $heading_one_font_family;
+        $h2FontFamily   = $heading_two_font_family === '"Default Family"' ? 'inherit' : $heading_two_font_family;
+        $h3FontFamily   = $heading_three_font_family === '"Default Family"' ? 'inherit' : $heading_three_font_family;
+        $h4FontFamily   = $heading_four_font_family === '"Default Family"' ? 'inherit' : $heading_four_font_family;
+        $h5FontFamily   = $heading_five_font_family === '"Default Family"' ? 'inherit' : $heading_five_font_family;
+        $h6FontFamily   = $heading_six_font_family === '"Default Family"' ? 'inherit' : $heading_six_font_family;
+
+        //Heading 1 variables
+        $h1desktopFontSize = isset(  $heading_one['desktop']['font_size'] ) ? $heading_one['desktop']['font_size'] : $typo_defaults['heading_one']['desktop']['font_size'];
+        $h1desktopSpacing  = isset(  $heading_one['desktop']['letter_spacing'] ) ? $heading_one['desktop']['letter_spacing'] : $typo_defaults['heading_one']['desktop']['letter_spacing'];
+        $h1desktopHeight   = isset(  $heading_one['desktop']['line_height'] ) ? $heading_one['desktop']['line_height'] : $typo_defaults['heading_one']['desktop']['line_height'];
+        $h1tabletFontSize  = isset(  $heading_one['tablet']['font_size'] ) ? $heading_one['tablet']['font_size'] : $typo_defaults['heading_one']['tablet']['font_size'];
+        $h1tabletSpacing   = isset(  $heading_one['tablet']['letter_spacing'] ) ? $heading_one['tablet']['letter_spacing'] : $typo_defaults['heading_one']['tablet']['letter_spacing'];
+        $h1tabletHeight    = isset(  $heading_one['tablet']['line_height'] ) ? $heading_one['tablet']['line_height'] : $typo_defaults['heading_one']['tablet']['line_height'];
+        $h1mobileFontSize  = isset(  $heading_one['mobile']['font_size'] ) ? $heading_one['mobile']['font_size'] : $typo_defaults['heading_one']['mobile']['font_size'];
+        $h1mobileSpacing   = isset(  $heading_one['mobile']['letter_spacing'] ) ? $heading_one['mobile']['letter_spacing'] : $typo_defaults['heading_one']['mobile']['letter_spacing'];
+        $h1mobileHeight    = isset(  $heading_one['mobile']['line_height'] ) ? $heading_one['mobile']['line_height'] : $typo_defaults['heading_one']['mobile']['line_height'];
+        
+        //Heading 2 variables
+        $h2desktopFontSize = isset(  $heading_two['desktop']['font_size'] ) ? $heading_two['desktop']['font_size'] : $typo_defaults['heading_two']['desktop']['font_size'];
+        $h2desktopSpacing  = isset(  $heading_two['desktop']['letter_spacing'] ) ? $heading_two['desktop']['letter_spacing'] : $typo_defaults['heading_two']['desktop']['letter_spacing'];
+        $h2desktopHeight   = isset(  $heading_two['desktop']['line_height'] ) ? $heading_two['desktop']['line_height'] : $typo_defaults['heading_two']['desktop']['line_height'];
+        $h2tabletFontSize  = isset(  $heading_two['tablet']['font_size'] ) ? $heading_two['tablet']['font_size'] : $typo_defaults['heading_two']['tablet']['font_size'];
+        $h2tabletSpacing   = isset(  $heading_two['tablet']['letter_spacing'] ) ? $heading_two['tablet']['letter_spacing'] : $typo_defaults['heading_two']['tablet']['letter_spacing'];
+        $h2tabletHeight    = isset(  $heading_two['tablet']['line_height'] ) ? $heading_two['tablet']['line_height'] : $typo_defaults['heading_two']['tablet']['line_height'];
+        $h2mobileFontSize  = isset(  $heading_two['mobile']['font_size'] ) ? $heading_two['mobile']['font_size'] : $typo_defaults['heading_two']['mobile']['font_size'];
+        $h2mobileSpacing   = isset(  $heading_two['mobile']['letter_spacing'] ) ? $heading_two['mobile']['letter_spacing'] : $typo_defaults['heading_two']['mobile']['letter_spacing'];
+        $h2mobileHeight    = isset(  $heading_two['mobile']['line_height'] ) ? $heading_two['mobile']['line_height'] : $typo_defaults['heading_two']['mobile']['line_height'];
+        
+        //Heading 3 variables
+        $h3desktopFontSize = isset(  $heading_three['desktop']['font_size'] ) ? $heading_three['desktop']['font_size'] : $typo_defaults['heading_three']['desktop']['font_size'];
+        $h3desktopSpacing  = isset(  $heading_three['desktop']['letter_spacing'] ) ? $heading_three['desktop']['letter_spacing'] : $typo_defaults['heading_three']['desktop']['letter_spacing'];
+        $h3desktopHeight   = isset(  $heading_three['desktop']['line_height'] ) ? $heading_three['desktop']['line_height'] : $typo_defaults['heading_three']['desktop']['line_height'];
+        $h3tabletFontSize  = isset(  $heading_three['tablet']['font_size'] ) ? $heading_three['tablet']['font_size'] : $typo_defaults['heading_three']['tablet']['font_size'];
+        $h3tabletSpacing   = isset(  $heading_three['tablet']['letter_spacing'] ) ? $heading_three['tablet']['letter_spacing'] : $typo_defaults['heading_three']['tablet']['letter_spacing'];
+        $h3tabletHeight    = isset(  $heading_three['tablet']['line_height'] ) ? $heading_three['tablet']['line_height'] : $typo_defaults['heading_three']['tablet']['line_height'];
+        $h3mobileFontSize  = isset(  $heading_three['mobile']['font_size'] ) ? $heading_three['mobile']['font_size'] : $typo_defaults['heading_three']['mobile']['font_size'];
+        $h3mobileSpacing   = isset(  $heading_three['mobile']['letter_spacing'] ) ? $heading_three['mobile']['letter_spacing'] : $typo_defaults['heading_three']['mobile']['letter_spacing'];
+        $h3mobileHeight    = isset(  $heading_three['mobile']['line_height'] ) ? $heading_three['mobile']['line_height'] : $typo_defaults['heading_three']['mobile']['line_height'];
+        
+        //Heading 4 variables
+        $h4desktopFontSize = isset(  $heading_four['desktop']['font_size'] ) ? $heading_four['desktop']['font_size'] : $typo_defaults['heading_four']['desktop']['font_size'];
+        $h4desktopSpacing  = isset(  $heading_four['desktop']['letter_spacing'] ) ? $heading_four['desktop']['letter_spacing'] : $typo_defaults['heading_four']['desktop']['letter_spacing'];
+        $h4desktopHeight   = isset(  $heading_four['desktop']['line_height'] ) ? $heading_four['desktop']['line_height'] : $typo_defaults['heading_four']['desktop']['line_height'];
+        $h4tabletFontSize  = isset(  $heading_four['tablet']['font_size'] ) ? $heading_four['tablet']['font_size'] : $typo_defaults['heading_four']['tablet']['font_size'];
+        $h4tabletSpacing   = isset(  $heading_four['tablet']['letter_spacing'] ) ? $heading_four['tablet']['letter_spacing'] : $typo_defaults['heading_four']['tablet']['letter_spacing'];
+        $h4tabletHeight    = isset(  $heading_four['tablet']['line_height'] ) ? $heading_four['tablet']['line_height'] : $typo_defaults['heading_four']['tablet']['line_height'];
+        $h4mobileFontSize  = isset(  $heading_four['mobile']['font_size'] ) ? $heading_four['mobile']['font_size'] : $typo_defaults['heading_four']['mobile']['font_size'];
+        $h4mobileSpacing   = isset(  $heading_four['mobile']['letter_spacing'] ) ? $heading_four['mobile']['letter_spacing'] : $typo_defaults['heading_four']['mobile']['letter_spacing'];
+        $h4mobileHeight    = isset(  $heading_four['mobile']['line_height'] ) ? $heading_four['mobile']['line_height'] : $typo_defaults['heading_four']['mobile']['line_height'];
+        
+        //Heading 5 variables
+        $h5desktopFontSize = isset(  $heading_five['desktop']['font_size'] ) ? $heading_five['desktop']['font_size'] : $typo_defaults['heading_five']['desktop']['font_size'];
+        $h5desktopSpacing  = isset(  $heading_five['desktop']['letter_spacing'] ) ? $heading_five['desktop']['letter_spacing'] : $typo_defaults['heading_five']['desktop']['letter_spacing'];
+        $h5desktopHeight   = isset(  $heading_five['desktop']['line_height'] ) ? $heading_five['desktop']['line_height'] : $typo_defaults['heading_five']['desktop']['line_height'];
+        $h5tabletFontSize  = isset(  $heading_five['tablet']['font_size'] ) ? $heading_five['tablet']['font_size'] : $typo_defaults['heading_five']['tablet']['font_size'];
+        $h5tabletSpacing   = isset(  $heading_five['tablet']['letter_spacing'] ) ? $heading_five['tablet']['letter_spacing'] : $typo_defaults['heading_five']['tablet']['letter_spacing'];
+        $h5tabletHeight    = isset(  $heading_five['tablet']['line_height'] ) ? $heading_five['tablet']['line_height'] : $typo_defaults['heading_five']['tablet']['line_height'];
+        $h5mobileFontSize  = isset(  $heading_five['mobile']['font_size'] ) ? $heading_five['mobile']['font_size'] : $typo_defaults['heading_five']['mobile']['font_size'];
+        $h5mobileSpacing   = isset(  $heading_five['mobile']['letter_spacing'] ) ? $heading_five['mobile']['letter_spacing'] : $typo_defaults['heading_five']['mobile']['letter_spacing'];
+        $h5mobileHeight    = isset(  $heading_five['mobile']['line_height'] ) ? $heading_five['mobile']['line_height'] : $typo_defaults['heading_five']['mobile']['line_height'];
+        
+        //Heading 6 variables
+        $h6desktopFontSize = isset(  $heading_six['desktop']['font_size'] ) ? $heading_six['desktop']['font_size'] : $typo_defaults['heading_six']['desktop']['font_size'];
+        $h6desktopSpacing  = isset(  $heading_six['desktop']['letter_spacing'] ) ? $heading_six['desktop']['letter_spacing'] : $typo_defaults['heading_six']['desktop']['letter_spacing'];
+        $h6desktopHeight   = isset(  $heading_six['desktop']['line_height'] ) ? $heading_six['desktop']['line_height'] : $typo_defaults['heading_six']['desktop']['line_height'];
+        $h6tabletFontSize  = isset(  $heading_six['tablet']['font_size'] ) ? $heading_six['tablet']['font_size'] : $typo_defaults['heading_six']['tablet']['font_size'];
+        $h6tabletSpacing   = isset(  $heading_six['tablet']['letter_spacing'] ) ? $heading_six['tablet']['letter_spacing'] : $typo_defaults['heading_six']['tablet']['letter_spacing'];
+        $h6tabletHeight    = isset(  $heading_six['tablet']['line_height'] ) ? $heading_six['tablet']['line_height'] : $typo_defaults['heading_six']['tablet']['line_height'];
+        $h6mobileFontSize  = isset(  $heading_six['mobile']['font_size'] ) ? $heading_six['mobile']['font_size'] : $typo_defaults['heading_six']['mobile']['font_size'];
+        $h6mobileSpacing   = isset(  $heading_six['mobile']['letter_spacing'] ) ? $heading_six['mobile']['letter_spacing'] : $typo_defaults['heading_six']['mobile']['letter_spacing'];
+        $h6mobileHeight    = isset(  $heading_six['mobile']['line_height'] ) ? $heading_six['mobile']['line_height'] : $typo_defaults['heading_six']['mobile']['line_height'];
 
         $primary_color      = get_theme_mod( 'primary_color', $defaults['primary_color'] );
         $rgb                = travel_monster_hex2rgb( travel_monster_sanitize_rgba( $primary_color ) );
@@ -708,6 +793,134 @@ if ( ! function_exists( 'travel_monster_gutenberg_inline_style' ) ) :
             --tmp-btn-padding-right   : ' . absint( $button_padding['right'] ) . 'px;
             --tmp-btn-padding-bottom  : ' . absint( $button_padding['bottom'] ) . 'px;
             --tmp-btn-padding-left    : ' . absint( $button_padding['left'] ) . 'px;
+
+        }
+        .block-editor-page .editor-styles-wrapper h1{
+            font-family :' . wp_kses_post( $h1FontFamily ) . '; 
+            text-transform:' . esc_html( $heading_one['transform'] ) . ';       
+            font-weight:' . esc_html( $heading_one['weight'] ) . '; 
+        }
+        .block-editor-page .editor-styles-wrapper h2{
+            font-family :' . wp_kses_post( $h2FontFamily ) . '; 
+            text-transform:' . esc_html( $heading_two['transform'] ) . ';       
+            font-weight:' . esc_html( $heading_two['weight'] ) . '; 
+        }
+        .block-editor-page .editor-styles-wrapper h3{
+            font-family :' . wp_kses_post( $h3FontFamily ) . '; 
+            text-transform:' . esc_html( $heading_three['transform'] ) . ';       
+            font-weight:' . esc_html( $heading_three['weight'] ) . '; 
+        }
+        .block-editor-page .editor-styles-wrapper h4{
+            font-family :' . wp_kses_post( $h4FontFamily ) . '; 
+            text-transform:' . esc_html( $heading_four['transform'] ) . ';       
+            font-weight:' . esc_html( $heading_four['weight'] ) . '; 
+        }
+        .block-editor-page .editor-styles-wrapper h5{
+            font-family :' . wp_kses_post( $h5FontFamily ) . '; 
+            text-transform:' . esc_html( $heading_five['transform'] ) . ';       
+            font-weight:' . esc_html( $heading_five['weight'] ) . '; 
+        }
+        .block-editor-page .editor-styles-wrapper h6{
+            font-family :' . wp_kses_post( $h6FontFamily ) . '; 
+            text-transform:' . esc_html( $heading_six['transform'] ) . ';       
+            font-weight:' . esc_html( $heading_six['weight'] ) . '; 
+        }
+            
+        @media (min-width: 1024px){
+            .block-editor-page .editor-styles-wrapper h1{
+                font-size   : ' . floatval( $h1desktopFontSize ) . 'px;
+                line-height   : ' . floatval( $h1desktopHeight ) . 'em;
+                letter-spacing: ' . absint( $h1desktopSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h2{
+                font-size   : ' . floatval( $h2desktopFontSize ) . 'px;
+                line-height   : ' . floatval( $h2desktopHeight ) . 'em;
+                letter-spacing: ' . absint( $h2desktopSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h3{
+                font-size   : ' . floatval( $h3desktopFontSize ) . 'px;
+                line-height   : ' . floatval( $h3desktopHeight ) . 'em;
+                letter-spacing: ' . absint( $h3desktopSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h4{
+                font-size   : ' . floatval( $h4desktopFontSize ) . 'px;
+                line-height   : ' . floatval( $h4desktopHeight ) . 'em;
+                letter-spacing: ' . absint( $h4desktopSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h5{
+                font-size   : ' . floatval( $h5desktopFontSize ) . 'px;
+                line-height   : ' . floatval( $h5desktopHeight ) . 'em;
+                letter-spacing: ' . absint( $h5desktopSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h6{
+                font-size   : ' . floatval( $h6desktopFontSize ) . 'px;
+                line-height   : ' . floatval( $h6desktopHeight ) . 'em;
+                letter-spacing: ' . absint( $h6desktopSpacing ) . 'px;
+            }
+        }
+        @media (min-width: 767px) and (max-width: 1024px){
+            .block-editor-page .editor-styles-wrapper h1{
+                font-size   : ' . floatval( $h1tabletFontSize ) . 'px;
+                line-height   : ' . floatval( $h1tabletHeight ) . 'em;
+                letter-spacing: ' . absint( $h1tabletSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h2{
+                font-size   : ' . floatval( $h2tabletFontSize ) . 'px;
+                line-height   : ' . floatval( $h2tabletHeight ) . 'em;
+                letter-spacing: ' . absint( $h2tabletSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h3{
+                font-size   : ' . floatval( $h3tabletFontSize ) . 'px;
+                line-height   : ' . floatval( $h3tabletHeight ) . 'em;
+                letter-spacing: ' . absint( $h3tabletSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h4{
+                font-size   : ' . floatval( $h4tabletFontSize ) . 'px;
+                line-height   : ' . floatval( $h4tabletHeight ) . 'em;
+                letter-spacing: ' . absint( $h4tabletSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h5{
+                font-size   : ' . floatval( $h5tabletFontSize ) . 'px;
+                line-height   : ' . floatval( $h5tabletHeight ) . 'em;
+                letter-spacing: ' . absint( $h5tabletSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h6{
+                font-size   : ' . floatval( $h6tabletFontSize ) . 'px;
+                line-height   : ' . floatval( $h6tabletHeight ) . 'em;
+                letter-spacing: ' . absint( $h6tabletSpacing ) . 'px;
+            }
+        }
+        @media (max-width: 767px){
+            .block-editor-page .editor-styles-wrapper h1{
+                font-size   : ' . floatval( $h1mobileFontSize ) . 'px;
+                line-height   : ' . floatval( $h1mobileHeight ) . 'em;
+                letter-spacing: ' . absint( $h1mobileSpacing ) . 'px;
+            }
+            .block-editor-page .editor-styles-wrapper h2{
+                font-size   : ' . floatval( $h2mobileFontSize ) . 'px;
+                line-height   : ' . floatval( $h2mobileHeight ) . 'em;
+                letter-spacing: ' . absint( $h2mobileSpacing ) . 'px;
+            }
+            .block-editor-page h3{
+                font-size   : ' . floatval( $h3mobileFontSize ) . 'px;
+                line-height   : ' . floatval( $h3mobileHeight ) . 'em;
+                letter-spacing: ' . absint( $h3mobileSpacing ) . 'px;
+            }
+            .block-editor-page h4{
+                font-size   : ' . floatval( $h4mobileFontSize ) . 'px;
+                line-height   : ' . floatval( $h4mobileHeight ) . 'em;
+                letter-spacing: ' . absint( $h4mobileSpacing ) . 'px;
+            }
+            .block-editor-page h5{
+                font-size   : ' . floatval( $h5mobileFontSize ) . 'px;
+                line-height   : ' . floatval( $h5mobileHeight ) . 'em;
+                letter-spacing: ' . absint( $h5mobileSpacing ) . 'px;
+            }
+            .block-editor-page h6{
+                font-size   : ' . floatval( $h6mobileFontSize ) . 'px;
+                line-height   : ' . floatval( $h6mobileHeight ) . 'em;
+                letter-spacing: ' . absint( $h6mobileSpacing ) . 'px;
+            }
         }';
     
         return $custom_css;

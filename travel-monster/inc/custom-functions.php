@@ -207,7 +207,7 @@ function travel_monster_admin_notice(){
 				<div class="notice-text">
 					<h3><?php esc_html_e( 'Congratulations!', 'travel-monster' ); ?></h3>
 					<p><?php printf( __( '%1$s is now installed and ready to use. Click below to see theme documentation, plugins to install and other details to get started.', 'travel-monster' ), esc_html( $name ) ); ?></p>
-					<p><a href="<?php echo esc_url( admin_url( 'admin.php?page=travel-monster-dashboard' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Go to the getting started.', 'travel-monster' ); ?></a></p>
+					<p><a href="<?php echo esc_url( admin_url( 'admin.php?page=travel-monster-dashboard' ) ); ?>" class="button button-primary"><?php esc_html_e( 'Go to the dashboard.', 'travel-monster' ); ?></a></p>
 					<p class="dismiss-link"><strong><a href="?travel_monster_admin_notice=1&_wpnonce=<?php echo esc_attr( $dismissnonce ); ?>"><?php esc_html_e( 'Dismiss', 'travel-monster' ); ?></a></strong></p>
 				</div>
 			</div>

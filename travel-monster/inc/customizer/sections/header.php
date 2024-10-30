@@ -726,7 +726,10 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             		'tmp_whatsapp'    => __( 'WhatsApp', 'travel-monster'),
             		'tmp_viber'       => __( 'Viber', 'travel-monster'),
             		'tmp_telegram'    => __( 'Telegram', 'travel-monster'),
-            		'tmp_tripadvisor' => __( 'Trip Advisor', 'travel-monster')
+            		'tmp_tripadvisor' => __( 'Trip Advisor', 'travel-monster'),
+            		'tmp_wechat'      => __( 'WeChat', 'travel-monster'),
+            		'tmp_weibo'       => __( 'Weibo', 'travel-monster'),
+            		'tmp_qq'          => __( 'QQ', 'travel-monster')
             	),
                 'group'           => 'main_header_social_media_group',
 			)

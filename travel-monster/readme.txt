@@ -1,10 +1,11 @@
+
 === Travel Monster ===
 
 Contributors: wptravelengine
 Requires at least: 6.2
 Requires PHP: 7.3
 Tested up to: 6.6
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: one-column, two-columns, right-sidebar, left-sidebar, footer-widgets, custom-background, custom-header, custom-menu, custom-logo, featured-images, threaded-comments, full-width-template, rtl-language-support, translation-ready, theme-options, food-and-drink, holiday, entertainment
@@ -73,6 +74,14 @@ The logos shown in the screenshot are self-created.
 All other images including icon image used in screenshot and images used in customizer settings are self created and are under the GPL.
 
 == Changelog ==
+
+	1.2.1 - October 29, 2024
+	* Fix: Resolved an issue where archive descriptions were not appearing as intended.
+	* Fix: Fixed a bug causing the sticky header to malfunction when the header top was disabled.
+	* Fix: Corrected a backend issue where heading fonts were not updating dynamically.
+	* Fix: Addressed a flickering issue with the sticky header submenu for smoother user experience.
+	* New Feature: Added integration for WeChat, Weibo, and QQ, enhancing connectivity options.
+	* New Feature: Added new toolbar for ordering the terms in albhabetical order in taxonomy listing template.
 
 	1.2.0 - September 23, 2024
 	* Fix: String translation issue for single trip day/hour/night text has been fixed.

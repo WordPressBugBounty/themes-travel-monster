@@ -498,12 +498,12 @@ function travelMonsterFindParents(target, query) {
 
     // Sticky header
     var mns = "sticky";
-    mn = $('.sticky-header .sticky-holder');
-    hcta = $('.sticky-header .notification-bar').outerHeight();
-    thm = $('.sticky-header .header-m').outerHeight();
-    stickHolderHeight = $('.sticky-header .header-b').outerHeight();
-    var topTotal = parseInt(thm) + parseInt(stickHolderHeight);
+        mn  = $('.sticky-header .sticky-holder');
+        thm = $('.sticky-header .header-b').outerHeight();
 
+    // Calculate the total height for sticky behavior
+    var topTotal = parseInt(thm)
+    
     $(window).on('scroll', function () {
         if ($(this).scrollTop() > topTotal) {
             mn.addClass(mns);
@@ -511,8 +511,6 @@ function travelMonsterFindParents(target, query) {
             mn.removeClass(mns);
         }
     });
-
-
 
     /************ Mobile Menu *************/
 

@@ -32,7 +32,7 @@ function travel_monster_customize_register_footer_social_network( $wp_customize 
             'social_network_text',
             array(
                 'section'     => 'social_network_settings',
-                'label'       => 'Social Network Accounts',
+                'label'       => __('Social Network Accounts','travel-monster'),
                 'description' => __( 'Add the links to your social media accounts and display them across your site.', 'travel-monster' ),
             )
         )
@@ -261,6 +261,69 @@ function travel_monster_customize_register_footer_social_network( $wp_customize 
 			array(
 				'section'         => 'social_network_settings',
 				'label'           => __( 'Trip Advisor', 'travel-monster' ),
+			)
+		)
+	);
+
+    /** We Chat */
+    $wp_customize->add_setting(
+        'tmp_wechat',
+        array(
+            'default'           => $defaults['tmp_wechat'],
+            'sanitize_callback' => 'esc_url_raw',
+            'transport'         => 'postMessage'
+        )
+    );
+    
+    $wp_customize->add_control(
+		new Travel_Monster_Text_Control( 
+			$wp_customize,
+			'tmp_wechat',
+			array(
+				'section'         => 'social_network_settings',
+				'label'           => __( 'We Chat', 'travel-monster' ),
+			)
+		)
+	);
+
+    /** Weibo */
+    $wp_customize->add_setting(
+        'tmp_weibo',
+        array(
+            'default'           => $defaults['tmp_weibo'],
+            'sanitize_callback' => 'esc_url_raw',
+            'transport'         => 'postMessage'
+        )
+    );
+    
+    $wp_customize->add_control(
+		new Travel_Monster_Text_Control( 
+			$wp_customize,
+			'tmp_weibo',
+			array(
+				'section'         => 'social_network_settings',
+				'label'           => __( 'Weibo', 'travel-monster' ),
+			)
+		)
+	);
+
+    /** QQ */
+    $wp_customize->add_setting(
+        'tmp_qq',
+        array(
+            'default'           => $defaults['tmp_qq'],
+            'sanitize_callback' => 'esc_url_raw',
+            'transport'         => 'postMessage'
+        )
+    );
+    
+    $wp_customize->add_control(
+		new Travel_Monster_Text_Control( 
+			$wp_customize,
+			'tmp_qq',
+			array(
+				'section'         => 'social_network_settings',
+				'label'           => __( 'QQ', 'travel-monster' ),
 			)
 		)
 	);

@@ -173,6 +173,7 @@ function travel_monster_content_start(){
 							}
 						}else{			
 							if( $archive_title ) the_archive_title();
+							travel_monster_get_ed_archive_description();
 						} 
 					}
 					
@@ -195,7 +196,7 @@ function travel_monster_content_start(){
 						|| is_search() 
 					) {
 						echo '<section class="travel-monster-search-count">';
-						travel_monster_search_post_count();
+						travel_monster_get_ed_archive_post_count();
 						echo '</section>';
 					}
 

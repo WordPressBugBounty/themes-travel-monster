@@ -383,6 +383,18 @@ class Travel_Monster_Social_Lists{
             [
                 'key' => 'tmp_tripadvisor',
                 'value' => ''
+            ],
+            [
+                'key' => 'tmp_wechat',
+                'value' => ''
+            ],
+            [
+                'key' => 'tmp_weibo',
+                'value' => ''
+            ],
+            [
+                'key' => 'tmp_qq',
+                'value' => ''
             ]
         ];
         $social_icons = apply_filters( 'tmp_social_icons',$social_array );
@@ -399,13 +411,12 @@ class Travel_Monster_Social_Lists{
     /**
      * Social Links function
      *
-     * @return void
+     * @return mixed
      */
     public function travel_monster_social_links(){
         $defaults               = travel_monster_get_general_defaults();
         $ed_social_media        = get_theme_mod( 'ed_social_media', $defaults['ed_social_media'] );
         $ed_social_media_newtab = get_theme_mod( 'ed_social_media_newtab', $defaults['ed_social_media_newtab'] );
-
         $list_social            = $this->travel_monster_all_social_icons();
         $social_media_order     = get_theme_mod( 'social_media_order', $defaults['social_media_order']  );
         if( $ed_social_media && $social_media_order ){ ?>
