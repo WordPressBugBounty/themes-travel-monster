@@ -173,7 +173,7 @@ function travel_monster_content_start(){
 							}
 						}else{			
 							if( $archive_title ) the_archive_title();
-							travel_monster_get_ed_archive_description();
+							if(!is_post_type_archive('trip')) travel_monster_get_ed_archive_description();
 						} 
 					}
 					
