@@ -1,16 +1,4 @@
 /* Editor block CSS */
-
-::-moz-selection {
-    /* Code for Firefox */
-    color: var(--white-color);
-    background: var(--tmp-secondary-color);
-}
-
-::selection {
-    color: var(--white-color);
-    background: var(--tmp-secondary-color);
-}
-
 body.block-editor-page .editor-styles-wrapper {
     color: var(--tmp-body-font-color);
     font-family: var(--tmp-body-primary-font);

@@ -237,10 +237,10 @@ travelMonster.coverModals = {
 }; // travelMonster.coverModals
 
 travelMonster.modalMenu = {
-
     init: function () {
         // If the current menu item is in a sub level, expand all the levels higher up on load.
         this.expandLevel();
+        console.log('hello');
     },
 
     expandLevel: function () {
@@ -381,6 +381,41 @@ travelMonster.toggles = {
 
 }; // travelMonster.toggles
 
+/* Add the animate class on observer intersection ----------------------- */
+
+function animateOnScroll() {
+    const animationClasses = ['[class*="animation"]', '[class*="clipIn"]'];
+
+	function scrollTrigger(selector, options = {}) {
+		const elements = [];
+		selector.forEach((selector) => {
+			const els = document.querySelectorAll(selector);
+			elements.push(...Array.from(els));
+		});
+
+		elements.forEach((el) => {
+			addObserver(el, options);
+		});
+	}
+
+	function addObserver(el, options) {
+		if (!("IntersectionObserver" in window)) {
+			entry.target.classList.add("animate");
+			return;
+		}
+		let observer = new IntersectionObserver((entries, observer) => {
+			entries.forEach((entry) => {
+				entry.target.classList.toggle("animate", entry.isIntersecting);
+			});
+		}, options);
+		observer.observe(el);
+	}
+
+	scrollTrigger(animationClasses, {
+		rootMargin: "0px"
+	});
+}
+
 /**
  * Is the DOM ready?
  *
@@ -403,6 +438,7 @@ function travelMonsterDomReady(fn) {
 travelMonsterDomReady(function () {
     travelMonster.toggles.init(); // Handle toggles.
     travelMonster.coverModals.init(); // Handle cover modals.
+    animateOnScroll(); // Add the animate class on observer intersection
 });
 
 /* Toggle an attribute ----------------------- */
@@ -664,3 +700,4 @@ jQuery.fn.travel_monsterIsOnScreen = function () {
 
     return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
 };
+

@@ -1286,11 +1286,11 @@ msgid "Secondary Theme Color"
 msgstr ""
 
 #: inc/elementor-compatibility.php:54
-msgid "Theme White Color"
+msgid "Section Background Color"
 msgstr ""
 
 #: inc/elementor-compatibility.php:60
-msgid "Theme Black Color"
+msgid "Site Background Color"
 msgstr ""
 
 #: inc/extras.php:24

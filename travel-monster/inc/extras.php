@@ -307,14 +307,16 @@ endif;
 if (!function_exists('travel_monster_secondary_navigation')):
     /**
      * secondary Navigation
+     * 
+     * @param boolean $display Whether to display secondary navigation
      */
-    function travel_monster_secondary_navigation() {
+    function travel_monster_secondary_navigation($display = true) {
         if (travel_monster_pro_is_activated() && defined('TRAVEL_MONSTER_PRO_PATH')) {
             $defaults = travel_monster_get_general_defaults();
             $header = get_theme_mod('header_layout', $defaults['header_layout']);
             if ($header === 'two' || $header === 'three' || $header === 'four') return;
         }
-        if (has_nav_menu('secondary') || current_user_can('manage_options')) { ?>
+        if ($display && (has_nav_menu('secondary') || current_user_can('manage_options'))) { ?>
 			<div class="travel-monster-nav-wrapper">
 				<nav id="site-navigation" class="secondary-navigation" <?php travel_monster_microdata('navigation'); ?>>
 					<?php
@@ -349,8 +351,10 @@ endif;
 if (!function_exists('travel_monster_mobile_header')):
     /**
      * Travel monster Mobile Header
+     * 
+     * @param boolean $display_secondary Whether to display secondary navigation in the mobile header
      */
-    function travel_monster_mobile_header() {
+    function travel_monster_mobile_header($display_secondary = true) {
         $defaults = travel_monster_get_general_defaults();
         $vip_image = get_theme_mod('header_contact_image', $defaults['header_contact_image']);
         $menu_social = get_theme_mod('ed_mobile_social_media', $defaults['ed_mobile_social_media']);
@@ -401,7 +405,7 @@ if (!function_exists('travel_monster_mobile_header')):
                      * Secondary Navigation
                      *
                      */
-                    travel_monster_secondary_navigation();
+                    travel_monster_secondary_navigation($display_secondary);
                     /** 
                      * Currency Converter and Language Switcher
                      *

@@ -51,13 +51,13 @@ if( ! function_exists( 'travel_monster_add_theme_colors' ) ) :
 
         $data['colors']['section_bg_color'] = array(
             'id'    => 'section_bg_color',
-            'title' => __( 'Theme White Color', 'travel-monster' ),
+            'title' => __( 'Section Background Color', 'travel-monster' ),
             'value' => get_theme_mod( 'section_bg_color',$defaults['section_bg_color'] ),
         );
 
         $data['colors']['site_bg_color'] = array(
             'id'    => 'site_bg_color',
-            'title' => __( 'Theme Black Color', 'travel-monster' ),
+            'title' => __( 'Site Background Color', 'travel-monster' ),
             'value' => get_theme_mod( 'site_bg_color',$defaults['site_bg_color'] ),
         );
         

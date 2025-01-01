@@ -224,11 +224,18 @@ function travel_monster_dynamic_css(){
     $bf_link_hover_color   = get_theme_mod( 'bottom_footer_link_hover_color', $defaults['bottom_footer_link_hover_color'] );
     echo "<style type='text/css' media='all'>"; ?>
 
+    <?php if( travel_monster_is_elementor_activated()){ ?>
+		:root {
+			--e-global-color-primary_color  : <?php echo travel_monster_sanitize_rgba( $primary_color ); ?>;
+            --e-global-color-secondary_color: <?php echo travel_monster_sanitize_rgba( $secondary_color ); ?>;
+            --e-global-color-body_font_color: <?php echo travel_monster_sanitize_rgba( $body_font_color ); ?>;
+            --e-global-color-heading_color  : <?php echo travel_monster_sanitize_rgba( $heading_color ); ?>;
+            --e-global-color-section_bg_color  : <?php echo travel_monster_sanitize_rgba( $section_bg_color ); ?>;
+            --e-global-color-site_bg_color  : <?php echo travel_monster_sanitize_rgba( $background_color ); ?>;
+        }
+    <?php } ?>
+
     :root {
-		--e-global-color-primary_color  : <?php echo travel_monster_sanitize_rgba( $primary_color ); ?>;
-		--e-global-color-secondary_color: <?php echo travel_monster_sanitize_rgba( $secondary_color ); ?>;
-		--e-global-color-body_font_color: <?php echo travel_monster_sanitize_rgba( $body_font_color ); ?>;
-		--e-global-color-heading_color  : <?php echo travel_monster_sanitize_rgba( $heading_color ); ?>;
 		--tmp-primary-color             : <?php echo travel_monster_sanitize_rgba( $primary_color ); ?>;
 		--tmp-primary-color-rgb         : <?php printf('%1$s, %2$s, %3$s', $rgb[0], $rgb[1], $rgb[2] ); ?>;
 		--tmp-secondary-color           : <?php echo travel_monster_sanitize_rgba( $secondary_color ); ?>;

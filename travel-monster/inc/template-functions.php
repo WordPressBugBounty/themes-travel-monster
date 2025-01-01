@@ -200,11 +200,14 @@ function travel_monster_content_start(){
 						echo '</section>';
 					}
 
-					if( travel_monster_is_wte_advanced_search_active() && wte_advanced_search_is_search_page()){
-						the_title( '<h1 class="page-title">', '</h1>' );
-						echo '<span class="tmp-no-of-trips">';
-						echo '</span>';
+					if( travel_monster_is_wpte_activated() && version_compare( WP_TRAVEL_ENGINE_VERSION, '6.2.3', '<' ) ) {
+						if( travel_monster_is_wte_advanced_search_active() && wte_advanced_search_is_search_page()){
+							the_title( '<h1 class="page-title">', '</h1>' );
+							echo '<span class="tmp-no-of-trips">';
+							echo '</span>';
+						}
 					}
+					
 
 					if( is_page_template( array( 'templates/template-destination.php','templates/template-activities.php','templates/template-trip_types.php','templates/review.php','templates/template-trip-listing.php' ) ) ){
                         the_title( '<h1 class="page-title">', '</h1>' );
