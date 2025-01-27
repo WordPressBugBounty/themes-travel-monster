@@ -114,7 +114,7 @@ if( ! function_exists( 'travel_monster_content_start' ) ) :
 */
 function travel_monster_content_start(){ 
 	$defaults            = travel_monster_get_general_defaults();
-	$ed_breadcrumb  	 = get_theme_mod( 'ed_breadcrumb', $defaults['ed_breadcrumb'] );
+	$ed_breadcrumb       = get_theme_mod( 'ed_breadcrumb', $defaults['ed_breadcrumb'] );
 	$ed_blog_title       = get_theme_mod( 'ed_blog_title', $defaults['ed_blog_title'] );
 	$ed_blog_desc        = get_theme_mod( 'ed_blog_desc', $defaults['ed_blog_desc'] );
 	$blog_alignment      = get_theme_mod( 'blog_alignment', $defaults['blog_alignment'] );
@@ -260,20 +260,6 @@ function travel_monster_content_start(){
 			</div>
 		</div>
 		<?php 
-	}
-	
-	if( is_singular( 'trip' ) ){
-		if(!travel_monster_is_elementor_activated_post()){
-			travel_monster_single_trip_feature_image();
-		}else {
-			$post_id = get_the_ID();
-			$elementor_layout = get_post_meta( $post_id ,'_wp_page_template' );
-			if ( isset( $elementor_layout ) && is_array( $elementor_layout ) && isset($elementor_layout[0]) 
-				&& ('elementor_theme' === $elementor_layout[0] || 'default' === $elementor_layout[0]) ){
-					travel_monster_single_trip_feature_image();
-			}
-		}
-		
 	}
 
 	if( !is_404() ) { ?>

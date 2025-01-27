@@ -20,8 +20,8 @@
     padding: 0;
 }
 
-.elementor-template-full-width .main-content-wrapper {
-    display: block;
+body.elementor-template-full-width .main-content-wrapper {
+    display: block ;
     margin: 0;
 }
 

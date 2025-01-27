@@ -5,7 +5,7 @@ Contributors: wptravelengine
 Requires at least: 6.2
 Requires PHP: 7.3
 Tested up to: 6.7
-Stable tag: 1.2.4
+Stable tag: 1.2.5
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: one-column, two-columns, right-sidebar, left-sidebar, footer-widgets, custom-background, custom-header, custom-menu, custom-logo, featured-images, threaded-comments, full-width-template, rtl-language-support, translation-ready, theme-options, food-and-drink, holiday, entertainment
@@ -74,6 +74,9 @@ The logos shown in the screenshot are self-created.
 All other images including icon image used in screenshot and images used in customizer settings are self created and are under the GPL.
 
 == Changelog ==
+
+	1.2.5 - January 27, 2025
+	* Fix: Added compatibility for Single Trips new banner layouts given in WPTE version 6.3.3.
 
 	1.2.4 - January 10th, 2025
 	* New Feature: Added two new Elementor Template, namely Travel Quest and Holiday Quest.

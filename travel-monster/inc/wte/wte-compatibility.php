@@ -7,8 +7,6 @@
  * @package    Travel_Monster
  */
 
-require get_template_directory() . '/inc/wte/single-trip/banner.php';
-
 if( ! function_exists( 'travel_monster_get_currency_converter_template' ) ) :
 /**
  * Get template for WTE currency converter dropdown

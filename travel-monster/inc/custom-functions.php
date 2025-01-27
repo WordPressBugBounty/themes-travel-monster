@@ -466,7 +466,9 @@ function travel_monster_body_classes( $classes ) {
         $classes[] = 'travel-monster-has-blocks';
 	}
 	
-	$classes[] = travel_monster_sidebar( true );	
+	if(!is_singular('trip')){
+		$classes[] = travel_monster_sidebar( true );	
+	}
 	
 	if( $stickyheader ){
 		$classes[] = 'sticky-header';

@@ -386,34 +386,34 @@ travelMonster.toggles = {
 function animateOnScroll() {
     const animationClasses = ['[class*="animation"]', '[class*="clipIn"]'];
 
-	function scrollTrigger(selector, options = {}) {
-		const elements = [];
-		selector.forEach((selector) => {
-			const els = document.querySelectorAll(selector);
-			elements.push(...Array.from(els));
-		});
+    function scrollTrigger(selector, options = {}) {
+        const elements = [];
+        selector.forEach((selector) => {
+            const els = document.querySelectorAll(selector);
+            elements.push(...Array.from(els));
+        });
 
-		elements.forEach((el) => {
-			addObserver(el, options);
-		});
-	}
+        elements.forEach((el) => {
+            addObserver(el, options);
+        });
+    }
 
-	function addObserver(el, options) {
-		if (!("IntersectionObserver" in window)) {
-			entry.target.classList.add("animate");
-			return;
-		}
-		let observer = new IntersectionObserver((entries, observer) => {
-			entries.forEach((entry) => {
-				entry.target.classList.toggle("animate", entry.isIntersecting);
-			});
-		}, options);
-		observer.observe(el);
-	}
+    function addObserver(el, options) {
+        if (!("IntersectionObserver" in window)) {
+            entry.target.classList.add("animate");
+            return;
+        }
+        let observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                entry.target.classList.toggle("animate", entry.isIntersecting);
+            });
+        }, options);
+        observer.observe(el);
+    }
 
-	scrollTrigger(animationClasses, {
-		rootMargin: "0px"
-	});
+    scrollTrigger(animationClasses, {
+        rootMargin: "0px"
+    });
 }
 
 /**
@@ -534,12 +534,12 @@ function travelMonsterFindParents(target, query) {
 
     // Sticky header
     var mns = "sticky";
-        mn  = $('.sticky-header .sticky-holder');
-        thm = $('.sticky-header .header-b').outerHeight();
+    mn = $('.sticky-header .sticky-holder');
+    thm = $('.sticky-header .header-b').outerHeight();
 
     // Calculate the total height for sticky behavior
     var topTotal = parseInt(thm)
-    
+
     $(window).on('scroll', function () {
         if ($(this).scrollTop() > topTotal) {
             mn.addClass(mns);
@@ -679,6 +679,10 @@ function travelMonsterFindParents(target, query) {
             });
         }
     }
+
+    // breadcrumb dynamic height for single trip
+    const breadcrumb = document.querySelector('.travel-monster-breadcrumb-main-wrap');
+    document.querySelector('.page-header-top').style.setProperty('--breadcrumb-margin', (breadcrumb.offsetHeight + 16) + 'px');
 
 }(jQuery));
 
