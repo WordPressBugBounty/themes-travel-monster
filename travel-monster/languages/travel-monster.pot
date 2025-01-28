@@ -1,43 +1,38 @@
-# Copyright (C) 2024 WP Travel Engine
+# Copyright (C) 2025 WP Travel Engine
 # This file is distributed under the GNU General Public License v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Travel Monster 1.2.2\n"
+"Project-Id-Version: Travel Monster 1.2.6\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/travel-monster\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-12-11T05:39:32+00:00\n"
+"POT-Creation-Date: 2025-01-28T08:45:17+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.10.0\n"
+"X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: travel-monster\n"
 
 #. Theme Name of the theme
-#: style.css
 msgid "Travel Monster"
 msgstr ""
 
 #. Theme URI of the theme
-#: style.css
 msgid "https://wptravelengine.com/wordpress-travel-themes/travel-monster/"
 msgstr ""
 
 #. Description of the theme
-#: style.css
 msgid "Travel Monster is a free travel and tour booking WordPress theme for travel agencies. It is powered by the WP Travel Engine plugin, the most popular travel booking plugin. You can use the Travel Monster theme to create websites such as travel agencies, tour operators, trekking, camping, mountaineering, surfing, city tour, rafting, jungle safari, hiking, tourism, summer holidays, winter holidays, wine tours, cruise websites, beach holidays, etc. You can create itineraries, destinations, activities, trip types. etc. Your website visitors can quickly search for tours and book them. Travel Monster is mobile-friendly, SEO-optimized, translation-ready and RTL-ready. Plus, it is compatible with Elementor and Gutenberg, offering more flexibility to customise your website. Check the demos here: https://wptravelengine.com/travel-monster-demo/. Documentation at https://docs.wptravelengine.com/docs-category/travel-monster/, and get support at https://wptravelengine.com/support/."
 msgstr ""
 
 #. Author of the theme
-#: style.css
-#: inc/template-functions.php:791
+#: inc/template-functions.php:780
 #: inc/tgmpa/recommended-plugins.php:51
 msgid "WP Travel Engine"
 msgstr ""
 
 #. Author URI of the theme
-#: style.css
 msgid "https://wordpress.org/themes/author/wptravelengine/"
 msgstr ""
 
@@ -81,7 +76,7 @@ msgstr ""
 
 #: inc/custom-controls/range/class-range-control.php:61
 #: inc/custom-controls/spacing/class-spacing-control.php:46
-#: inc/extras.php:392
+#: inc/extras.php:396
 msgid "Mobile"
 msgstr ""
 
@@ -178,38 +173,38 @@ msgstr ""
 msgid "Dismiss"
 msgstr ""
 
-#: inc/custom-functions.php:551
+#: inc/custom-functions.php:553
 msgid "Category:"
 msgstr ""
 
-#: inc/custom-functions.php:559
+#: inc/custom-functions.php:561
 msgid "Tag"
 msgstr ""
 
-#: inc/custom-functions.php:564
+#: inc/custom-functions.php:566
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr ""
 
-#: inc/custom-functions.php:567
+#: inc/custom-functions.php:569
 msgid "Year"
 msgstr ""
 
-#: inc/custom-functions.php:572
+#: inc/custom-functions.php:574
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
 
-#: inc/custom-functions.php:575
+#: inc/custom-functions.php:577
 msgid "Month"
 msgstr ""
 
-#: inc/custom-functions.php:580
+#: inc/custom-functions.php:582
 msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr ""
 
-#: inc/custom-functions.php:583
+#: inc/custom-functions.php:585
 msgid "Day"
 msgstr ""
 
@@ -224,7 +219,7 @@ msgstr ""
 #: inc/customizer-plugin-recommend/plugin-install/class-plugin-install-helper.php:75
 #: inc/customizer/customizer.php:153
 #: inc/tgmpa/class-tgm-plugin-activation.php:2876
-#: build/dashboard.js:6763
+#: build/dashboard.js:6767
 #: src/pages/UsefulPlugins/index.jsx:176
 msgid "Activate"
 msgstr ""
@@ -544,13 +539,13 @@ msgid "&copy; Copyright "
 msgstr ""
 
 #: inc/customizer/partial-refresh.php:161
-#: inc/extras.php:760
-#: inc/extras.php:762
 #: inc/extras.php:764
+#: inc/extras.php:766
 #: inc/extras.php:768
-#: inc/extras.php:770
+#: inc/extras.php:772
 #: inc/extras.php:774
-#: inc/extras.php:1343
+#: inc/extras.php:778
+#: inc/extras.php:1347
 msgid "Y"
 msgstr ""
 
@@ -726,6 +721,7 @@ msgid "Heading Color"
 msgstr ""
 
 #: inc/customizer/sections/colors.php:119
+#: inc/elementor-compatibility.php:54
 msgid "Section Background Color"
 msgstr ""
 
@@ -946,7 +942,7 @@ msgid "Show Social Media"
 msgstr ""
 
 #: inc/customizer/sections/page.php:16
-#: inc/template-functions.php:331
+#: inc/template-functions.php:320
 msgid "Page"
 msgstr ""
 
@@ -1259,7 +1255,7 @@ msgid "No More Post"
 msgstr ""
 
 #: inc/defaults.php:375
-#: build/dashboard.js:6814
+#: build/dashboard.js:6818
 #: src/pages/index.js:17
 msgid "Home"
 msgstr ""
@@ -1269,7 +1265,7 @@ msgid "Book Now"
 msgstr ""
 
 #: inc/defaults.php:427
-#: inc/extras.php:383
+#: inc/extras.php:387
 msgid "Menu"
 msgstr ""
 
@@ -1283,10 +1279,6 @@ msgstr ""
 
 #: inc/elementor-compatibility.php:36
 msgid "Secondary Theme Color"
-msgstr ""
-
-#: inc/elementor-compatibility.php:54
-msgid "Section Background Color"
 msgstr ""
 
 #: inc/elementor-compatibility.php:60
@@ -1307,70 +1299,70 @@ msgid "Write a Comment<span class=\"screen-reader-text\"> on %s</span>"
 msgstr ""
 
 #: inc/extras.php:301
-#: inc/extras.php:343
+#: inc/extras.php:345
 msgid "Click here to add a menu"
 msgstr ""
 
-#: inc/extras.php:583
+#: inc/extras.php:587
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: inc/extras.php:586
+#: inc/extras.php:590
 msgid "says:"
 msgstr ""
 
-#: inc/extras.php:589
+#: inc/extras.php:593
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: inc/extras.php:756
+#: inc/extras.php:760
 msgid "Search Results for \"%s\""
 msgstr ""
 
-#: inc/extras.php:762
-#: inc/extras.php:764
-#: inc/extras.php:770
+#: inc/extras.php:766
+#: inc/extras.php:768
+#: inc/extras.php:774
 msgid "m"
 msgstr ""
 
-#: inc/extras.php:762
-#: inc/extras.php:770
+#: inc/extras.php:766
+#: inc/extras.php:774
 msgid "F"
 msgstr ""
 
-#: inc/extras.php:764
+#: inc/extras.php:768
 msgid "d"
 msgstr ""
 
-#: inc/extras.php:879
+#: inc/extras.php:883
 msgid "Page %s"
 msgstr ""
 
-#: inc/extras.php:911
+#: inc/extras.php:915
 msgid "404 Error - Page Not Found"
 msgstr ""
 
-#: inc/extras.php:914
+#: inc/extras.php:918
 msgid " (Page %s)"
 msgstr ""
 
-#: inc/extras.php:969
+#: inc/extras.php:973
 msgid "Latest Posts"
 msgstr ""
 
-#: inc/extras.php:1073
+#: inc/extras.php:1077
 msgid "Showing %1$s of %2$s Results"
 msgstr ""
 
 #. translators: 1: found posts.
-#: inc/extras.php:1077
+#: inc/extras.php:1081
 msgctxt "found posts"
 msgid "%s Result"
 msgid_plural "%s Results"
 msgstr[0] ""
 msgstr[1] ""
 
-#: inc/extras.php:1541
+#: inc/extras.php:1545
 msgid "Get Travel Monster Pro"
 msgstr ""
 
@@ -1395,44 +1387,44 @@ msgstr ""
 msgid "%1$s %2$s%3$s%4$s"
 msgstr ""
 
-#: inc/template-functions.php:304
+#: inc/template-functions.php:293
 msgid "Post Navigation"
 msgstr ""
 
-#: inc/template-functions.php:308
+#: inc/template-functions.php:297
 msgid "Previous Article"
 msgstr ""
 
-#: inc/template-functions.php:313
+#: inc/template-functions.php:302
 msgid "Next Article"
 msgstr ""
 
-#: inc/template-functions.php:329
+#: inc/template-functions.php:318
 msgid "Previous"
 msgstr ""
 
-#: inc/template-functions.php:330
+#: inc/template-functions.php:319
 msgid "Next"
 msgstr ""
 
 #. translators: %s: Name of current post. Only visible to screen readers
-#: inc/template-functions.php:527
+#: inc/template-functions.php:516
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr ""
 
-#: inc/template-functions.php:540
+#: inc/template-functions.php:529
 msgid "Pages:"
 msgstr ""
 
-#: inc/template-functions.php:620
+#: inc/template-functions.php:609
 msgid "View All Articles"
 msgstr ""
 
-#: inc/template-functions.php:790
+#: inc/template-functions.php:779
 msgid " Travel Monster by "
 msgstr ""
 
-#: inc/template-functions.php:792
+#: inc/template-functions.php:781
 msgid "%1$s Powered by %2$s%3$s"
 msgstr ""
 
@@ -1741,7 +1733,7 @@ msgid "Upgrade message from the plugin author:"
 msgstr ""
 
 #: inc/tgmpa/class-tgm-plugin-activation.php:2867
-#: build/dashboard.js:6757
+#: build/dashboard.js:6761
 #: src/pages/UsefulPlugins/index.jsx:166
 msgid "Install"
 msgstr ""
@@ -1838,7 +1830,7 @@ msgid "Hide Details"
 msgstr ""
 
 #: inc/tgmpa/recommended-plugins.php:56
-#: build/dashboard.js:6633
+#: build/dashboard.js:6637
 #: src/pages/UsefulPlugins/index.jsx:32
 msgid "Elementor Website Builder"
 msgstr ""
@@ -1848,13 +1840,13 @@ msgid "WP Travel Engine - Addons for Elementor"
 msgstr ""
 
 #: inc/tgmpa/recommended-plugins.php:66
-#: build/dashboard.js:6621
+#: build/dashboard.js:6625
 #: src/pages/UsefulPlugins/index.jsx:17
 msgid "Demo Importer Plus"
 msgstr ""
 
 #: inc/tgmpa/recommended-plugins.php:71
-#: build/dashboard.js:6625
+#: build/dashboard.js:6629
 #: src/pages/UsefulPlugins/index.jsx:22
 msgid "Mega Elements - Addons for Elementor"
 msgstr ""
@@ -1891,10 +1883,6 @@ msgstr ""
 msgid "Add footer four widgets here."
 msgstr ""
 
-#: inc/wte/single-trip/banner.php:122
-msgid "Gallery"
-msgstr ""
-
 #: template-parts/content-none.php:13
 msgid "Nothing Found"
 msgstr ""
@@ -1912,31 +1900,31 @@ msgstr ""
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
 msgstr ""
 
-#: wp-travel-engine/content--template-taxonomy.php:66
+#: wp-travel-engine/content--template-taxonomy.php:63
 msgid "Sort:"
 msgstr ""
 
-#: wp-travel-engine/content--template-taxonomy.php:70
-#: wp-travel-engine/content--template-taxonomy.php:79
-#: wp-travel-engine/content--template-taxonomy.php:85
+#: wp-travel-engine/content--template-taxonomy.php:67
+#: wp-travel-engine/content--template-taxonomy.php:76
+#: wp-travel-engine/content--template-taxonomy.php:82
 msgid "a - z"
 msgstr ""
 
-#: wp-travel-engine/content--template-taxonomy.php:71
-#: wp-travel-engine/content--template-taxonomy.php:88
-#: wp-travel-engine/content--template-taxonomy.php:94
+#: wp-travel-engine/content--template-taxonomy.php:68
+#: wp-travel-engine/content--template-taxonomy.php:85
+#: wp-travel-engine/content--template-taxonomy.php:91
 msgid "z - a"
 msgstr ""
 
-#: wp-travel-engine/content--template-taxonomy.php:77
+#: wp-travel-engine/content--template-taxonomy.php:74
 msgid "Name"
 msgstr ""
 
-#: wp-travel-engine/content--template-taxonomy.php:139
+#: wp-travel-engine/content--template-taxonomy.php:140
 msgid "View All"
 msgstr ""
 
-#: wp-travel-engine/content--template-taxonomy.php:146
+#: wp-travel-engine/content--template-taxonomy.php:147
 msgid "(%d Trip)"
 msgid_plural "(%d Trips)"
 msgstr[0] ""
@@ -2261,102 +2249,112 @@ msgstr ""
 msgid "Get started effortlessly! Use our one-click demo import feature to set up your site instantly with all the sample data and settings. Please note that importing demo content will overwrite your existing site content and settings. %s Not recommended if you have existing content. %s"
 msgstr ""
 
-#: build/dashboard.js:6572
-#: src/pages/StarterSites/index.jsx:104
+#: build/dashboard.js:6571
+#: src/pages/StarterSites/index.jsx:101
+msgid "Note:"
+msgstr ""
+
+#: build/dashboard.js:6571
+#: src/pages/StarterSites/index.jsx:101
+msgid "Upon clicking this button, the \"Demo Importer Plus\" plugin will be installed and activated from the WordPress repository."
+msgstr ""
+
+#: build/dashboard.js:6576
+#: src/pages/StarterSites/index.jsx:105
 msgid "Install Starter Sites"
 msgstr ""
 
-#: build/dashboard.js:6577
-#: src/pages/StarterSites/index.jsx:110
+#: build/dashboard.js:6581
+#: src/pages/StarterSites/index.jsx:111
 msgid "Activate Starter Sites"
 msgstr ""
 
-#: build/dashboard.js:6582
-#: src/pages/StarterSites/index.jsx:116
+#: build/dashboard.js:6586
+#: src/pages/StarterSites/index.jsx:117
 msgid "Import Starter Sites"
 msgstr ""
 
-#: build/dashboard.js:6613
+#: build/dashboard.js:6617
 #: src/pages/UsefulPlugins/index.jsx:7
 msgid "WP Travel Engine – Tour Booking Plugin"
 msgstr ""
 
-#: build/dashboard.js:6614
+#: build/dashboard.js:6618
 #: src/pages/UsefulPlugins/index.jsx:8
 msgid "WP Travel Engine is the most popular tour and travel booking WordPress plugin. Used by over 10,000 travel agency websites."
 msgstr ""
 
-#: build/dashboard.js:6617
+#: build/dashboard.js:6621
 #: src/pages/UsefulPlugins/index.jsx:12
 msgid "Contact Form 7"
 msgstr ""
 
-#: build/dashboard.js:6618
+#: build/dashboard.js:6622
 #: src/pages/UsefulPlugins/index.jsx:13
 msgid "Just another contact form plugin. Simple but flexible."
 msgstr ""
 
-#: build/dashboard.js:6622
+#: build/dashboard.js:6626
 #: src/pages/UsefulPlugins/index.jsx:18
 msgid "Demo Importer Plus allows you to Import the demo content, widgets, customizer settings and theme settings with a single click without any hassle."
 msgstr ""
 
-#: build/dashboard.js:6626
+#: build/dashboard.js:6630
 #: src/pages/UsefulPlugins/index.jsx:23
 msgid "A powerful and advanced all in one Elementor addons with unique styling features to create a beautiful website effortlessly."
 msgstr ""
 
-#: build/dashboard.js:6629
+#: build/dashboard.js:6633
 #: src/pages/UsefulPlugins/index.jsx:27
 msgid "WP Travel Engine – Elementor Widgets"
 msgstr ""
 
-#: build/dashboard.js:6630
+#: build/dashboard.js:6634
 #: src/pages/UsefulPlugins/index.jsx:28
 msgid "WP Travel Engine – Elementor Widgets provides 20+ Elementor widgets to create travel and tour booking websites using WP Travel Engine and Elementor."
 msgstr ""
 
-#: build/dashboard.js:6634
+#: build/dashboard.js:6638
 #: src/pages/UsefulPlugins/index.jsx:33
 msgid "The Elementor Website Builder has it all: drag and drop page builder, pixel perfect design, mobile responsive editing, and more. Get started now!"
 msgstr ""
 
-#: build/dashboard.js:6760
+#: build/dashboard.js:6764
 #: src/pages/UsefulPlugins/index.jsx:171
 msgid "Installing..."
 msgstr ""
 
-#: build/dashboard.js:6766
+#: build/dashboard.js:6770
 #: src/pages/UsefulPlugins/index.jsx:181
 msgid "Activating..."
 msgstr ""
 
-#: build/dashboard.js:6769
+#: build/dashboard.js:6773
 #: src/pages/UsefulPlugins/index.jsx:186
 msgid "Activated"
 msgstr ""
 
-#: build/dashboard.js:6820
+#: build/dashboard.js:6824
 #: src/pages/index.js:22
 msgid "Starter Sites"
 msgstr ""
 
-#: build/dashboard.js:6826
+#: build/dashboard.js:6830
 #: src/pages/index.js:27
 msgid "Free vs Pro"
 msgstr ""
 
-#: build/dashboard.js:6832
+#: build/dashboard.js:6836
 #: src/pages/index.js:32
 msgid "FAQs"
 msgstr ""
 
-#: build/dashboard.js:6838
+#: build/dashboard.js:6842
 #: src/pages/index.js:37
 msgid "Useful Plugins"
 msgstr ""
 
-#: build/dashboard.js:6854
+#: build/dashboard.js:6858
 #: src/pages/index.js:56
 msgid "License"
 msgstr ""
