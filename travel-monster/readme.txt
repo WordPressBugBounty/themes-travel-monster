@@ -5,7 +5,7 @@ Contributors: wptravelengine
 Requires at least: 6.2
 Requires PHP: 7.3
 Tested up to: 6.7
-Stable tag: 1.2.6
+Stable tag: 1.2.7
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: one-column, two-columns, right-sidebar, left-sidebar, footer-widgets, custom-background, custom-header, custom-menu, custom-logo, featured-images, threaded-comments, full-width-template, rtl-language-support, translation-ready, theme-options, food-and-drink, holiday, entertainment
@@ -75,9 +75,13 @@ All other images including icon image used in screenshot and images used in cust
 
 == Changelog ==
 
+	1.2.7 - February 21, 2025
+	* Fix: Related Trips title font size issue has been fixed.
+	* Fix: Resolved an issue preventing users from expanding the additional notes field.
+
 	1.2.6 - January 28, 2025
 	* Fix: Design issue in Single Trips has been fixed.
-
+	
 	1.2.5 - January 27, 2025
 	* Fix: Added compatibility for Single Trips new banner layouts given in WPTE version 6.3.3.
 
