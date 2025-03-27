@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Travel Monster 1.2.7\n"
+"Project-Id-Version: Travel Monster 1.2.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/travel-monster\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-02-21T05:59:46+01:00\n"
+"POT-Creation-Date: 2025-03-27T13:16:04+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.6.0\n"
 "X-Domain: travel-monster\n"
@@ -1899,57 +1899,6 @@ msgstr ""
 #: template-parts/content-none.php:35
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help."
 msgstr ""
-
-#: wp-travel-engine/content--template-taxonomy.php:63
-msgid "Sort:"
-msgstr ""
-
-#: wp-travel-engine/content--template-taxonomy.php:67
-#: wp-travel-engine/content--template-taxonomy.php:76
-#: wp-travel-engine/content--template-taxonomy.php:82
-msgid "a - z"
-msgstr ""
-
-#: wp-travel-engine/content--template-taxonomy.php:68
-#: wp-travel-engine/content--template-taxonomy.php:85
-#: wp-travel-engine/content--template-taxonomy.php:91
-msgid "z - a"
-msgstr ""
-
-#: wp-travel-engine/content--template-taxonomy.php:74
-msgid "Name"
-msgstr ""
-
-#: wp-travel-engine/content--template-taxonomy.php:140
-msgid "View All"
-msgstr ""
-
-#: wp-travel-engine/content--template-taxonomy.php:147
-msgid "(%d Trip)"
-msgid_plural "(%d Trips)"
-msgstr[0] ""
-msgstr[1] ""
-
-#: wp-travel-engine/single-trip/title.php:34
-msgctxt "days"
-msgid "Day"
-msgid_plural "Days"
-msgstr[0] ""
-msgstr[1] ""
-
-#: wp-travel-engine/single-trip/title.php:35
-msgctxt "hours"
-msgid "Hour"
-msgid_plural "Hours"
-msgstr[0] ""
-msgstr[1] ""
-
-#: wp-travel-engine/single-trip/title.php:46
-msgctxt "nights"
-msgid "Night"
-msgid_plural "Nights"
-msgstr[0] ""
-msgstr[1] ""
 
 #: build/dashboard.js:5821
 #: src/components/TabHeader/index.jsx:7
