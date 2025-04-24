@@ -1,5 +1,5 @@
 ( function( $, api ) {
-	// No longer needed as of 1.2.95
+	// No longer needed as of 1.2.9
 	// Keeping it here just in case
 	api.controlConstructor['spacing'] = api.Control.extend( {
 		ready: function() {

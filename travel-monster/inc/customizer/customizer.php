@@ -137,23 +137,29 @@ require get_template_directory() . '/inc/customizer-plugin-recommend/plugin-inst
 
 require get_template_directory() . '/inc/customizer-plugin-recommend/plugin-install/class-plugin-recommend.php';
 
-$config_customizer = array(
-	'recommended_plugins' => array(
-		//change the slug for respective plugin recomendation
-        'wp-travel-engine' => array(
-			'recommended' => true,
-			'description' => sprintf(
-				/* translators: %s: plugin name */
-				esc_html__( 'If you want to take full advantage of the features this theme has to offer, please install and activate %s plugin.', 'travel-monster' ), '<strong>WP Travel Engine</strong>'
+if( ! function_exists( 'travel_monster_customizer_notice_init' ) ) {
+	function travel_monster_customizer_notice_init() {
+		$config_customizer = array(
+			'recommended_plugins' => array(
+				//change the slug for respective plugin recomendation
+				'wp-travel-engine' => array(
+					'recommended' => true,
+					'description' => sprintf(
+						/* translators: %s: plugin name */
+						esc_html__( 'If you want to take full advantage of the features this theme has to offer, please install and activate %s plugin.', 'travel-monster' ), '<strong>WP Travel Engine</strong>'
+					),
+				),
 			),
-		),
-	),
-	'recommended_plugins_title' => esc_html__( 'Recommended Plugin', 'travel-monster' ),
-	'install_button_label'      => esc_html__( 'Install and Activate', 'travel-monster' ),
-	'activate_button_label'     => esc_html__( 'Activate', 'travel-monster' ),
-	'deactivate_button_label'   => esc_html__( 'Deactivate', 'travel-monster' ),
-);
-Travel_Monster_Customizer_Notice::init( apply_filters( 'travel_monster_customizer_notice_array', $config_customizer ) );
+			'recommended_plugins_title' => esc_html__( 'Recommended Plugin', 'travel-monster' ),
+			'install_button_label'      => esc_html__( 'Install and Activate', 'travel-monster' ),
+			'activate_button_label'     => esc_html__( 'Activate', 'travel-monster' ),
+			'deactivate_button_label'   => esc_html__( 'Deactivate', 'travel-monster' ),
+		);
+		Travel_Monster_Customizer_Notice::init( apply_filters( 'travel_monster_customizer_notice_array', $config_customizer ) );
+	}
+}
+add_action('init', 'travel_monster_customizer_notice_init');
+
 /**
  * Functions that removes default section in wp
  *

@@ -1526,7 +1526,7 @@ function travel_monster_demo_importer_checked() {
         add_filter(
             'demo_importer_plus_api_id',
             function () {
-                return  array( '81','73','89','65','183','182', '377', '418', '437', '908', '929' );
+                return  array( '81','73','89','65','183','182', '377', '418', '437', '908', '929', '994' );
             }
         );
     }

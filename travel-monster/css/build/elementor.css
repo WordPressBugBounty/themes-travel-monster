@@ -25,6 +25,9 @@ body.elementor-template-full-width .main-content-wrapper {
     margin: 0;
 }
 
+body.elementor-page{
+    background-color: var(--tmp-background-color) !important;
+}
 
 /*--------------------------------------------------------------
 # Widgets
@@ -270,7 +273,6 @@ WIDGET NEWSLETTER
 .elementor-widget-wp-widget-blp_faq_widget .faq-block .faq-title {
     background: none;
     color: var(--black-color);
-    padding: 0;
     font-family: var(--secondary-font);
     font-weight: 600;
     font-size: 1em;
@@ -553,7 +555,6 @@ Sidebar price filter
     text-align: center;
     text-decoration: none;
     padding: 17px 36.71px;
-    color: var(--white-color);
     transition: all 0.35s ease;
     white-space: nowrap;
     font-family: var(--secondary-font);
@@ -911,4 +912,23 @@ Sidebar price filter
         position: absolute;
         left: 48%;
     }
+}
+
+
+/* utility classes */
+
+.full-svg .elementor-icon{
+    width: 100%;
+}
+
+.full-svg svg{
+    width: 100% !important;    
+}
+
+.blur-120{
+    backdrop-filter: blur(120px);
+}
+
+.blur-24{
+    backdrop-filter: blur(24px)
 }

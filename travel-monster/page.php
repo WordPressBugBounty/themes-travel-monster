@@ -38,5 +38,9 @@ get_header(); ?>
 		</div>
 	</main><!-- #main -->
 <?php
-get_sidebar();
+
+if( apply_filters( 'travel_monster_display_page_sidebar', true ) ) {
+	get_sidebar();
+}
+
 get_footer();

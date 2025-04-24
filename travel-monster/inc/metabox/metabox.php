@@ -27,36 +27,42 @@ function travel_monster_add_sidebar_layout_box(){
 }
 add_action( 'add_meta_boxes', 'travel_monster_add_sidebar_layout_box' );
 
-$travel_monster_sidebar_layout = array(    
-    'default-sidebar'=> array(
-    	 'value'     => 'default-sidebar',
-    	 'label'     => __( 'Default Sidebar', 'travel-monster' ),
-    	 'thumbnail' => get_template_directory_uri() . '/images/default-sidebar.png'
-   	),
-    'right-sidebar' => array(
-         'value'     => 'right-sidebar',
-         'label'     => __( 'Right Sidebar', 'travel-monster' ),
-         'thumbnail' => get_template_directory_uri() . '/images/right-sidebar.png'
-    ),
-    'left-sidebar' => array(
-        'value'     => 'left-sidebar',
-        'label'     => __( 'Left Sidebar', 'travel-monster' ),
-        'thumbnail' => get_template_directory_uri() . '/images/left-sidebar.png'
-    ),
-    'no-sidebar'     => array(
-        'value'     => 'no-sidebar',
-        'label'     => __( 'Full Width', 'travel-monster' ),
-        'thumbnail' => get_template_directory_uri() . '/images/full-width.png'
-    ),
-    'fullwidth-centered' => array(
-        'value'     => 'fullwidth-centered',
-        'label'     => __( 'Full Width Centered', 'travel-monster' ),
-        'thumbnail' => get_template_directory_uri() . '/images/full-width-centered.png'
-    )
-);
+if( ! function_exists( 'travel_monster_get_sidebar_layout_data' ) ){
+    function travel_monster_get_sidebar_layout_data(){
+        return array(    
+            'default-sidebar'=> array(
+                 'value'     => 'default-sidebar',
+                 'label'     => __( 'Default Sidebar', 'travel-monster' ),
+                 'thumbnail' => get_template_directory_uri() . '/images/default-sidebar.png'
+               ),
+            'right-sidebar' => array(
+                 'value'     => 'right-sidebar',
+                 'label'     => __( 'Right Sidebar', 'travel-monster' ),
+                 'thumbnail' => get_template_directory_uri() . '/images/right-sidebar.png'
+            ),
+            'left-sidebar' => array(
+                'value'     => 'left-sidebar',
+                'label'     => __( 'Left Sidebar', 'travel-monster' ),
+                'thumbnail' => get_template_directory_uri() . '/images/left-sidebar.png'
+            ),
+            'no-sidebar'     => array(
+                'value'     => 'no-sidebar',
+                'label'     => __( 'Full Width', 'travel-monster' ),
+                'thumbnail' => get_template_directory_uri() . '/images/full-width.png'
+            ),
+            'fullwidth-centered' => array(
+                'value'     => 'fullwidth-centered',
+                'label'     => __( 'Full Width Centered', 'travel-monster' ),
+                'thumbnail' => get_template_directory_uri() . '/images/full-width-centered.png'
+            )
+        );
+    }
+}
+
 
 function travel_monster_sidebar_layout_callback(){
-    global $post , $travel_monster_sidebar_layout;
+    global $post;
+    $travel_monster_sidebar_layout = travel_monster_get_sidebar_layout_data();
     wp_nonce_field( basename( __FILE__ ), 'travel_monster_nonce' ); 
     if( get_post_meta( $post->ID, '_travel_monster_sidebar_layout', true ) ){
         $layout = get_post_meta( $post->ID, '_travel_monster_sidebar_layout', true );
@@ -89,7 +95,7 @@ function travel_monster_sidebar_layout_callback(){
 }
 
 function travel_monster_save_sidebar_layout( $post_id ){
-    global $travel_monster_sidebar_layout;
+    $travel_monster_sidebar_layout = travel_monster_get_sidebar_layout_data();
 
     // Verify the nonce before proceeding.
     if( !isset( $_POST[ 'travel_monster_nonce' ] ) || !wp_verify_nonce( $_POST[ 'travel_monster_nonce' ], basename( __FILE__ ) ) )
