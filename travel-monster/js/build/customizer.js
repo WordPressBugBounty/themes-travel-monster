@@ -723,6 +723,12 @@ function travel_monster_spacing_live_update(settings, responsive, selector, prop
 	travel_monster_colors_live_update( 'top_header_bg_color', '.header-layout-1 .header-m', '--tmp-top-header-bg-color', undefined );
 	travel_monster_colors_live_update( 'top_header_text_color', '.header-layout-1 .header-m', '--tmp-top-header-text-color', undefined );
 
+	/**
+	 * Transparent Header  Button Color
+	 */
+	travel_monster_colors_live_update( 'transparent_top_header_bg_color', '.tm-transparent-header', '--tmp-transparent-header-bg-color', undefined );
+	travel_monster_colors_live_update( 'transparent_top_header_text_color', '.tm-transparent-header', '--tmp-transparent-header-text-color', undefined );
+
 	/** 
 	 * Footer Color
 	 */ 

@@ -4,7 +4,7 @@ Theme URI: https://wptravelengine.com/wordpress-travel-themes/travel-monster/
 Author: WP Travel Engine
 Author URI: https://wordpress.org/themes/author/wptravelengine/
 Description: Travel Monster is a free travel and tour booking WordPress theme for travel agencies. It is powered by the WP Travel Engine plugin, the most popular travel booking plugin. You can use the Travel Monster theme to create websites such as travel agencies, tour operators, trekking, camping, mountaineering, surfing, city tour, rafting, jungle safari, hiking, tourism, summer holidays, winter holidays, wine tours, cruise websites, beach holidays, etc. You can create itineraries, destinations, activities, trip types. etc. Your website visitors can quickly search for tours and book them. Travel Monster is mobile-friendly, SEO-optimized, translation-ready and RTL-ready. Plus, it is compatible with Elementor and Gutenberg, offering more flexibility to customise your website. Check the demos here: https://wptravelengine.com/travel-monster-demo/. Documentation at https://docs.wptravelengine.com/docs-category/travel-monster/, and get support at https://wptravelengine.com/support/. 
-Version: 1.3.0
+Version: 1.3.1
 Requires at least: 6.2
 Requires PHP: 7.4
 Tested up to: 6.8
@@ -3059,6 +3059,69 @@ Header Style
   flex: 0 0 30px;
 }
 
+/********* Transparent Header *********/
+header.tm-transparent-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+header.tm-transparent-header.header-layout-1 .header-m-rght-wrap .contact-wrap-head .head-5-contlinks, header.tm-transparent-header.header-layout-2 .header-m-rght-wrap .contact-wrap-head .head-5-contlinks, header.tm-transparent-header.header-layout-3 .header-m-rght-wrap .contact-wrap-head .head-5-contlinks, header.tm-transparent-header.header-layout-4 .header-m-rght-wrap .contact-wrap-head .head-5-contlinks, header.tm-transparent-header.header-layout-5 .header-m-rght-wrap .contact-wrap-head .head-5-contlinks, header.tm-transparent-header.header-layout-6 .header-m-rght-wrap .contact-wrap-head .head-5-contlinks {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+header.tm-transparent-header.header-layout-1 .header-m-rght-wrap .contact-wrap-head .contact-email-wrap a:not(:hover),
+header.tm-transparent-header.header-layout-1 .header-m-rght-wrap .contact-wrap-head .contact-phone-wrap .head-5-dtls:not(:hover), header.tm-transparent-header.header-layout-2 .header-m-rght-wrap .contact-wrap-head .contact-email-wrap a:not(:hover),
+header.tm-transparent-header.header-layout-2 .header-m-rght-wrap .contact-wrap-head .contact-phone-wrap .head-5-dtls:not(:hover), header.tm-transparent-header.header-layout-3 .header-m-rght-wrap .contact-wrap-head .contact-email-wrap a:not(:hover),
+header.tm-transparent-header.header-layout-3 .header-m-rght-wrap .contact-wrap-head .contact-phone-wrap .head-5-dtls:not(:hover), header.tm-transparent-header.header-layout-4 .header-m-rght-wrap .contact-wrap-head .contact-email-wrap a:not(:hover),
+header.tm-transparent-header.header-layout-4 .header-m-rght-wrap .contact-wrap-head .contact-phone-wrap .head-5-dtls:not(:hover), header.tm-transparent-header.header-layout-5 .header-m-rght-wrap .contact-wrap-head .contact-email-wrap a:not(:hover),
+header.tm-transparent-header.header-layout-5 .header-m-rght-wrap .contact-wrap-head .contact-phone-wrap .head-5-dtls:not(:hover), header.tm-transparent-header.header-layout-6 .header-m-rght-wrap .contact-wrap-head .contact-email-wrap a:not(:hover),
+header.tm-transparent-header.header-layout-6 .header-m-rght-wrap .contact-wrap-head .contact-phone-wrap .head-5-dtls:not(:hover) {
+  color: var(--tmp-transparent-header-text-color, #fff);
+}
+header.tm-transparent-header.header-layout-1 .social-media-wrap ul li a:not(:hover), header.tm-transparent-header.header-layout-2 .social-media-wrap ul li a:not(:hover), header.tm-transparent-header.header-layout-3 .social-media-wrap ul li a:not(:hover), header.tm-transparent-header.header-layout-4 .social-media-wrap ul li a:not(:hover), header.tm-transparent-header.header-layout-5 .social-media-wrap ul li a:not(:hover), header.tm-transparent-header.header-layout-6 .social-media-wrap ul li a:not(:hover) {
+  color: var(--tmp-transparent-header-text-color, #fff);
+}
+header.tm-transparent-header.header-layout-1 .social-media-wrap + .search-form-section, header.tm-transparent-header.header-layout-2 .social-media-wrap + .search-form-section, header.tm-transparent-header.header-layout-3 .social-media-wrap + .search-form-section, header.tm-transparent-header.header-layout-4 .social-media-wrap + .search-form-section, header.tm-transparent-header.header-layout-5 .social-media-wrap + .search-form-section, header.tm-transparent-header.header-layout-6 .social-media-wrap + .search-form-section {
+  border-color: rgba(255, 255, 255, 0.24);
+}
+header.tm-transparent-header .header-search-btn svg:not(:hover) {
+  fill: var(--tmp-transparent-header-text-color, #fff);
+}
+header.tm-transparent-header .header-m,
+header.tm-transparent-header .header-b {
+  background: var(--tmp-transparent-header-bg-color, transparent);
+  box-shadow: none;
+}
+header.tm-transparent-header .header-m .primary-navigation .primary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover),
+header.tm-transparent-header .header-m .primary-navigation .secondary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover),
+header.tm-transparent-header .header-m .secondary-navigation .primary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover),
+header.tm-transparent-header .header-m .secondary-navigation .secondary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover),
+header.tm-transparent-header .header-b .primary-navigation .primary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover),
+header.tm-transparent-header .header-b .primary-navigation .secondary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover),
+header.tm-transparent-header .header-b .secondary-navigation .primary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover),
+header.tm-transparent-header .header-b .secondary-navigation .secondary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover) {
+  color: var(--tmp-transparent-header-text-color, #fff);
+}
+header.tm-transparent-header .header-m .primary-navigation .primary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover)::after,
+header.tm-transparent-header .header-m .primary-navigation .secondary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover)::after,
+header.tm-transparent-header .header-m .secondary-navigation .primary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover)::after,
+header.tm-transparent-header .header-m .secondary-navigation .secondary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover)::after,
+header.tm-transparent-header .header-b .primary-navigation .primary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover)::after,
+header.tm-transparent-header .header-b .primary-navigation .secondary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover)::after,
+header.tm-transparent-header .header-b .secondary-navigation .primary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover)::after,
+header.tm-transparent-header .header-b .secondary-navigation .secondary-menu-wrapper > li:not(.current-menu-ancestor, .current_page_item, .current_page_ancestor, .current-menu-item, .current-menu-ancestor) > a:not(:hover)::after {
+  background: currentColor;
+}
+header.tm-transparent-header .header-m {
+  border-bottom-color: rgba(255, 255, 255, 0.4);
+}
+header.tm-transparent-header.tm-background-effect .header-m,
+header.tm-transparent-header.tm-background-effect .header-b {
+  background: var(--tmp-transparent-header-bg-color, rgba(0, 0, 0, 0.01));
+  backdrop-filter: blur(var(--tmp-transparent-header-bg-blur, 16px));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.24);
+}
+
 body.sticky-header .sticky-holder.sticky {
   display: block;
   background: var(--white-color);
@@ -3071,7 +3134,7 @@ body.sticky-header .sticky-holder.sticky {
   -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.07);
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.07);
 }
-body.sticky-header.admin-bar .sticky-holder.sticky {
+body.sticky-header.admin-bar .sticky-holder.sticky, body.sticky-header.admin-bar header.tm-transparent-header {
   margin-top: 32px;
 }
 

@@ -4,8 +4,8 @@
 Contributors: wptravelengine
 Requires at least: 6.2
 Requires PHP: 7.3
-Tested up to: 6.7
-Stable tag: 1.3.0
+Tested up to: 6.8
+Stable tag: 1.3.1
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: one-column, two-columns, right-sidebar, left-sidebar, footer-widgets, custom-background, custom-header, custom-menu, custom-logo, featured-images, threaded-comments, full-width-template, rtl-language-support, translation-ready, theme-options, food-and-drink, holiday, entertainment
@@ -74,6 +74,11 @@ The logos shown in the screenshot are self-created.
 All other images including icon image used in screenshot and images used in customizer settings are self created and are under the GPL.
 
 == Changelog ==
+
+	1.3.1 - May 13, 2025
+	* New Feature: Added Transparent header.
+	* New Feature: Added feature to link phone number to WhatsApp.
+	* Update: Google Fonts Library has been updated.
 
 	1.3.0 - April 24, 2025
 	* Fix: Accessibility has been fixed for header search.

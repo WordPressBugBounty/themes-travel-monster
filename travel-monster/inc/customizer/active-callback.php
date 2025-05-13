@@ -76,3 +76,21 @@ function travel_monster_performance_fonts( $control ){
 	return false;
 }
 endif;
+
+if( ! function_exists( 'travel_monster_transparent_header_ac' ) ) :
+/**
+ * Active Callback for Transparent Header
+*/
+function travel_monster_transparent_header_ac( $control ){
+	
+	$ed_transparent_header = $control->manager->get_setting( 'ed_transparent_header' )->value();
+	$ed_bg_effect = $control->manager->get_setting( 'ed_bg_effect' )->value();
+	$control_id     = $control->id;
+
+	if ( $control_id == 'transparent_header_locations' && $ed_transparent_header ) return true;
+	if ( $control_id == 'transparent_top_header_bg_color' && $ed_transparent_header ) return true;
+	if ( $control_id == 'transparent_top_header_text_color' && $ed_transparent_header ) return true;
+	if ( $control_id == 'ed_bg_effect' && $ed_transparent_header ) return true;
+	if ( $control_id == 'background_blur' && $ed_bg_effect ) return true;
+}
+endif;

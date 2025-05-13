@@ -278,6 +278,8 @@ function travel_monster_get_color_defaults(){
         'theme_black_color'                 => '#000000',
         'top_header_bg_color'               => '#28b5a4',
         'top_header_text_color'             => '#ffffff',
+        'transparent_top_header_bg_color'   => '',
+        'transparent_top_header_text_color' => '',
     );
 
     return apply_filters( 'travel_monster_color_options_defaults', $defaults );
@@ -422,6 +424,8 @@ function travel_monster_get_general_defaults(){
         'ed_sticky_header'                => false,
         'tmp_phone_label'                 => '',
         'tmp_phone'                       => '',
+        'ed_open_whatsapp'                => false,
+        'whatsapp_msg_lbl'                => '',
         'tmp_email_label'                 => '',
         'tmp_email'                       => '',
         'mobile_menu_label'               => __('Menu', 'travel-monster'),
@@ -455,7 +459,8 @@ function travel_monster_get_general_defaults(){
         'blog_header_image'               => '',
         'ed_localgoogle_fonts'            => false,
         'ed_preload_local_fonts'          => false,
-        'ed_sticky_booking_form'          => false
+        'ed_sticky_booking_form'          => false,
+        'background_blur'                 => 16,
     );
     return apply_filters( 'travel_monster_general_defaults', $defaults );
 }

@@ -225,12 +225,18 @@ if (!function_exists('travel_monster_site_branding')):
     /**
      * Site Branding
      */
-    function travel_monster_site_branding($mobile = false) { ?>
+    function travel_monster_site_branding($mobile = false) { 
+        $transparent_header      = get_theme_mod( 'ed_transparent_header', false );
+        $transparent_logo_upload = get_theme_mod( 'transparent_logo_upload', '');
+        $transparent_logo        = attachment_url_to_postid( $transparent_logo_upload ); ?>
 		<div class="site-branding" <?php travel_monster_microdata('organization'); ?>>
 			<div class="text-logo">
-				<?php
-        the_custom_logo();
-        ?>
+                <?php if( $transparent_header && $transparent_logo_upload ) { 
+                    echo wp_get_attachment_image( $transparent_logo, 'full' );
+                } elseif ( !$transparent_header){
+                    the_custom_logo();
+                }
+                ?>
 				<div class="site-title-description">
 					<?php if (is_front_page() && is_home() && !$mobile) { ?>
 						<h1 class="site-title" itemprop="name">
@@ -239,22 +245,19 @@ if (!function_exists('travel_monster_site_branding')):
 							</a>
 						</h1>
 					<?php
-        }
-        else { ?>
+                    }
+                    else { ?>
 						<p class="site-title" itemprop="name">
 							<a href="<?php echo esc_url(home_url('/')); ?>" rel="home" itemprop="url">
 								<?php bloginfo('name'); ?>
 							</a>
 						</p>
 					<?php
-        }
-        $travel_monster_description = get_bloginfo('description', 'display');
-        if ($travel_monster_description || is_customize_preview()) { ?>
-						<p class="site-description" itemprop="description"><?php echo $travel_monster_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-            
-            ?></p>
-					<?php
-        } ?>
+                    }
+                    $travel_monster_description = get_bloginfo('description', 'display');
+                    if ($travel_monster_description || is_customize_preview()) { ?>
+                        <p class="site-description" itemprop="description"><?php echo $travel_monster_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+                    <?php } ?>
 				</div>
 			</div><!-- .text-logo -->
 		</div><!-- .site-branding -->
@@ -1328,6 +1331,43 @@ if (!function_exists('travel_monster_get_page_id_by_template')):
             'meta_value' => $template_name
         );
         return $pages = get_pages($args);
+    }
+endif;
+
+if ( ! function_exists('travel_monster_get_pages') ):
+    /**
+     * Retrieve list of posts on the basis of provided post type
+     *
+     * @param string $post_type
+     * @param boolean $slug
+     * @return array $post_options
+     */
+    function travel_monster_get_pages( $post_type = 'page', $slug = false ){
+        $args = array(
+            'posts_per_page'   => -1,
+            'post_type'        => $post_type,
+            'post_status'      => 'publish',
+            'suppress_filters' => true
+        );
+        $posts_array = get_posts( $args );
+
+        // Initate an empty array
+        $post_options = array();
+
+        $post_options['all_pages'] = __('All Pages', 'travel-monster');
+        $post_options['homepage'] = __('Home Page', 'travel-monster');
+
+        if ( ! empty( $posts_array ) ) {
+            foreach ( $posts_array as $posts ) {
+                if( $slug ){
+                    $post_options[ $posts->post_title ] = $posts->post_title;
+                }else{
+                    $post_options[ $posts->ID ] = $posts->post_title;
+                }
+            }
+        }
+        wp_reset_postdata();
+        return $post_options;
     }
 endif;
 

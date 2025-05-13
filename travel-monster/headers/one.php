@@ -17,11 +17,14 @@ $siteBlogname       = get_option('blogname');
 $hideblogname       = get_theme_mod('hide_title', $siteDefaults['hide_title']);
 $blogdesc           = get_option('blogdescription');
 $hideblogdesc       = get_theme_mod('hide_tagline', $siteDefaults['hide_tagline']);
+$transparent_header = get_theme_mod( 'ed_transparent_header', false );
+$ed_bg_effect       = get_theme_mod( 'ed_bg_effect', false );
+$class              = ($transparent_header && $ed_bg_effect && is_front_page()) ? 'tm-transparent-header tm-background-effect' : ($transparent_header && is_front_page() ? 'tm-transparent-header' : '');
 /**
  * Desktop Header
- */ 
+ */   
 ?>
-<header id="masthead" class="site-header header-layout-1" <?php travel_monster_microdata( 'header' ); ?>>
+<header id="masthead" class="site-header header-layout-1 <?php echo esc_attr( $class ); ?>"<?php travel_monster_microdata( 'header' ); ?>>
     <?php if( $ed_social_media || $email || $phone || has_nav_menu('secondary') || travel_monster_is_currency_converter_activated() || travel_monster_is_polylang_active() || travel_monster_is_wpml_active() ) { ?>
         <div class="header-m">
             <div class="<?php echo esc_attr($add_class); ?>">
@@ -39,7 +42,7 @@ $hideblogdesc       = get_theme_mod('hide_tagline', $siteDefaults['hide_tagline'
                             travel_monster_header_email(); 
                         ?>
                     </div>
-                <?php } if( has_nav_menu('secondary') || travel_monster_is_currency_converter_activated() || travel_monster_is_polylang_active() || travel_monster_is_wpml_active()) { ?>
+                <?php } if( has_nav_menu('secondary') || travel_monster_is_currency_converter_activated() || travel_monster_is_polylang_active() || travel_monster_is_wpml_active() ){ ?>
                     <div class="header-t-lft-wrap">
                         <?php travel_monster_secondary_navigation(); ?>
                         <?php if( travel_monster_is_currency_converter_activated() || travel_monster_is_polylang_active() || travel_monster_is_wpml_active() ){ ?>

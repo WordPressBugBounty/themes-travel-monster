@@ -195,6 +195,12 @@ function travel_monster_dynamic_css(){
     $top_header_bg_color   = get_theme_mod( 'top_header_bg_color', $defaults['top_header_bg_color'] );
     $top_header_text_color = get_theme_mod( 'top_header_text_color', $defaults['top_header_text_color'] );
 	$rgb7                  = travel_monster_hex2rgb( travel_monster_sanitize_rgba( $top_header_text_color ) );
+    
+    $transparent_top_header_bg_color   = get_theme_mod( 'transparent_top_header_bg_color', $defaults['transparent_top_header_bg_color'] );
+    $transparent_top_header_text_color = get_theme_mod( 'transparent_top_header_text_color', $defaults['transparent_top_header_text_color'] );
+	$rgb8                  = travel_monster_hex2rgb( travel_monster_sanitize_rgba( $transparent_top_header_text_color ) );
+
+    $background_blur   = get_theme_mod( 'background_blur', $layout_defaults['background_blur'] );
 
 	$button_roundness = get_theme_mod( 'btn_roundness', $button_defaults['btn_roundness'] );
 	$button_padding   = get_theme_mod( 'button_padding', $button_defaults['button_padding'] );
@@ -306,6 +312,16 @@ function travel_monster_dynamic_css(){
         --tmp-top-header-bg-color: <?php echo travel_monster_sanitize_rgba( $top_header_bg_color ); ?>;
         --tmp-top-header-text-color: <?php echo travel_monster_sanitize_rgba( $top_header_text_color ); ?>;
 		--tmp-top-header-text-color-rgb: <?php printf('%1$s, %2$s, %3$s', $rgb7[0], $rgb7[1], $rgb7[2] ); ?>;
+    }
+
+    .tm-transparent-header{
+        --tmp-transparent-header-bg-color: <?php echo travel_monster_sanitize_rgba( $transparent_top_header_bg_color ); ?>;
+        --tmp-transparent-header-text-color: <?php echo travel_monster_sanitize_rgba(  $transparent_top_header_text_color ); ?>;
+		--tmp-transparent-header-text-color-rgb: <?php printf('%1$s, %2$s, %3$s', $rgb8[0], $rgb8[1], $rgb8[2] ); ?>;
+    }
+
+    .tm-background-effect{
+        --tmp-transparent-header-bg-blur: <?php echo absint($background_blur); ?>px;
     }
 
     /*Typography*/
@@ -604,6 +620,10 @@ function travel_monster_sanitize_hex_color( $color ){
  * @link http://bavotasan.com/2011/convert-hex-color-to-rgb-using-php/
 */
 function travel_monster_hex2rgb($hex) {
+    if(empty($hex)) {
+        return array(0, 0, 0);
+    }
+
     if($hex[0] === '#' ){
         $hex = str_replace("#", "", $hex);
 
@@ -617,8 +637,7 @@ function travel_monster_hex2rgb($hex) {
             $b = hexdec(substr($hex,4,2));
         }
         $rgb = array($r, $g, $b);
-        //return implode(",", $rgb); // returns the rgb values separated by commas
-        return $rgb; // returns an array with the rgb values
+        return $rgb;
     } else {
         $hex = str_replace("rgba(", "", $hex);
         $hex = str_replace(")", "", $hex);
