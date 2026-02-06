@@ -679,12 +679,14 @@ function travel_monster_spacing_live_update(settings, responsive, selector, prop
 	/*********** 
 	Theme Colors
 	************/	
-	travel_monster_colors_live_update( 'primary_color', ':root', '--tmp-primary-color', '--tmp-primary-color-rgb' );
-	travel_monster_colors_live_update( 'secondary_color', ':root', '--tmp-secondary-color', '--tmp-secondary-color-rgb' );
-	travel_monster_colors_live_update( 'body_font_color', ':root', '--tmp-body-font-color', '--tmp-body-font-color-rgb' );
-	travel_monster_colors_live_update( 'heading_color', ':root', '--tmp-heading-color', '--tmp-heading-color-rgb' );
-	travel_monster_colors_live_update( 'section_bg_color', ':root', '--tmp-section-bg-color', '--tmp-section-bg-color-rgb' );
-	travel_monster_colors_live_update( 'site_bg_color', ':root', '--tmp-background-color', '--tmp-background-color-rgb' );
+	travel_monster_colors_live_update( 'primary_color', ':root', '--tmp-primary-color', '--tmp-primary-color-rgb', '--e-global-color-primary_color' );
+	travel_monster_colors_live_update( 'secondary_color', ':root', '--tmp-secondary-color', '--tmp-secondary-color-rgb', '--e-global-color-secondary_color' );
+	travel_monster_colors_live_update( 'body_font_color', ':root', '--tmp-body-font-color', '--tmp-body-font-color-rgb', '--e-global-color-body_font_color' );
+	travel_monster_colors_live_update( 'heading_color', ':root', '--tmp-heading-color', '--tmp-heading-color-rgb', '--e-global-color-heading_color' );
+	travel_monster_colors_live_update( 'section_bg_color', ':root', '--tmp-section-bg-color', '--tmp-section-bg-color-rgb', '--e-global-color-section_bg_color' );
+	travel_monster_colors_live_update( 'site_bg_color', ':root', '--tmp-background-color', '--tmp-background-color-rgb', '--e-global-color-site_bg_color' );
+	travel_monster_colors_live_update( 'accent_color_one', ':root', '--tmp-accent-color-one', '--tmp-accent-color-one-rgb', '--e-global-color-accent_color_one' );
+	travel_monster_colors_live_update( 'accent_color_two', ':root', '--tmp-accent-color-two', '--tmp-accent-color-two-rgb', '--e-global-color-accent_color_two' );
 	travel_monster_colors_live_update( 'site_title_color', '.site-branding .site-title a', 'color', undefined );
 	travel_monster_colors_live_update( 'site_tagline_color', '.site-branding .site-description', 'color', undefined );
 
@@ -726,8 +728,8 @@ function travel_monster_spacing_live_update(settings, responsive, selector, prop
 	/**
 	 * Transparent Header  Button Color
 	 */
-	travel_monster_colors_live_update( 'transparent_top_header_bg_color', '.tm-transparent-header', '--tmp-transparent-header-bg-color', undefined );
-	travel_monster_colors_live_update( 'transparent_top_header_text_color', '.tm-transparent-header', '--tmp-transparent-header-text-color', undefined );
+	travel_monster_colors_live_update( 'transparent_top_header_bg_color', '.tm-transparent-header, .site-header.wte-header-builder', '--tmp-transparent-header-bg-color', undefined );
+	travel_monster_colors_live_update( 'transparent_top_header_text_color', '.tm-transparent-header, .site-header.wte-header-builder', '--tmp-transparent-header-text-color', undefined );
 
 	/** 
 	 * Footer Color

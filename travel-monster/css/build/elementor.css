@@ -21,11 +21,11 @@
 }
 
 body.elementor-template-full-width .main-content-wrapper {
-    display: block ;
+    display: block;
     margin: 0;
 }
 
-body.elementor-page{
+body.elementor-page {
     background-color: var(--tmp-background-color) !important;
 }
 
@@ -59,7 +59,6 @@ body.elementor-page{
     display: block;
     margin-bottom: 25px;
     font-size: 1em;
-    font-weight: 500;
 }
 
 .elementor-icon-list--layout-traditional ul li {
@@ -575,7 +574,7 @@ Sidebar price filter
 
 /********** Elementor Compatibility ********/
 
-.elementor-widget-container .elementor-button {
+.elementor-widget-button .elementor-button-link {
     display: inline-block;
     color: var(--tmp-btn-text-initial-color);
     background: var(--tmp-btn-bg-initial-color);
@@ -592,14 +591,14 @@ Sidebar price filter
     padding: var(--tmp-btn-padding-top) var(--tmp-btn-padding-right) var(--tmp-btn-padding-bottom) var(--tmp-btn-padding-left);
 }
 
-.elementor-widget-container .elementor-button:hover {
+.elementor-widget-button .elementor-button-link:hover {
     color: var(--tmp-btn-text-hover-color);
     background: var(--tmp-btn-bg-hover-color);
     border-color: var(--tmp-btn-border-hover-color);
 }
 
-.elementor-widget-container .elementor-button:focus,
-.elementor-widget-container .elementor-button:visited {
+.elementor-widget-button .elementor-button-link:focus,
+.elementor-widget-button .elementor-button-link:visited {
     color: var(--tmp-btn-text-initial-color);
 }
 
@@ -617,7 +616,7 @@ Sidebar price filter
     border-color: var(--tmp-btn-border-hover-color);
 }
 
-.elementor-widget-container .elementor-button.elementor-size-md {
+.elementor-widget-button .elementor-button-link.elementor-size-md {
     padding: var(--tmp-btn-padding-top) var(--tmp-btn-padding-right) var(--tmp-btn-padding-bottom) var(--tmp-btn-padding-left);
 }
 
@@ -914,21 +913,140 @@ Sidebar price filter
     }
 }
 
-
 /* utility classes */
 
-.full-svg .elementor-icon{
+.full-svg .elementor-icon {
     width: 100%;
 }
 
-.full-svg svg{
-    width: 100% !important;    
+.full-svg svg {
+    width: 100% !important;
 }
 
-.blur-120{
+.blur-120 {
     backdrop-filter: blur(120px);
 }
 
-.blur-24{
+.blur-24 {
     backdrop-filter: blur(24px)
+}
+
+.blur-8 {
+    backdrop-filter: blur(8px)
+}
+
+.image-multiply img {
+    mix-blend-mode: multiply;
+}
+
+@media screen and (min-width: 1024px) {
+    .has-content-sticky {
+        position: sticky !important;
+        top: 180px;
+    }
+}
+
+.gradient-text h3 {
+    background: linear-gradient(180deg, #13181A 75.43%, rgba(19, 24, 26, 0) 88.64%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    opacity: 0.06;
+}
+
+.text-stroke p {
+    -webkit-text-stroke: 1px var(--tmp-secondary-color);
+}
+
+/* sticket margin top */
+
+.has-scroll-margin {
+    scroll-margin-top: 150px;
+}
+
+/* blur */
+.blur {
+    backdrop-filter: blur(6px);
+}
+
+/* oval animation */
+
+.oval-animate {
+    animation: oval-animate 8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes oval-animate {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    25% {
+        transform: translate(20px, -10px);
+    }
+
+    50% {
+        transform: translate(0, -20px);
+    }
+
+    75% {
+        transform: translate(-20px, -10px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* marquee animation */
+.marquee-animation {
+    animation: marquee-animation 10s linear infinite;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+@keyframes marquee-animation {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* rotate animation */
+.rotate-animation {
+    animation: rotate-animation 10s linear infinite;
+}
+
+@keyframes rotate-animation {
+    from {
+        transform: rotateY(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* swing animation */
+
+.swing-animation {
+    animation: swing 3s linear infinite;
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(45deg);
+    }
+
+    50% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(45deg);
+    }
 }

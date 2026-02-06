@@ -43,6 +43,19 @@ class Travel_Monster_Alpha_Color_Customize_Control extends WP_Customize_Control 
 			array( 'wp-color-picker' ),
 			TRAVEL_MONSTER_THEME_VERSION
 		);
+		wp_localize_script(
+			'travel-monster-color-alpha-picker',
+			'travel_monster_color_presets',
+			array(
+				'preset_one'   => travel_monster_get_default_color_preset( 'one' ),
+				'preset_two'   => travel_monster_get_default_color_preset( 'two' ),
+				'preset_three' => travel_monster_get_default_color_preset( 'three' ),
+				'preset_four'  => travel_monster_get_default_color_preset( 'four' ),
+				'default'      => travel_monster_get_default_color_preset( 'default' ),
+				'companion'    => travel_monster_pro_is_activated(),
+				'extensions'   => get_option( 'tmp_active_extensions', array() ),
+			)
+		);
 	}
 
 	public function to_json() {

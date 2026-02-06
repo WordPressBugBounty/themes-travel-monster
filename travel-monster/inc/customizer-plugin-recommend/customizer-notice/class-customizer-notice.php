@@ -193,6 +193,6 @@ class Travel_Monster_Customizer_Notice {
 			}
 			update_option( 'travel_monster_show_recommended_plugins', $show_recommended_plugins );
 		}
-		die(); // this is required to return a proper result
+		wp_die(); // this is required to return a proper result
 	}
 }

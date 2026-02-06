@@ -7,23 +7,33 @@
 */ 
 
 function travel_monster_add_sidebar_layout_box(){
-    $post_id   = isset( $_GET['post'] ) ? $_GET['post'] : '';
-    $template  = get_post_meta( $post_id, '_wp_page_template', true );
-    $templates = array( 'templates/template-destination.php','templates/template-activities.php','templates/template-trip_types.php');
+
+    $post_id = isset( $_GET['post'] ) ? absint( $_GET['post'] ) : 0;
 
     /**
-     * Remove sidebar metabox in specific page template.
+     * Check template only for existing posts.
+     * For new posts, always show the metabox.
     */
-    if( ! in_array( $template, $templates ) ){
-        add_meta_box( 
-            'travel_monster_sidebar_layout',
-            __( 'Sidebar Layout', 'travel-monster' ),
-            'travel_monster_sidebar_layout_callback', 
-            array( 'page','post' ),
-            'normal',
-            'high'
-        );
+    if ( $post_id ) {
+        $template  = get_post_meta( $post_id, '_wp_page_template', true );
+        $templates = array( 'templates/template-destination.php', 'templates/template-activities.php', 'templates/template-trip_types.php' );
+
+        /**
+         * Remove sidebar metabox in specific page template.
+        */
+        if ( in_array( $template, $templates ) ) {
+            return;
+        }
     }
+
+    add_meta_box(
+        'travel_monster_sidebar_layout',
+        __( 'Sidebar Layout', 'travel-monster' ),
+        'travel_monster_sidebar_layout_callback',
+        array( 'page', 'post' ),
+        'normal',
+        'high'
+    );
 }
 add_action( 'add_meta_boxes', 'travel_monster_add_sidebar_layout_box' );
 
@@ -105,7 +115,8 @@ function travel_monster_save_sidebar_layout( $post_id ){
     if( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE )  
         return;
 
-    if( 'page' == $_POST['post_type'] ){  
+    $post_type = isset( $_POST['post_type'] ) ? sanitize_key( $_POST['post_type'] ) : '';
+    if( 'page' === $post_type ){  
         if( ! current_user_can( 'edit_page', $post_id ) ) return $post_id;  
     }elseif( ! current_user_can( 'edit_post', $post_id ) ){  
         return $post_id;  

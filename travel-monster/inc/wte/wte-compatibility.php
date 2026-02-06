@@ -43,23 +43,6 @@ add_filter( 'wte-trip-search-page-title', function(){
 });
 
 
-/**
- * Making the booking form sticky for single trips
- *
- * @return void
- */
-function travel_monster_adding_sticky_sidebar_form() {
-	 // this class will help stick the trips tabs in the theme
-	$default   = travel_monster_get_general_defaults();
-	$ed_sticky = get_theme_mod( 'ed_sticky_booking_form', $default['ed_sticky_booking_form'] );
-	$class     = '';
-	if ( $ed_sticky && is_singular( 'trip' ) ) {
-		$class = 'sticky_booking';
-	}
-	return esc_attr( $class );
-}
-add_filter( 'wpte_bf_outer_wrapper_classes', 'travel_monster_adding_sticky_sidebar_form' );
-
 if ( class_exists( 'Wte_Trip_Review_Init' ) ) {
 	add_action( 'wte_average_review_wrap_open', function(){
 		echo '<div id="tmp-average-rating"></div>';
@@ -86,9 +69,9 @@ function travel_monster_add_review_below_title(){
             <a class="tmp-rating-text" href="#tmp-average-rating">
                 <?php echo esc_html( $comment_datas['i'] );
                 if( $comment_datas['i']=="1" ) { 
-                    echo esc_html( ' Review','travel-monster' ); 
+                    echo esc_html__( ' Review','travel-monster' ); 
                 }else{
-                    echo esc_html( ' Reviews','travel-monster' ); 
+                    echo esc_html__( ' Reviews','travel-monster' ); 
                 } ?>
             </a>
         </div>

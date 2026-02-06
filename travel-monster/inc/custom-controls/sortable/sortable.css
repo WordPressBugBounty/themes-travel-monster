@@ -1,6 +1,6 @@
 .customize-control-travel-monster-sortable ul.ui-sortable li {
     padding: 5px 10px;
-    border: 1px solid #333;
+    border: 1px solid #333 !important;
     background: #fff; 
 }
 
@@ -14,7 +14,7 @@
 
 .customize-control-travel-monster-sortable ul.ui-sortable li.invisible {
     color: #aaa;
-    border: 1px dashed #aaa;
+    border: 1px dashed #aaa !important;
 }
     
 .customize-control-travel-monster-sortable ul.ui-sortable li.invisible .dashicons.visibility {

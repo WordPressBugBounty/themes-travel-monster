@@ -151,4 +151,67 @@ jQuery( document ).ready( function( $ ) {
 		}
 	} );
 
+	/**
+	 * Update Typography data on the basis of selected style presets in the customizer.
+	 * @param {string} preset ID of the control whose value needs to be changed
+	 * @param {boolean} revert Whether to reset to default value
+	 * @param {boolean} addons Whether to update addons typography
+	 */
+	function travel_monster_update_typography_preset_style(preset, revert = false, addons = false) {
+		let typography = '';
+		if(revert){
+			typography = travel_monster_typography_presets['default'][preset];
+		} else {
+			let checkedInput = document.querySelector('input[name="_customize-radio-typography_preset_style"]:checked');
+			let style = 'typo_preset_' + checkedInput.value;
+			typography = travel_monster_typography_presets[style][preset];
+		}
+		
+		if(addons){
+			let typoControl = [
+				'#customize-control-' + preset + '_group .travel-monster-font-family select',
+			];
+			let variantControl = [
+				'#customize-control-' + preset + '_group .travel-monster-font-variant select',
+			];
+
+			if(travel_monster_typography_presets.companion){
+				if(preset == 'primary_font'){
+					if(travel_monster_typography_presets.extensions.includes('notification-bar')){
+						typoControl.push(
+							'#customize-control-notification_typography_group .travel-monster-font-family select',
+						);
+						variantControl.push(
+							'#customize-control-notification_typography_group .travel-monster-font-variant select',
+						);
+					}
+				}
+			}
+
+			typoControl.forEach(function(selector){
+				let item = $(selector);
+				item.val(typography).trigger('change');
+			});
+			variantControl.forEach(function(selector){
+				let item = $(selector);
+				item.val('').trigger('change');
+			});
+		} else {
+			let typoControl = $('#customize-control-' + preset + '_group .travel-monster-font-family select');
+			let variantControl = $('#customize-control-' + preset + '_group .travel-monster-font-variant select');
+			typoControl.val(typography).trigger('change');
+			variantControl.val('').trigger('change');
+		}
+	}
+
+	// Update the typography control when a new preset is selected.
+	$('body').on('click', '#input_typography_preset_style', function(event) {
+		travel_monster_update_typography_preset_style('primary_font', false, true);
+		travel_monster_update_typography_preset_style('heading_one');
+		travel_monster_update_typography_preset_style('heading_two');
+		travel_monster_update_typography_preset_style('heading_three');
+		travel_monster_update_typography_preset_style('heading_four');
+		travel_monster_update_typography_preset_style('heading_five');
+		travel_monster_update_typography_preset_style('heading_six');
+    });
 } );

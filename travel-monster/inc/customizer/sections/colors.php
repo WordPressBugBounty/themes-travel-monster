@@ -13,6 +13,48 @@ function travel_monster_customize_register_colors_panel( $wp_customize ) {
     $wp_customize->get_section( 'colors' )->priority = 22;
 
 
+    /** Color Preset */
+    $wp_customize->add_setting(
+		'color_preset_style',
+		array(
+			'default'           => 'one',
+			'sanitize_callback' => 'travel_monster_sanitize_select_radio',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		new Travel_Monster_Radio_Image_Control(
+			$wp_customize,
+			'color_preset_style',
+			array(
+				'section'  => 'colors',
+				'label'    => __( 'Choose Color Presets', 'travel-monster' ),
+				'col'      => 'col-1',
+				'svg'      => true,
+				'priority' => 10,
+				'choices'  => array(
+					'one'   => array(
+						'label' => esc_html__( 'Default Style', 'travel-monster' ),
+						'path'  => travel_monster_color_preset_style_list( 'one' ),
+					),
+					'two'   => array(
+						'label' => esc_html__( 'Style Two', 'travel-monster' ),
+						'path'  => travel_monster_color_preset_style_list( 'two' ),
+					),
+					'three' => array(
+						'label' => esc_html__( 'Style Three', 'travel-monster' ),
+						'path'  => travel_monster_color_preset_style_list( 'three' ),
+					),
+					'four'  => array(
+						'label' => esc_html__( 'Style Four', 'travel-monster' ),
+						'path'  => travel_monster_color_preset_style_list( 'four' ),
+					),
+				),
+			)
+		)
+	);
+
     /** Primary Color*/
     $wp_customize->add_setting( 
         'primary_color', 
@@ -122,6 +164,50 @@ function travel_monster_customize_register_colors_panel( $wp_customize ) {
             )
         )
     );
+
+    /** Accent Color One*/
+    $wp_customize->add_setting(
+		'accent_color_one',
+		array(
+			'default'           => $defaults['accent_color_one'],
+			'sanitize_callback' => 'travel_monster_sanitize_rgba',
+			'transport'         => 'postMessage',
+		)
+	);
+
+    $wp_customize->add_control(
+		new Travel_Monster_Alpha_Color_Customize_Control(
+			$wp_customize,
+			'accent_color_one',
+			array(
+				'label'       => __( 'Accent Color One', 'travel-monster' ),
+				'section'     => 'colors',
+				'priority'    => 10,
+			)
+		)
+	);
+
+    /** Accent Color Two*/
+	$wp_customize->add_setting(
+		'accent_color_two',
+		array(
+			'default'           => $defaults['accent_color_two'],
+			'sanitize_callback' => 'travel_monster_sanitize_rgba',
+			'transport'         => 'postMessage',
+		)
+	);
+
+    $wp_customize->add_control(
+		new Travel_Monster_Alpha_Color_Customize_Control(
+			$wp_customize,
+			'accent_color_two',
+			array(
+				'label'       => __( 'Accent Color Two', 'travel-monster' ),
+				'section'     => 'colors',
+				'priority'    => 10,
+			)
+		)
+	);
 
     /** Site Background Color*/
     $wp_customize->add_setting( 

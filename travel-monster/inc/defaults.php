@@ -252,6 +252,8 @@ function travel_monster_get_color_defaults(){
         'heading_color'                     => '#232323',
         'section_bg_color'                  => 'rgba(40, 181, 164, 0.05)',
         'site_bg_color'                     => '#FFFFFF',
+        'accent_color_one'                  => '#F5FBF6',
+        'accent_color_two'                  => '#FCF7EF',
         'site_title_color'                  => '#232323',
         'site_tagline_color'                => '#232323',
         'header_btn_text_color'             => '#ffffff',
@@ -433,6 +435,7 @@ function travel_monster_get_general_defaults(){
         'ed_mobile_phone'                 => true,
         'ed_mobile_email'                 => true,
         'ed_mobile_social_media'          => true,
+        'ed_mobile_button'                => false,
         'header_contact_image'            => '',
         'header_trip_advisor_image'       => '',
         'ed_breadcrumb'                   => true,
@@ -447,7 +450,7 @@ function travel_monster_get_general_defaults(){
         'tmp_viber'                       => '',
         'tmp_telegram'                    => '',
         'tmp_tripadvisor'                 => '',
-        'tmp_wechat'                 => '',
+        'tmp_wechat'                      => '',
         'tmp_weibo'                       => '',
         'tmp_qq'                          => '',
         'footer_copyright'                => '',
@@ -459,9 +462,171 @@ function travel_monster_get_general_defaults(){
         'blog_header_image'               => '',
         'ed_localgoogle_fonts'            => false,
         'ed_preload_local_fonts'          => false,
-        'ed_sticky_booking_form'          => false,
         'background_blur'                 => 16,
     );
     return apply_filters( 'travel_monster_general_defaults', $defaults );
 }
 endif;
+
+if ( ! function_exists( 'travel_monster_get_default_color_preset' ) ) :
+	/**
+	 * Check the style preset and return the color array
+	 *
+	 * @param string $preset
+	 * @return array
+	 */
+	function travel_monster_get_default_color_preset( $preset = 'one' ) {
+		// Initialize the color preset array
+		$color_preset = array(
+			'one'     => array(
+				'primary_color'    => '#4285F4',
+				'secondary_color'  => '#E67D3C',
+				'body_font_color'  => '#4D4E55',
+				'heading_color'    => '#1A161F',
+				'section_bg_color' => '#F5F5F5',
+				'site_bg_color'    => '#FFFFFF',
+				'accent_color_one' => '#F4F8FE',
+				'accent_color_two' => '#FDF5EF',
+			),
+			'two'     => array(
+				'primary_color'    => '#51B66D',
+				'secondary_color'  => '#DEA035',
+				'body_font_color'  => '#556259',
+				'heading_color'    => '#232C26',
+				'section_bg_color' => '#F5F5F5',
+				'site_bg_color'    => '#FFFFFF',
+				'accent_color_one' => '#F5FBF6',
+				'accent_color_two' => '#FCF7EF',
+			),
+			'three'   => array(
+				'primary_color'    => '#084D2A',
+				'secondary_color'  => '#E67D3C',
+				'body_font_color'  => '#0C713E',
+				'heading_color'    => '#084D2A',
+				'section_bg_color' => '#F7F2EC',
+				'site_bg_color'    => '#FFFFFF',
+				'accent_color_one' => '#DEED58',
+				'accent_color_two' => '#FDF5EF',
+			),
+			'four'    => array(
+				'primary_color'    => '#0682B4',
+				'secondary_color'  => '#B4A97F',
+				'body_font_color'  => '#505155',
+				'heading_color'    => '#191919',
+				'section_bg_color' => '#EDEBE5',
+				'site_bg_color'    => '#FFFFFF',
+				'accent_color_one' => '#EDEBE5',
+				'accent_color_two' => '#F0F7FA',
+			),
+			'default' => array(
+				'primary_color'    => get_theme_mod( 'primary_color', travel_monster_get_color_defaults()['primary_color'] ),
+				'secondary_color'  => get_theme_mod( 'secondary_color', travel_monster_get_color_defaults()['secondary_color'] ),
+				'body_font_color'  => get_theme_mod( 'body_font_color', travel_monster_get_color_defaults()['body_font_color'] ),
+				'heading_color'    => get_theme_mod( 'heading_color', travel_monster_get_color_defaults()['heading_color'] ),
+				'section_bg_color' => get_theme_mod( 'section_bg_color', travel_monster_get_color_defaults()['section_bg_color'] ),
+				'site_bg_color'    => get_theme_mod( 'site_bg_color', travel_monster_get_color_defaults()['site_bg_color'] ),
+				'accent_color_one' => get_theme_mod( 'accent_color_one', travel_monster_get_color_defaults()['accent_color_one'] ),
+				'accent_color_two' => get_theme_mod( 'accent_color_two', travel_monster_get_color_defaults()['accent_color_two'] ),
+			),
+		);
+
+		return $color_preset[ $preset ];
+	}
+endif;
+
+if ( ! function_exists( 'travel_monster_typography_preset_array' ) ) :
+	/**
+	 * Check the style preset and return the typography array
+	 *
+	 * @param string $preset
+	 * @return array
+	 */
+	function travel_monster_typography_preset_array( $preset = 'one' ) {
+		// Initialize the typography preset array
+		$typography_preset = array(
+			'one'     => array(
+				'primary_font'  => 'System Stack',
+				'heading_one'   => 'System Stack',
+				'heading_two'   => 'System Stack',
+				'heading_three' => 'System Stack',
+				'heading_four'  => 'System Stack',
+				'heading_five'  => 'System Stack',
+				'heading_six'   => 'System Stack',
+			),
+			'two'     => array(
+				'primary_font'  => 'Fira Sans',
+				'heading_one'   => 'Ubuntu Sans',
+				'heading_two'   => 'Ubuntu Sans',
+				'heading_three' => 'Ubuntu Sans',
+				'heading_four'  => 'Ubuntu Sans',
+				'heading_five'  => 'Ubuntu Sans',
+				'heading_six'   => 'Ubuntu Sans',
+			),
+			'three'   => array(
+				'primary_font'  => 'Fira Sans',
+				'heading_one'   => 'SUSE',
+				'heading_two'   => 'SUSE',
+				'heading_three' => 'SUSE',
+				'heading_four'  => 'SUSE',
+				'heading_five'  => 'SUSE',
+				'heading_six'   => 'SUSE',
+			),
+			'four'    => array(
+				'primary_font'  => 'Inclusive Sans',
+				'heading_one'   => 'Anybody',
+				'heading_two'   => 'Anybody',
+				'heading_three' => 'Anybody',
+				'heading_four'  => 'Anybody',
+				'heading_five'  => 'Anybody',
+				'heading_six'   => 'Anybody',
+			),
+			'five'    => array(
+				'primary_font'  => 'Noto Sans',
+				'heading_one'   => 'Syne',
+				'heading_two'   => 'Syne',
+				'heading_three' => 'Syne',
+				'heading_four'  => 'Syne',
+				'heading_five'  => 'Syne',
+				'heading_six'   => 'Syne',
+			),
+			'six'     => array(
+				'primary_font'  => 'Noto Sans',
+				'heading_one'   => 'Amita',
+				'heading_two'   => 'Amita',
+				'heading_three' => 'Amita',
+				'heading_four'  => 'Amita',
+				'heading_five'  => 'Amita',
+				'heading_six'   => 'Amita',
+			),
+			'seven'   => array(
+				'primary_font'  => 'Inclusive Sans',
+				'heading_one'   => 'K2D',
+				'heading_two'   => 'K2D',
+				'heading_three' => 'K2D',
+				'heading_four'  => 'K2D',
+				'heading_five'  => 'K2D',
+				'heading_six'   => 'K2D',
+			),
+            'eight'   => array(
+                'primary_font'  => 'DM Sans',
+                'heading_one'   => 'DM Serif Text',
+                'heading_two'   => 'DM Serif Text',
+                'heading_three' => 'DM Serif Text',
+                'heading_four'  => 'DM Serif Text',
+                'heading_five'  => 'DM Serif Text',
+                'heading_six'   => 'DM Serif Text',
+            ),
+			'default' => array(
+				'primary_font'  => get_theme_mod( 'primary_font', travel_monster_get_typography_defaults()['primary_font'] )['family'],
+				'heading_one'   => get_theme_mod( 'heading_one', travel_monster_get_typography_defaults()['heading_one'] )['family'],
+				'heading_two'   => get_theme_mod( 'heading_two', travel_monster_get_typography_defaults()['heading_two'] )['family'],
+				'heading_three' => get_theme_mod( 'heading_three', travel_monster_get_typography_defaults()['heading_three'] )['family'],
+				'heading_four'  => get_theme_mod( 'heading_four', travel_monster_get_typography_defaults()['heading_four'] )['family'],
+				'heading_five'  => get_theme_mod( 'heading_five', travel_monster_get_typography_defaults()['heading_five'] )['family'],
+				'heading_six'   => get_theme_mod( 'heading_six', travel_monster_get_typography_defaults()['heading_six'] )['family'],
+			),
+		);
+
+		return $typography_preset[ $preset ];
+	}
+	endif;

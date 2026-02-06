@@ -3,7 +3,7 @@
 jQuery(document).ready(function($){
 
     // Switch to Social Media settings field from the header
-    $('#customize-control-main_header_social_media_group').on( 'click','.header_social_media_text', function(e){
+    $('#sub-accordion-section-main_header_social_media').on( 'click','.header_social_media_text', function(e){
         e.preventDefault();
         wp.customize.section( 'social_network_settings' ).focus();        
     });
@@ -26,10 +26,12 @@ jQuery(document).ready(function($){
     // Flush local fonts
     $('body').on('click', '.flush-it', function(event) {
         $.ajax ({
-            url     : travel_monster_data.ajax_url,  
+            url     : travel_monster_data.ajax_url,
             type    : 'post',
-            data    : 'action=flush_local_google_fonts',    
-            nonce   : travel_monster_data.nonce,
+            data    : {
+                action: 'flush_local_google_fonts',
+                nonce: travel_monster_data.nonce
+            },
             success : function(results){
                 //results can be appended in needed
                 $( '.flush-it' ).val(travel_monster_data.flushit);
@@ -90,24 +92,7 @@ jQuery(document).ready(function($){
 		});
 	});
 
-    //Active Callback for social media group
-    wp.customize('ed_social_media', function (value) {
-		value.bind(function (newval) {
-            var valueObj = {true: "block", false: "none" }
-            Object.entries(valueObj).forEach((elem)=>{
-                var boolValue = elem[0] === 'true' ? true : false;
-                if (newval === boolValue) {			
-                    var header_social_media = document.querySelectorAll('[data-grpid=main_header_social_media_group] .controls li')   
-                    Array.from(header_social_media).forEach((element, index) => {
-                        if( index !== 0) {
-                            element.style.display = elem[1];
-                        }
-                    }); 
-                }
-            })
-		});
-	});
-
+    
     //Active Callback for social sharing group
     wp.customize('ed_social_sharing', function (value) {
 		value.bind(function (newval) {

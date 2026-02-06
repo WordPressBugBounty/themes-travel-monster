@@ -74,6 +74,17 @@ function travel_monster_get_font_family( $font ){
 }
 endif;
 
+if ( ! function_exists( 'travel_monster_typography_custom_fonts' ) ) :
+/**
+ * Creating a filter to add custom fonts for external plugins
+ */
+function travel_monster_typography_custom_fonts() {
+	$fonts = array(
+	);
+
+	return apply_filters( 'travel_monster_typography_get_custom_fonts', $fonts );
+}
+endif;
 
 
 if ( ! function_exists( 'travel_monster_google_fonts_url' ) ) :	
@@ -98,6 +109,7 @@ function travel_monster_google_fonts_url() {
 	$settings['heading_six']   = wp_parse_args( get_theme_mod( 'heading_six' ), $defaults['heading_six'] );
 
 	$not_google = str_replace( ' ', '+', travel_monster_typography_default_fonts() );
+	$custom_fonts = (!empty( travel_monster_typography_custom_fonts())) ? str_replace( ' ', '+', travel_monster_typography_custom_fonts() ) : [];
 
 	$font_settings = array(
 		'primary_font',
@@ -164,17 +176,13 @@ if ( ! function_exists( 'travel_monster_get_all_google_fonts_ajax' ) ) :
  * Return an array of all of our Google Fonts.
  */
 function travel_monster_get_all_google_fonts_ajax() {
-	// Bail if the nonce doesn't check out
-	if ( ! isset( $_POST['travel_monster_customize_nonce'] ) || ! wp_verify_nonce( sanitize_key( $_POST['travel_monster_customize_nonce'] ), 'travel_monster_customize_nonce' ) ) {
-		wp_die();
-	}
-
+	
 	// Do another nonce check
 	check_ajax_referer( 'travel_monster_customize_nonce', 'travel_monster_customize_nonce' );
 
 	// Bail if user can't edit theme options
 	if ( ! current_user_can( 'edit_theme_options' ) ) {
-		wp_die();
+		wp_send_json_error( 'Insufficient permissions' );
 	}
 
 	// Get all of our fonts
@@ -184,7 +192,7 @@ function travel_monster_get_all_google_fonts_ajax() {
 	echo wp_json_encode( $fonts );
 
 	// Exit
-	die();
+	wp_die();
 }
 endif;
 add_action( 'wp_ajax_travel_monster_get_all_google_fonts_ajax', 'travel_monster_get_all_google_fonts_ajax' );
@@ -194,11 +202,18 @@ if( ! function_exists( 'travel_monster_flush_local_google_fonts' ) ){
 	 * Ajax Callback for flushing the local font
 	 */
   	function travel_monster_flush_local_google_fonts() {
+		// Verify nonce to prevent CSRF attacks
+		check_ajax_referer( 'travel-monster-local-fonts-flush', 'nonce' );
+
+		// Verify user has permission to modify theme options
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			wp_send_json_error( 'Insufficient permissions' );
+		}
+
 		$WebFontLoader = new Travel_Monster_WebFont_Loader();
 		//deleting the fonts folder using ajax
 		$WebFontLoader->delete_fonts_folder();
-		die();
+		wp_die();
   	}
 }
 add_action( 'wp_ajax_flush_local_google_fonts', 'travel_monster_flush_local_google_fonts' );
-add_action( 'wp_ajax_nopriv_flush_local_google_fonts', 'travel_monster_flush_local_google_fonts' );

@@ -38,9 +38,9 @@ function travel_monster_dashboard_page() { ?>
  */
 function travel_monster_dashboard_scripts() {
 
-    $admin_page = isset($_GET['page']) ? sanitize_text_field($_GET['page']) : null;
+    $admin_page = isset($_GET['page']) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : null;
 
-    if( $admin_page === 'travel-monster-dashboard' ){
+    if( $admin_page === 'travel-monster-dashboard' && current_user_can( 'manage_options' ) ){
         $dependencies_file_path = get_template_directory() . '/build/dashboard.asset.php';
         if ( file_exists( $dependencies_file_path ) ) {
             $dashboard_assets  = require $dependencies_file_path;

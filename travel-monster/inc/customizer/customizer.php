@@ -9,7 +9,7 @@
  * Requiring customizer panels & sections
 */
 
-$travel_monster_sections     = array( 'header', 'site','title','blog','archive','page','post', 'typography', 'seo', 'social-network', 'colors', 'singletrip' );
+$travel_monster_sections     = array( 'header', 'site','title','blog','archive','page','post', 'typography', 'seo', 'social-network', 'colors' );
 $travel_monster_panels       = array( 'general', 'footer' );
 $travel_monster_sub_sections = array(
     'general'     => array( 'container', 'sidebar', 'button', 'scroll-to-top', 'pagination', '404', ),
@@ -112,7 +112,9 @@ function travel_monster_control_inline_scripts() {
 
 	wp_localize_script( 'travel-monster-typography-customizer', 'travel_monster_customize',
 		array(
-			'nonce' => wp_create_nonce( 'travel_monster_customize_nonce' )
+			'nonce' => wp_create_nonce( 'travel_monster_customize_nonce' ),
+			'proActivated' => travel_monster_pro_is_activated(),
+			'addons' => get_option( 'tmp_active_extensions', array() ),
 		)
 	);
 

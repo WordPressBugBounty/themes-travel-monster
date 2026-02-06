@@ -10,7 +10,7 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
     $defaults      = travel_monster_get_general_defaults();
     $colorDefaults = travel_monster_get_color_defaults();
 
-    $wp_customize->add_section(
+    $wp_customize->add_panel(
         'layout_header',
         array(
             'title'      => __( 'Main Header', 'travel-monster' ),
@@ -20,29 +20,17 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
     );
 
     /** General Settings */
-    $wp_customize->add_setting(
-        'main_header_general_settings_group',
+    $wp_customize->add_section(
+        'main_header_general_settings',
         array(
-            'default'           => '',
-            'sanitize_callback' => 'wp_kses',
+            'title'             => __( 'General Settings', 'travel-monster' ),
+            'panel'             => 'layout_header',
+            'active_callback'   => 'travel_monster_header_type_prebuilt_ac',
         )
     );
 
-    $wp_customize->add_control(
-        new Travel_Monster_Group_Control( 
-            $wp_customize,
-            'main_header_general_settings_group',
-            array(
-                'id'          => 'main_header_general_settings_group',
-                'label'       => __( 'General Settings', 'travel-monster' ),
-                'section'     => 'layout_header',
-                'type'        => 'group',
-                'style'       => 'collapsible',
-            )
-        )
-    );
 
-    /*Header layouts*/
+    /*Header Width*/
     $wp_customize->add_setting( 
         'header_width_layout', 
         array(
@@ -57,41 +45,18 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'header_width_layout',
 			array(
-				'section' => 'layout_header',
 				'label'   => __( 'Header Width', 'travel-monster' ),
 				'choices' => array(
 					'boxed'     => __( 'Boxed', 'travel-monster' ),
 					'fullwidth' => __( 'Fullwidth', 'travel-monster' ),
                 ),
-                'group' => 'main_header_general_settings_group',
+                'section' => 'main_header_general_settings',
 			)
 		)
 	);
 
-    /** Sticky Header Menu */
+    /** Header Search Menu */
     $wp_customize->add_setting(
-        'ed_sticky_header',
-        array(
-            'default'           => $defaults['ed_sticky_header'],
-            'sanitize_callback' => 'travel_monster_sanitize_checkbox',
-        )
-    );
-    
-    $wp_customize->add_control(
-		new Travel_Monster_Toggle_Control( 
-			$wp_customize,
-			'ed_sticky_header',
-			array(
-				'section'  => 'layout_header',
-				'label'    => __( 'Sticky Header', 'travel-monster' ),
-				'group'    => 'main_header_general_settings_group',
-				'priority' => 10
-			)
-		)
-	);
-
-      /** Header Search Menu */
-      $wp_customize->add_setting(
         'ed_header_search',
         array(
             'default'           => $defaults['ed_header_search'],
@@ -104,9 +69,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_header_search',
 			array(
-				'section'  => 'layout_header',
+				'section'  => 'main_header_general_settings',
 				'label'    => __( 'Header Search', 'travel-monster' ),
-				'group'    => 'main_header_general_settings_group',
 				'priority' => 15
 			)
 		)
@@ -128,8 +92,7 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'top_header_bg_color',
             array(
                 'label'    => __( 'Top Header Color', 'travel-monster' ),
-                'section'  => 'layout_header',
-                'group'    => 'main_header_general_settings_group',
+                'section'    => 'main_header_general_settings',
                 'priority' => 25
             )
         )
@@ -151,33 +114,50 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'top_header_text_color',
             array(
                 'label'   => __( 'Text Color', 'travel-monster' ),
-                'section' => 'layout_header',
-                'group'   => 'main_header_general_settings_group',
+                'section'   => 'main_header_general_settings',
                 'priority' => 30
             )
         )
     );
 
-    /** Navigation Menu Settings */
-    $wp_customize->add_setting(
-        'main_header_navigation_menu_group',
+    /** Sticky Header Settings */
+    $wp_customize->add_section(
+        'main_header_sticky_header_settings',
         array(
-            'default'           => '',
-            'sanitize_callback' => 'wp_kses',
+            'title'             => __( 'Sticky Header Settings', 'travel-monster' ),
+            'panel'             => 'layout_header',
         )
     );
 
+    /** Sticky Header Menu */
+    $wp_customize->add_setting(
+        'ed_sticky_header',
+        array(
+            'default'           => $defaults['ed_sticky_header'],
+            'sanitize_callback' => 'travel_monster_sanitize_checkbox',
+        )
+    );
+    
     $wp_customize->add_control(
-        new Travel_Monster_Group_Control( 
-            $wp_customize,
-            'main_header_navigation_menu_group',
-            array(
-                'id'          => 'main_header_navigation_menu_group',
-                'label'       => __( 'Navigation Menu', 'travel-monster' ),
-                'section'     => 'layout_header',
-                'type'        => 'group',
-                'style'       => 'collapsible',
-            )
+		new Travel_Monster_Toggle_Control( 
+			$wp_customize,
+			'ed_sticky_header',
+			array(
+				'label'    => __( 'Sticky Header', 'travel-monster' ),
+				'section'    => 'main_header_sticky_header_settings',
+				'priority' => 10
+			)
+		)
+	);
+
+
+    /** Navigation Menu Settings */
+    $wp_customize->add_section(
+        'main_header_navigation_menu',
+        array(
+            'title'             => __( 'Navigation Menu', 'travel-monster' ),
+            'panel'             => 'layout_header',
+            'active_callback'   => 'travel_monster_header_type_prebuilt_ac',
         )
     );
 
@@ -197,7 +177,6 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'header_items_spacing',
             array(
                 'label'    => __( 'Items Spacing', 'travel-monster' ),
-                'section'  => 'layout_header',
                 'settings' => array(
                     'desktop' => 'header_items_spacing',
                 ),
@@ -210,7 +189,7 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
                         'unit' => 'px',
                     ),
                 ),
-                'group' => 'main_header_navigation_menu_group', 
+                'section' => 'main_header_navigation_menu', 
             )
         )
     );
@@ -230,9 +209,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'header_strech_menu',
 			array(
-				'section' => 'layout_header',
 				'label'   => __( 'Stretch Menu', 'travel-monster' ),
-				'group'   => 'main_header_navigation_menu_group',
+				'section'   => 'main_header_navigation_menu',
 			)
 		)
 	);
@@ -253,7 +231,6 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'header_dropdown_width',
             array(
                 'label'    => __( 'Dropdown Width', 'travel-monster' ),
-                'section'  => 'layout_header',
                 'settings' => array(
                     'desktop' => 'header_dropdown_width',
                 ),
@@ -266,31 +243,18 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
                         'unit' => 'px',
                     ),
                 ),
-                'group' => 'main_header_navigation_menu_group', 
+                'section' => 'main_header_navigation_menu', 
             )
         )
     );
 
     /** Contact Information */
-    $wp_customize->add_setting(
-        'main_header_contact_information_group',
+    $wp_customize->add_section(
+        'main_header_contact_information',
         array(
-            'default'           => '',
-            'sanitize_callback' => 'wp_kses',
-        )
-    );
-
-    $wp_customize->add_control(
-        new Travel_Monster_Group_Control( 
-            $wp_customize,
-            'main_header_contact_information_group',
-            array(
-                'id'          => 'main_header_contact_information_group',
-                'label'       => __( 'Contact Information', 'travel-monster' ),
-                'section'     => 'layout_header',
-                'type'        => 'group',
-                'style'       => 'collapsible',
-            )
+            'title'             => __( 'Contact Information', 'travel-monster' ),
+            'panel'             => 'layout_header',
+            'active_callback'   => 'travel_monster_header_type_prebuilt_ac',
         )
     );
 
@@ -309,10 +273,9 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'tmp_phone',
 			array(
-				'section'  => 'layout_header',
 				'priority' => 8,
 				'label'    => __( 'Phone', 'travel-monster' ),
-				'group'    => 'main_header_contact_information_group',
+				'section'   => 'main_header_contact_information',
 			)
 		)
 	);
@@ -336,9 +299,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             $wp_customize,
             'ed_open_whatsapp',
             array(
-                'section'  => 'layout_header',
+                'section'  => 'main_header_contact_information',
                 'label'    => __( 'Link to WhatsApp', 'travel-monster' ),
-                'group'    => 'main_header_contact_information_group',
                 'priority' => 9
             )
         )
@@ -358,11 +320,10 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             $wp_customize,
             'whatsapp_msg_lbl',
             array(
-                'section'  => 'layout_header',
+                'section'  => 'main_header_contact_information',
                 'label'    => __( 'Default WhatsApp Message', 'travel-monster' ),
                 'priority' => 9,
-                'group'    => 'main_header_contact_information_group',
-            )		
+            )
         )
 	);
 
@@ -381,9 +342,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'tmp_email',
 			array(
-				'section' => 'layout_header',
+				'section'  => 'main_header_contact_information',
 				'label'   => __( 'Email', 'travel-monster' ),
-				'group'   => 'main_header_contact_information_group',
 			)
 		)
 	);
@@ -394,25 +354,12 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
     ) );
 
     /** Header Button */
-    $wp_customize->add_setting(
-        'main_header_header_button_group',
+    $wp_customize->add_section(
+        'main_header_header_button',
         array(
-            'default'           => '',
-            'sanitize_callback' => 'wp_kses',
-        )
-    );
-
-    $wp_customize->add_control(
-        new Travel_Monster_Group_Control( 
-            $wp_customize,
-            'main_header_header_button_group',
-            array(
-                'id'          => 'main_header_header_button_group',
-                'label'       => __( 'Header Button', 'travel-monster' ),
-                'section'     => 'layout_header',
-                'type'        => 'group',
-                'style'       => 'collapsible',
-            )
+            'title'             => __( 'Header Button', 'travel-monster' ),
+            'panel'             => 'layout_header',
+            'active_callback'   => 'travel_monster_header_type_prebuilt_ac',
         )
     );
 
@@ -431,9 +378,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'header_button_label',
 			array(
-				'section' => 'layout_header',
+				'section' => 'main_header_header_button',
 				'label'   => __( 'Button Label', 'travel-monster' ),
-				'group'   => 'main_header_header_button_group',
 			)
 		)
 	);
@@ -457,9 +403,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'header_button_link',
 			array(
-				'section' => 'layout_header',
+				'section' => 'main_header_header_button',
 				'label'   => __( 'Button URL', 'travel-monster' ),
-				'group'   => 'main_header_header_button_group',
 			)
 		)
 	);
@@ -478,9 +423,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_header_button_newtab',
 			array(
-				'section' => 'layout_header',
+				'section' => 'main_header_header_button',
 				'label'   => __( 'Open link in new Tab', 'travel-monster' ),
-				'group'   => 'main_header_header_button_group',
 			)
 		)
 	);
@@ -498,9 +442,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_header_button_sticky',
 			array(
-				'section' => 'layout_header',
+				'section' => 'main_header_header_button',
 				'label'   => __( 'Show in Sticky Header', 'travel-monster' ),
-				'group'   => 'main_header_header_button_group',
 			)
 		)
 	);
@@ -520,8 +463,7 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'header_btn_bg_color',
             array(
                 'label'   => __( 'Background Color', 'travel-monster' ),
-                'section' => 'layout_header',
-				'group'   => 'main_header_header_button_group',
+                'section' => 'main_header_header_button',
             )
         )
     );
@@ -542,8 +484,7 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'header_btn_bg_hover_color',
             array(
                 'label'   => __( 'Background Hover Color', 'travel-monster' ),
-                'section' => 'layout_header',
-				'group'   => 'main_header_header_button_group',
+                'section' => 'main_header_header_button',
             )
         )
     );
@@ -564,8 +505,7 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'header_btn_text_color',
             array(
                 'label'   => __( 'Text Color', 'travel-monster' ),
-                'section' => 'layout_header',
-                'group'   => 'main_header_header_button_group',
+                'section' => 'main_header_header_button',
             )
         )
     );
@@ -585,35 +525,22 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'header_btn_text_hover_color',
             array(
                 'label'   => __( 'Text Hover Color', 'travel-monster' ),
-                'section' => 'layout_header',
-                'group'   => 'main_header_header_button_group',
+                'section' => 'main_header_header_button',
             )
         )
     );
 
     /** Currency Converter Settings */
-    $wp_customize->add_setting(
-        'main_header_currency_group',
+    $wp_customize->add_section(
+        'main_header_currency',
         array(
-            'default'           => '',
-            'sanitize_callback' => 'wp_kses',
+            'title'             => __( 'Currency Converter Settings', 'travel-monster' ),
+            'priority'          => 10,
+            'panel'             => 'layout_header',
+            'active_callback' => 'travel_monster_is_currency_converter_activated'
         )
     );
 
-    $wp_customize->add_control(
-        new Travel_Monster_Group_Control( 
-            $wp_customize,
-            'main_header_currency_group',
-            array(
-                'id'              => 'main_header_currency_group',
-                'label'           => __( 'Currency Converter', 'travel-monster' ),
-                'section'         => 'layout_header',
-                'type'            => 'group',
-                'style'           => 'collapsible',
-                'active_callback' => 'travel_monster_is_currency_converter_activated'
-            )
-        )
-    );
 
     /** Currency Code */
     $wp_customize->add_setting(
@@ -629,9 +556,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_currency_code',
 			array(
-				'section' => 'layout_header',
+				'section' => 'main_header_currency',
 				'label'   => __( 'Currency Code', 'travel-monster' ),
-				'group'   => 'main_header_currency_group',
 			)
 		)
 	);
@@ -650,9 +576,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_currency_symbol',
 			array(
-				'section' => 'layout_header',
+				'section' => 'main_header_currency',
 				'label'   => __( 'Currency Symbol', 'travel-monster' ),
-				'group'   => 'main_header_currency_group',
 			)
 		)
 	);
@@ -671,33 +596,19 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_currency_name',
 			array(
-				'section' => 'layout_header',
+				'section' => 'main_header_currency',
 				'label'   => __( 'Currency Name', 'travel-monster' ),
-				'group'   => 'main_header_currency_group',
 			)
 		)
 	);
 
     /** Social Media Settings */
-    $wp_customize->add_setting(
-        'main_header_social_media_group',
+    $wp_customize->add_section(
+        'main_header_social_media',
         array(
-            'default'           => '',
-            'sanitize_callback' => 'wp_kses',
-        )
-    );
-
-    $wp_customize->add_control(
-        new Travel_Monster_Group_Control( 
-            $wp_customize,
-            'main_header_social_media_group',
-            array(
-                'id'          => 'main_header_social_media_group',
-                'label'       => __( 'Social Media Settings', 'travel-monster' ),
-                'section'     => 'layout_header',
-                'type'        => 'group',
-                'style'       => 'collapsible',
-            )
+            'title'             => __( 'Social Media Settings', 'travel-monster' ),
+            'panel'             => 'layout_header',
+            'active_callback'   => 'travel_monster_header_type_prebuilt_ac',
         )
     );
 
@@ -715,9 +626,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_social_media',
 			array(
-				'section' => 'layout_header',
+				'section' => 'main_header_social_media',
 				'label'   => __( 'Social Media', 'travel-monster' ),
-				'group'   => 'main_header_social_media_group',
 			)
 		)
 	);
@@ -737,9 +647,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_social_media_newtab',
 			array(
-				'section' => 'layout_header',
+				'section' => 'main_header_social_media',
 				'label'   => __( 'Open in new tab', 'travel-monster' ),
-				'group'   => 'main_header_social_media_group',
 			)
 		)
 	);
@@ -757,7 +666,7 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'social_media_order',
 			array(
-				'section'     => 'layout_header',
+				'section'     => 'main_header_social_media',
 				'label'       => __( 'Social Media', 'travel-monster' ),
 				'choices'     => array(
             		'tmp_facebook'    => __( 'Facebook', 'travel-monster'),
@@ -775,7 +684,6 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             		'tmp_weibo'       => __( 'Weibo', 'travel-monster'),
             		'tmp_qq'          => __( 'QQ', 'travel-monster')
             	),
-                'group'           => 'main_header_social_media_group',
 			)
 		)
     );
@@ -793,33 +701,18 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             $wp_customize,
             'header_social_media_text',
             array(
-                'section'         => 'layout_header',
+                'section'         => 'main_header_social_media',
                 'description'     => sprintf(__( 'You can add links to your social media profiles %1$s here. %2$s', 'travel-monster' ), '<span class="text-inner-link header_social_media_text">', '</span>'),
-                'group'           => 'main_header_social_media_group',
             )
         )
     );
 
      /** Mobile Header Settings */
-     $wp_customize->add_setting(
-        'mobile_header_settings_group',
+     $wp_customize->add_section(
+        'mobile_header_settings',
         array(
-            'default'           => '',
-            'sanitize_callback' => 'wp_kses',
-        )
-    );
-
-    $wp_customize->add_control(
-        new Travel_Monster_Group_Control( 
-            $wp_customize,
-            'mobile_header_settings_group',
-            array(
-                'id'          => 'mobile_header_settings_group',
-                'label'       => __( 'Mobile Header Settings', 'travel-monster' ),
-                'section'     => 'layout_header',
-                'type'        => 'group',
-                'style'       => 'collapsible',
-            )
+            'title'             => __( 'Mobile Header Settings', 'travel-monster' ),
+            'panel'           => 'layout_header',
         )
     );
 
@@ -838,9 +731,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'mobile_menu_label',
 			array(
-				'section' => 'layout_header',
+				'section' => 'mobile_header_settings',
 				'label'   => __( 'Menu Label', 'travel-monster' ),
-				'group'   => 'mobile_header_settings_group',
 			)
 		)
 	);
@@ -864,9 +756,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_mobile_search',
 			array(
-				'section' => 'layout_header',
+				'section' => 'mobile_header_settings',
 				'label'   => __( 'Show Search', 'travel-monster' ),
-				'group'   => 'mobile_header_settings_group',
 			)
 		)
 	);
@@ -885,9 +776,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_mobile_phone',
 			array(
-				'section' => 'layout_header',
+				'section' => 'mobile_header_settings',
 				'label'   => __( 'Show Phone Number', 'travel-monster' ),
-				'group'   => 'mobile_header_settings_group',
 			)
 		)
 	);
@@ -906,9 +796,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_mobile_email',
 			array(
-				'section' => 'layout_header',
+				'section' => 'mobile_header_settings',
 				'label'   => __( 'Show Email Address', 'travel-monster' ),
-				'group'   => 'mobile_header_settings_group',
 			)
 		)
 	);
@@ -927,33 +816,38 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_mobile_social_media',
 			array(
-				'section' => 'layout_header',
+				'section' => 'mobile_header_settings',
 				'label'   => __( 'Show Social Media', 'travel-monster' ),
-				'group'   => 'mobile_header_settings_group',
+			)
+		)
+	);
+
+    /** Mobile Menu Button */
+    $wp_customize->add_setting(
+        'ed_mobile_button',
+        array(
+            'default'           => $defaults['ed_mobile_button'],
+            'sanitize_callback' => 'travel_monster_sanitize_checkbox',
+        )
+    );
+    
+    $wp_customize->add_control(
+		new Travel_Monster_Toggle_Control( 
+			$wp_customize,
+			'ed_mobile_button',
+			array(
+				'section' => 'mobile_header_settings',
+				'label'   => __( 'Show Header Button', 'travel-monster' ),
 			)
 		)
 	);
 
     /** Transparent Header Settings */
-    $wp_customize->add_setting(
-        'main_header_transparent_header_group',
+    $wp_customize->add_section(
+        'main_header_transparent_header',
         array(
-            'default'           => '',
-            'sanitize_callback' => 'wp_kses',
-        )
-    );
-
-    $wp_customize->add_control(
-        new Travel_Monster_Group_Control( 
-            $wp_customize,
-            'main_header_transparent_header_group',
-            array(
-                'id'          => 'main_header_transparent_header_group',
-                'label'       => __( 'Transparent Header Settings', 'travel-monster' ),
-                'section'     => 'layout_header',
-                'type'        => 'group',
-                'style'       => 'collapsible',
-            )
+            'title'             => __( 'Transparent Header Settings', 'travel-monster' ),
+            'panel'           => 'layout_header',
         )
     );
 
@@ -971,9 +865,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_transparent_header',
 			array(
-				'section' => 'layout_header',
+				'section' => 'main_header_transparent_header',
 				'label'   => __( 'Enable Transparent Header', 'travel-monster' ),
-				'group'   => 'main_header_transparent_header_group',
 			)
 		)
 	);
@@ -990,12 +883,41 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             array(
                 'label'         => esc_html__( 'Transparent Logo', 'travel-monster' ),
                 'description'   => esc_html__( 'Choose logo for transparent header.', 'travel-monster' ),
-                'section'       => 'layout_header',
+                'section'       => 'main_header_transparent_header',
                 'type'          => 'image',
-                'group'           => 'main_header_transparent_header_group',
+                'active_callback' => 'travel_monster_transparent_header_ac',
             )
         )
     );
+
+    $wp_customize->add_setting(
+		'transparent_pages_list',
+		array(
+			'default'           => array( 'homepage' ),
+			'sanitize_callback' => 'travel_monster_sanitize_select',
+		)
+	);
+
+	$wp_customize->add_control(
+		new Travel_Monster_Select_Control(
+			$wp_customize,
+			'transparent_pages_list',
+			array(
+				'label'           => __( 'Choose Pages', 'travel-monster' ),
+				'section'         => 'main_header_transparent_header',
+				'description'     => __( 'Select pages where you want to enable transparent header.', 'travel-monster' ),
+				'multiple'        => 8,
+				'choices'         => array(
+					'homepage'  => __( 'Homepage', 'travel-monster' ),
+					'all_pages' => __( 'All Pages', 'travel-monster' ),
+					'archive'   => __( 'Archive', 'travel-monster' ),
+					'search'    => __( 'Search', 'travel-monster' ),
+					'blog'      => __( 'Blog', 'travel-monster' ),
+				) + travel_monster_get_pages(),
+                'active_callback' => 'travel_monster_transparent_header_ac',
+			)
+		)
+	);
 
     /** Top Header Background Color */
     $wp_customize->add_setting(
@@ -1013,9 +935,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'transparent_top_header_bg_color',
             array(
                 'label'           => __( 'Transparent Background Color', 'travel-monster' ),
-                'section'         => 'layout_header',
+                'section'         => 'main_header_transparent_header',
                 'active_callback' => 'travel_monster_transparent_header_ac',
-                'group'           => 'main_header_transparent_header_group',
             )
         )
     );
@@ -1036,9 +957,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'transparent_top_header_text_color',
             array(
                 'label'           => __( 'Text Color', 'travel-monster' ),
-                'section'         => 'layout_header',
+                'section'         => 'main_header_transparent_header',
                 'active_callback' => 'travel_monster_transparent_header_ac',
-                'group'           => 'main_header_transparent_header_group',
             )
         )
     );
@@ -1057,10 +977,9 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
 			$wp_customize,
 			'ed_bg_effect',
 			array(
-				'section'         => 'layout_header',
+				'section'         => 'main_header_transparent_header',
 				'label'           => __( 'Enable Background Effect', 'travel-monster' ),
 				'active_callback' => 'travel_monster_transparent_header_ac',
-				'group'           => 'main_header_transparent_header_group',
 			)
 		)
 	);
@@ -1080,9 +999,8 @@ function travel_monster_customize_register_layout_header( $wp_customize ) {
             'background_blur',
             array(
                 'label'           => __( 'Background Blur', 'travel-monster' ),
-                'section'         => 'layout_header',
+                'section'         => 'main_header_transparent_header',
                 'active_callback' => 'travel_monster_transparent_header_ac',
-                'group'           => 'main_header_transparent_header_group',
                 'settings'        => array( 'desktop' => 'background_blur' ),
                 'choices'         => array(
                     'desktop' => array(

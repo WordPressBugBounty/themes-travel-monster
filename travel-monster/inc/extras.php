@@ -225,15 +225,39 @@ if (!function_exists('travel_monster_site_branding')):
     /**
      * Site Branding
      */
-    function travel_monster_site_branding($mobile = false) { 
+    function travel_monster_site_branding( $mobile = false, $sticky = false ) {
+        $header_type             = get_theme_mod( 'wpte_header_type', 'prebuilt' );
         $transparent_header      = get_theme_mod( 'ed_transparent_header', false );
         $transparent_logo_upload = get_theme_mod( 'transparent_logo_upload', '');
-        $transparent_logo        = attachment_url_to_postid( $transparent_logo_upload ); ?>
+        $transparent_logo        = attachment_url_to_postid( $transparent_logo_upload );
+        $get_transparent_pages   = get_theme_mod( 'transparent_pages_list', array( 'homepage' ) );
+
+        // Check if current page is in the transparent pages list
+        $is_transparent_page = ( in_array( 'homepage', $get_transparent_pages ) && is_front_page() ) ||
+                               ( in_array( 'all_pages', $get_transparent_pages ) && is_page() ) ||
+                               ( in_array( 'archive', $get_transparent_pages ) && is_archive() ) ||
+                               ( in_array( 'search', $get_transparent_pages ) && is_search() ) ||
+                               ( in_array( 'blog', $get_transparent_pages ) && is_home() ) ||
+                               in_array( get_the_id(), $get_transparent_pages );
+
+        // For builder: check body class (transparent-header-active is only added when page is in list AND header type is builder)
+        // For prebuilt: check the page list directly
+        $show_transparent_logo_builder  = $transparent_header && $transparent_logo_upload && in_array( 'transparent-header-active', get_body_class() ) && ! $sticky;
+        $show_transparent_logo_prebuilt = $transparent_header && $transparent_logo_upload && $is_transparent_page && ! $sticky;
+        ?>
 		<div class="site-branding" <?php travel_monster_microdata('organization'); ?>>
 			<div class="text-logo">
-                <?php if( $transparent_header && $transparent_logo_upload ) { 
+                <?php if( $show_transparent_logo_builder && $header_type === 'builder' ) {
+                    echo '<a class="site-logo transparent-logo" href="'.esc_url(home_url()).'" rel="home" itemprop="url">';
                     echo wp_get_attachment_image( $transparent_logo, 'full' );
-                } elseif ( !$transparent_header){
+                    echo '</a>';
+                    the_custom_logo();
+                } elseif( $show_transparent_logo_prebuilt && $header_type === 'prebuilt' ) {
+                   echo '<a class="site-logo transparent-logo" href="'.esc_url(home_url()).'" rel="home" itemprop="url">';
+                    echo wp_get_attachment_image( $transparent_logo, 'full' );
+                    echo '</a>';
+                    the_custom_logo();
+                } else {
                     the_custom_logo();
                 }
                 ?>
@@ -428,7 +452,7 @@ if (!function_exists('travel_monster_mobile_header')):
                             </div>
                             <?php } ?>
                                 <div class="vib-whats">
-                                    <?php if ($vip_image) { ?>
+                                    <?php if ($vip_image && ( travel_monster_pro_is_activated() && travel_monster_has_contact_image() )) { ?>
                                         <div class="vib-whats-dp">
                                             <?php echo wp_get_attachment_image($vip_img_id); ?>
                                         </div>
@@ -458,6 +482,12 @@ if (!function_exists('travel_monster_mobile_header')):
                                     <?php } ?>
                                 </div>
                             </div>
+                            <!-- header button -->
+                            <?php
+                            if ( get_theme_mod( 'ed_mobile_button', $defaults['ed_mobile_button'] ) ){
+                                travel_monster_primary_header_button();
+                            }
+                            ?>
                         </div>
                         <div class="overlay"></div>
                 </div><!-- mobile-header -->
@@ -477,7 +507,7 @@ if (!function_exists('travel_monster_sticky_header')):
         if ($ed_sticky) { ?>
 		<div class="sticky-holder">
 			<div class="<?php echo esc_attr($add_class); ?>">
-				<?php travel_monster_site_branding(true); ?>
+				<?php travel_monster_site_branding( false, true ); ?>
 				<div class="navigation-wrap">
 					<?php travel_monster_primary_navigation(false); ?>
 					<?php if (get_theme_mod('ed_header_button_sticky', $defaults['ed_header_button_sticky'])) travel_monster_primary_header_button(); ?>
@@ -759,8 +789,8 @@ if (!function_exists('travel_monster_breadcrumb')):
             }
             elseif (is_search()) {
                 $depth = 2;
-                $request_uri = $_SERVER['REQUEST_URI'];
-                echo $before . '<a itemprop="item" href="' . esc_url($request_uri) . '"><span itemprop="name">' . sprintf(__('Search Results for "%s"', 'travel-monster') , esc_html(get_search_query())) . '</span></a><meta itemprop="position" content="' . absint($depth) . '" />' . $after;
+                $search_url =  get_search_link();
+                echo $before . '<a itemprop="item" href="' . esc_url($search_url ) . '"><span itemprop="name">' . sprintf(__('Search Results for "%s"', 'travel-monster') , esc_html(get_search_query())) . '</span></a><meta itemprop="position" content="' . absint($depth) . '" />' . $after;
             }
             elseif (is_day()) {
                 $depth = 2;
@@ -1343,31 +1373,30 @@ if ( ! function_exists('travel_monster_get_pages') ):
      * @return array $post_options
      */
     function travel_monster_get_pages( $post_type = 'page', $slug = false ){
-        $args = array(
-            'posts_per_page'   => -1,
-            'post_type'        => $post_type,
-            'post_status'      => 'publish',
-            'suppress_filters' => true
-        );
-        $posts_array = get_posts( $args );
+        $args        = array(
+			'posts_per_page'   => -1,
+			'post_type'        => $post_type,
+			'post_status'      => 'publish',
+			'suppress_filters' => true,
+		);
+		$posts_array = get_posts( $args );
 
-        // Initate an empty array
-        $post_options = array();
+		// Initate an empty array.
+		$post_options = array();
 
-        $post_options['all_pages'] = __('All Pages', 'travel-monster');
-        $post_options['homepage'] = __('Home Page', 'travel-monster');
+		$post_options[''] = __( 'Select from options', 'travel-monster' );
 
-        if ( ! empty( $posts_array ) ) {
-            foreach ( $posts_array as $posts ) {
-                if( $slug ){
-                    $post_options[ $posts->post_title ] = $posts->post_title;
-                }else{
-                    $post_options[ $posts->ID ] = $posts->post_title;
-                }
-            }
-        }
-        wp_reset_postdata();
-        return $post_options;
+		if ( ! empty( $posts_array ) ) {
+			foreach ( $posts_array as $posts ) {
+				if ( $slug ) {
+					$post_options[ $posts->post_title ] = $posts->post_title;
+				} else {
+					$post_options[ $posts->ID ] = $posts->post_title;
+				}
+			}
+		}
+		wp_reset_postdata();
+		return $post_options;
     }
 endif;
 
@@ -1384,7 +1413,7 @@ if (!function_exists('travel_monster_apply_theme_shortcode')):
             '[the-site-link]'
         );
         $replace = array(
-            date_i18n(esc_html__('Y', 'travel-monster')) ,
+            date_i18n(esc_html('Y', 'travel-monster')),
             '<a href="' . esc_url(home_url('/')) . '">' . esc_html(get_bloginfo('name', 'display')) . '</a>',
         );
         $string = str_replace($search, $replace, $string);
@@ -1566,7 +1595,7 @@ function travel_monster_demo_importer_checked() {
         add_filter(
             'demo_importer_plus_api_id',
             function () {
-                return  array( '81','73','89','65','183','182', '377', '418', '437', '908', '929', '994' );
+                return  array( '81','73','89','428', '65','183','182', '377', '418', '444', '437', '908', '929', '994', '1107', '1117', '1126', '1136', '1145' );
             }
         );
     }
@@ -1588,3 +1617,40 @@ if ( ! travel_monster_pro_is_activated() ) {
     add_filter( 'demo_importer_plus_get_pro_text', '__return_false' );
     add_filter( 'demo_importer_plus_get_pro_url', '__return_false' );
 }
+
+if( ! function_exists( 'travel_monster_custom_search_form' ) ) :
+/**
+ * Search Form
+*/
+function travel_monster_custom_search_form(){ 
+    $placeholder = is_search() ? '' : _x( 'Search &hellip;', 'placeholder', 'travel-monster' );
+    $form = '<form role="search" method="get" class="search-form" action="' . esc_url( home_url( '/' ) ) . '"><label class="screen-reader-text">' . esc_html__( 'Looking for Something?', 'travel-monster' ) . '</label><label for="submit-field"><span>' . esc_html__( 'Search anything and hit enter.', 'travel-monster' ) . '</span><input type="search" class="search-field" placeholder="' . esc_attr( $placeholder ) . '" value="' . esc_attr( get_search_query() ) . '" name="s" /></label><input type="submit" class="search-submit" value="'. esc_attr_x( 'Search', 'submit button', 'travel-monster' ) .'" /></form>';
+ 
+    return $form;
+}
+endif;
+add_filter( 'get_search_form', 'travel_monster_custom_search_form' );
+
+if ( ! function_exists( 'travel_monster_color_preset_style_list' ) ) :
+	/**
+	 * Color Preset Icon List
+	 *
+	 * @param string $icon The icon to display.
+	 * @return string The icon HTML.
+	 */
+	function travel_monster_color_preset_style_list( $icon = 'one' ) {
+
+		$cp_one   = travel_monster_get_default_color_preset( 'one' );
+		$cp_two   = travel_monster_get_default_color_preset( 'two' );
+		$cp_three = travel_monster_get_default_color_preset( 'three' );
+		$cp_four  = travel_monster_get_default_color_preset( 'four' );
+
+		$array_list = array(
+			'one'   => '<svg width="304" height="48" viewBox="0 0 304 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_one['primary_color'] ) . '"/><circle cx="72" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_one['secondary_color'] ) . '"/><circle cx="112" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_one['body_font_color'] ) . '"/><circle cx="152" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_one['heading_color'] ) . '"/><circle cx="192" cy="24" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_one['section_bg_color'] ) . '" stroke="#DDDDDD"/><circle cx="232" cy="24" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_one['accent_color_one'] ) . '" stroke="#DDDDDD"/><circle cx="272" cy="24" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_one['accent_color_two'] ) . '" stroke="#DDDDDD"/></svg>',
+			'two'   => '<svg width="304" height="42" viewBox="0 0 304 42" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="21" r="16" fill="' . travel_monster_sanitize_rgba( $cp_two['primary_color'] ) . '"/><circle cx="72" cy="21" r="16" fill="' . travel_monster_sanitize_rgba( $cp_two['secondary_color'] ) . '"/><circle cx="112" cy="21" r="16" fill="' . travel_monster_sanitize_rgba( $cp_two['body_font_color'] ) . '"/><circle cx="152" cy="21" r="16" fill="' . travel_monster_sanitize_rgba( $cp_two['heading_color'] ) . '"/><circle cx="192" cy="21" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_two['section_bg_color'] ) . '" stroke="#DDDDDD"/><circle cx="232" cy="21" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_two['accent_color_one'] ) . '" stroke="#DDDDDD"/><circle cx="272" cy="21" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_two['accent_color_two'] ) . '" stroke="#DDDDDD"/></svg>',
+			'three' => '<svg width="304" height="48" viewBox="0 0 304 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_three['primary_color'] ) . '"/><circle cx="72" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_three['secondary_color'] ) . '"/><circle cx="112" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_three['body_font_color'] ) . '"/><circle cx="152" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_three['heading_color'] ) . '"/><circle cx="192" cy="24" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_three['section_bg_color'] ) . '" stroke="#DDDDDD"/><circle cx="232" cy="24" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_three['accent_color_one'] ) . '" stroke="#DDDDDD"/><circle cx="272" cy="24" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_three['accent_color_two'] ) . '" stroke="#DDDDDD"/></svg>',
+			'four'  => '<svg width="304" height="48" viewBox="0 0 304 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_four['primary_color'] ) . '"/><circle cx="72" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_four['secondary_color'] ) . '"/><circle cx="112" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_four['body_font_color'] ) . '"/><circle cx="152" cy="24" r="16" fill="' . travel_monster_sanitize_rgba( $cp_four['heading_color'] ) . '"/><circle cx="192" cy="24" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_four['section_bg_color'] ) . '" stroke="#DDDDDD"/><circle cx="232" cy="24" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_four['accent_color_one'] ) . '" stroke="#DDDDDD"/><circle cx="272" cy="24" r="15.5" fill="' . travel_monster_sanitize_rgba( $cp_four['accent_color_two'] ) . '" stroke="#DDDDDD"/></svg>',
+		);
+		return $array_list[ $icon ];
+	}
+endif;

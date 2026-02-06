@@ -181,7 +181,30 @@ function travel_monster_content_start(){
 						the_archive_description( '<div class="archive-description">', '</div>' );
 					}
 
-					if( is_search() ){ ?>
+					// Check if Travel Monster Pro is active and ed_trip_search is enabled
+					$ed_trip_search = false;
+					if( travel_monster_pro_is_activated() ) {
+						$ed_trip_search = get_theme_mod( 'ed_trip_search', false );
+					}
+					
+					// Show search form on regular searches, or when Travel Monster Pro trip search is enabled
+					$show_search_form = false;
+					if( is_search() ) {
+						$post_type = get_query_var( 'post_type' );
+						$get_post_type = isset( $_GET['post_type'] ) ? sanitize_text_field( $_GET['post_type'] ) : '';
+						
+						// Show if Travel Monster Pro trip search is enabled (even when post_type is trip)
+						if( $ed_trip_search ) {
+							$show_search_form = true;
+						}
+						// Or show if post_type is not trip (regular search)
+						elseif( $post_type !== 'trip' && ( ! isset( $_GET['post_type'] ) || $get_post_type !== 'trip' ) ) {
+							$show_search_form = true;
+						}
+					}
+					
+					if( $show_search_form ){ 
+						?>
 						<section class="search-result-wrapper">
 							<div class="travel-monster-searchres-inner">
 								<?php get_search_form(); ?>
@@ -192,9 +215,24 @@ function travel_monster_content_start(){
 					/**
 					 * Show post count on search and archive pages
 					 */
-					if( ( $archive_count && ( is_category() || is_tag() || is_author() ) )
-						|| is_search() 
-					) {
+					$show_post_count = false;
+					if( $archive_count && ( is_category() || is_tag() || is_author() ) ) {
+						$show_post_count = true;
+					} elseif( is_search() ) {
+						$post_type = get_query_var( 'post_type' );
+						$get_post_type = isset( $_GET['post_type'] ) ? sanitize_text_field( $_GET['post_type'] ) : '';
+						
+						// Show if Travel Monster Pro trip search is enabled (even when post_type is trip)
+						if( $ed_trip_search ) {
+							$show_post_count = true;
+						}
+						// Or show if post_type is not trip (regular search)
+						elseif( $post_type !== 'trip' && ( ! isset( $_GET['post_type'] ) || $get_post_type !== 'trip' ) ) {
+							$show_post_count = true;
+						}
+					}
+					
+					if( $show_post_count ) {
 						echo '<section class="travel-monster-search-count">';
 						travel_monster_get_ed_archive_post_count();
 						echo '</section>';

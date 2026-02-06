@@ -418,27 +418,37 @@ class Travel_Monster_Social_Lists{
         $ed_social_media        = get_theme_mod( 'ed_social_media', $defaults['ed_social_media'] );
         $ed_social_media_newtab = get_theme_mod( 'ed_social_media_newtab', $defaults['ed_social_media_newtab'] );
         $list_social            = $this->travel_monster_all_social_icons();
-        $social_media_order     = get_theme_mod( 'social_media_order', $defaults['social_media_order']  );
-        if( $ed_social_media && $social_media_order ){ ?>
-                <ul class="social-networks">
-                    <?php 
-                    foreach( $social_media_order as $link ){
-                        $actualsocialkey = str_replace( 'tmp_','',$link );
-                        foreach( $list_social as $key => $value ){
-                            if( !empty( $value ) && $key == $link ){
-                                ?>
-                                    <li>
-                                    <a href="<?php if( isset( $value ) ) echo esc_url( $value ); ?>" title="<?php echo esc_attr($actualsocialkey); ?>" target="<?php echo $ed_social_media_newtab ? '_blank': '_self'; ?>" rel="nofollow noopener">
-                                        <?php echo wp_kses( $this->travel_monster_lists_all_svgs( $actualsocialkey ), travel_monster_get_kses_extended_ruleset() ); ?>
-                                    </a>
-                                </li>  
-                                <?php 
-                            }
-                        }
-                    } 
-                    ?>
-                </ul>
-            <?php                            
+        $social_media_order     = get_theme_mod( 'social_media_order', $defaults['social_media_order'] );
+        
+        if( ! $ed_social_media || empty( $social_media_order ) ) {
+            return;
         }
+        
+        $target = $ed_social_media_newtab ? '_blank' : '_self';
+        ?>
+        <ul class="social-networks">
+            <?php 
+            foreach( $social_media_order as $link ) {
+                // Check if this social link exists and has a value
+                if( ! isset( $list_social[ $link ] ) || empty( $list_social[ $link ] ) ) {
+                    continue;
+                }
+                
+                $social_url = $list_social[ $link ];
+                $social_key = str_replace( 'tmp_', '', $link );
+                ?>
+                <li>
+                    <a href="<?php echo esc_url( $social_url ); ?>" 
+                       title="<?php echo esc_attr( $social_key ); ?>" 
+                       target="<?php echo esc_attr( $target ); ?>" 
+                       rel="nofollow noopener">
+                        <?php echo wp_kses( $this->travel_monster_lists_all_svgs( $social_key ), travel_monster_get_kses_extended_ruleset() ); ?>
+                    </a>
+                </li>
+                <?php 
+            } 
+            ?>
+        </ul>
+        <?php
     }
 }

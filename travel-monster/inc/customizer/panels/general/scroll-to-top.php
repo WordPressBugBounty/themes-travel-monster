@@ -106,7 +106,7 @@ function travel_monster_customize_register_general_scroll_to_top( $wp_customize 
         )
     );
 
-    /*Header layouts*/
+    /*Scroll to Top*/
     $wp_customize->add_setting( 
         'scroll_top_alignment', 
         array(

@@ -17,9 +17,18 @@ $siteBlogname       = get_option('blogname');
 $hideblogname       = get_theme_mod('hide_title', $siteDefaults['hide_title']);
 $blogdesc           = get_option('blogdescription');
 $hideblogdesc       = get_theme_mod('hide_tagline', $siteDefaults['hide_tagline']);
-$transparent_header = get_theme_mod( 'ed_transparent_header', false );
-$ed_bg_effect       = get_theme_mod( 'ed_bg_effect', false );
-$class              = ($transparent_header && $ed_bg_effect && is_front_page()) ? 'tm-transparent-header tm-background-effect' : ($transparent_header && is_front_page() ? 'tm-transparent-header' : '');
+$transparent_header    = get_theme_mod( 'ed_transparent_header', false );
+$ed_bg_effect          = get_theme_mod( 'ed_bg_effect', false );
+$header_type           = get_theme_mod( 'wpte_header_type', 'prebuilt' );
+$get_transparent_pages = get_theme_mod( 'transparent_pages_list', array( 'homepage' ) );
+$is_transparent_page   = ( in_array( 'homepage', $get_transparent_pages ) && is_front_page() ) ||
+                         ( in_array( 'all_pages', $get_transparent_pages ) && is_page() ) ||
+                         ( in_array( 'archive', $get_transparent_pages ) && is_archive() ) ||
+                         ( in_array( 'search', $get_transparent_pages ) && is_search() ) ||
+                         ( in_array( 'blog', $get_transparent_pages ) && is_home() ) ||
+                         in_array( get_the_id(), $get_transparent_pages );
+$is_transparent_active = $transparent_header && $is_transparent_page;
+$class                 = ( $is_transparent_active && $ed_bg_effect ) ? 'tm-transparent-header tm-background-effect' : ( $is_transparent_active ? 'tm-transparent-header' : '' );
 /**
  * Desktop Header
  */   

@@ -18,6 +18,64 @@ function travel_monster_customize_register_general_typography( $wp_customize ) {
             'priority'    => 25,
         )
     );
+
+    /**Typography Presets */
+
+	$wp_customize->add_setting(
+		'typography_preset_style',
+		array(
+			'default'           => 'one',
+			'sanitize_callback' => 'travel_monster_sanitize_select_radio',
+			'transport'         => 'postMessage',
+		)
+	);
+
+	$wp_customize->add_control(
+		new Travel_Monster_Radio_Image_Control(
+			$wp_customize,
+			'typography_preset_style',
+			array(
+				'section' => 'general_typography_settings',
+				'label'   => __( 'Choose Typography Presets', 'travel-monster' ),
+				'svg'     => false,
+				'col'     => 'col-2',
+				'choices' => array(
+					'one'   => array(
+						'label' => esc_html__( 'System Font', 'travel-monster' ),
+						'path'  => get_template_directory_uri() . '/images/typography/one.png',
+					),
+					'two'   => array(
+						'label' => esc_html__( 'Style One', 'travel-monster' ),
+						'path'  => get_template_directory_uri() . '/images/typography/two.png',
+					),
+					'three' => array(
+						'label' => esc_html__( 'Style Two', 'travel-monster' ),
+						'path'  => get_template_directory_uri() . '/images/typography/three.png',
+					),
+					'four'  => array(
+						'label' => esc_html__( 'Style Three', 'travel-monster' ),
+						'path'  => get_template_directory_uri() . '/images/typography/four.png',
+					),
+					'five'  => array(
+						'label' => esc_html__( 'Style Four', 'travel-monster' ),
+						'path'  => get_template_directory_uri() . '/images/typography/five.png',
+					),
+					'six'   => array(
+						'label' => esc_html__( 'Style Five', 'travel-monster' ),
+						'path'  => get_template_directory_uri() . '/images/typography/six.png',
+					),
+					'seven' => array(
+						'label' => esc_html__( 'Style Six', 'travel-monster' ),
+						'path'  => get_template_directory_uri() . '/images/typography/seven.png',
+					),
+					'eight' => array(
+						'label' => esc_html__( 'Style Seven', 'travel-monster' ),
+						'path'  => get_template_directory_uri() . '/images/typography/eight.png',
+					),
+				),
+			)
+		)
+	);
     
     /** Primary Font Group */
     $wp_customize->add_setting(

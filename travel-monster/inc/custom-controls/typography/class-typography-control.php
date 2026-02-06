@@ -27,6 +27,24 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Travel_Monster_T
 
 			wp_enqueue_script( 'travel-monster-typography-customizer', trailingslashit( get_template_directory_uri() ) . 'inc/custom-controls/typography/typography-customizer.js', array( 'customize-controls', 'travel-monster-typography-selectWoo' ), TRAVEL_MONSTER_THEME_VERSION, true );
 			wp_enqueue_style( 'travel-monster-typography-customizer', trailingslashit( get_template_directory_uri() ) . 'inc/custom-controls/typography/typography-customizer.css', array(), TRAVEL_MONSTER_THEME_VERSION );
+
+			wp_localize_script(
+				'travel-monster-typography-customizer',
+				'travel_monster_typography_presets',
+				array(
+					'typo_preset_one'   => travel_monster_typography_preset_array( 'one' ),
+					'typo_preset_two'   => travel_monster_typography_preset_array( 'two' ),
+					'typo_preset_three' => travel_monster_typography_preset_array( 'three' ),
+					'typo_preset_four'  => travel_monster_typography_preset_array( 'four' ),
+					'typo_preset_five'  => travel_monster_typography_preset_array( 'five' ),
+					'typo_preset_six'   => travel_monster_typography_preset_array( 'six' ),
+					'typo_preset_seven' => travel_monster_typography_preset_array( 'seven' ),
+					'typo_preset_eight' => travel_monster_typography_preset_array( 'eight' ),
+					'default'           => travel_monster_typography_preset_array( 'default' ),
+					'companion'         => travel_monster_pro_is_activated(),
+					'extensions'        => get_option( 'tmp_active_extensions', array() ),
+				)
+			);
 		}
 
 		public function to_json() {
@@ -42,6 +60,12 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Travel_Monster_T
 			$this->json['variant_title']       = esc_html__( 'Variants', 'travel-monster' );
 			$this->json['group']               = $this->group;
 			$this->json['collapsed']           = $this->collapsed;
+
+			$active_extensions = get_option( 'tmp_active_extensions', array() );
+			if ( in_array( 'custom-fonts', $active_extensions ) ) {
+				$this->json['custom_fonts_title']  = __( 'Custom fonts', 'travel-monster' );
+				$this->json['custom_fonts']        = travel_monster_typography_custom_fonts();
+			}
 
 			foreach ( $this->settings as $setting_key => $setting_id ) {
 				$this->json[ $setting_key ] = array(
@@ -80,6 +104,14 @@ if ( class_exists( 'WP_Customize_Control' ) && ! class_exists( 'Travel_Monster_T
 										<option value="{{ data.default_fonts[ key ] }}"  <# if ( data.default_fonts[ key ] === data.family.value ) { #>selected="selected"<# } #>>{{ name }}</option>
 									<# } #>
 								</optgroup>
+								<# if ( travel_monster_customize.proActivated && travel_monster_customize.addons.includes('custom-fonts')){ #>
+									<optgroup label="{{ data.custom_fonts_title }}">
+										<# for ( var key in data.custom_fonts ) { #>
+											<# var name = data.custom_fonts[ key ].split(',')[0]; #>
+											<option value="{{ data.custom_fonts[ key ] }}"  <# if ( data.custom_fonts[ key ] === data.family.value ) { #>selected="selected"<# } #>>{{ name }}</option>
+										<# } #>
+									</optgroup>
+								<#	} #>
 								<optgroup label="{{ data.google_fonts_title }}">
 									<# for ( var key in travelMonsterTypography.googleFonts ) { #>
 										<option value="{{ travelMonsterTypography.googleFonts[ key ].name }}"  <# if ( travelMonsterTypography.googleFonts[ key ].name === data.family.value ) { #>selected="selected"<# } #>>{{ travelMonsterTypography.googleFonts[ key ].name }}</option>

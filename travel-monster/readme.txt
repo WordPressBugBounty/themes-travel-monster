@@ -4,8 +4,8 @@
 Contributors: wptravelengine
 Requires at least: 6.2
 Requires PHP: 7.3
-Tested up to: 6.8
-Stable tag: 1.3.1
+Tested up to: 6.9
+Stable tag: 1.3.4
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: one-column, two-columns, right-sidebar, left-sidebar, footer-widgets, custom-background, custom-header, custom-menu, custom-logo, featured-images, threaded-comments, full-width-template, rtl-language-support, translation-ready, theme-options, food-and-drink, holiday, entertainment
@@ -74,7 +74,27 @@ The logos shown in the screenshot are self-created.
 All other images including icon image used in screenshot and images used in customizer settings are self created and are under the GPL.
 
 == Changelog ==
+	
+	1.3.4 - January 29, 2026
+	* Fix: Broken Access Control Vulnerability fixed.
+	* Enhancement: Optimized asset loading to improve performance.
+	
+	1.3.3 - January 02, 2026
+	* New Feature: Added a Header and Footer Builder that allows you to create fully customized header and footer layouts using Elementor.
+	* New Feature: Added an accent color option.
+	* Fix: Fixed an issue where an unnecessary text was displayed in the header search.
+	* New Feature: Added typography and color preset options with associated images for customization.
+	* New Feature: Added five new elementor template, namely Trip Adventure, Cultural and Religious, Wildlife and Safari, Aquaquest and Yachtour.
+	* Fix: Resolved an issue with the currency converter dropdown.
+	* Update: Updated the Google Fonts library to the latest version.
 
+	1.3.2 - December 10, 2025
+	* Update: Made the header search placeholder text translatable.
+	* Update: Made the “Reviews” text under the trip title translatable.
+	* New Feature: Added a header button for mobile devices.
+	* Fix: Resolved an issue where the search option would disappear automatically on mobile devices.
+	* Update: Updated the Google Fonts library to the latest version.
+	
 	1.3.1 - May 13, 2025
 	* New Feature: Added Transparent header.
 	* New Feature: Added feature to link phone number to WhatsApp.

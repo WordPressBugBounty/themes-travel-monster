@@ -60,7 +60,18 @@ if( ! function_exists( 'travel_monster_add_theme_colors' ) ) :
             'title' => __( 'Site Background Color', 'travel-monster' ),
             'value' => get_theme_mod( 'site_bg_color',$defaults['site_bg_color'] ),
         );
-        
+
+        $data['colors']['accent_color_one'] = array(
+            'id'    => 'accent_color_one',
+            'title' => __( 'Accent Color One', 'travel-monster' ),
+            'value' => get_theme_mod( 'accent_color_one',$defaults['accent_color_one'] ),
+        );
+
+        $data['colors']['accent_color_two'] = array(
+            'id'    => 'accent_color_two',
+            'title' => __( 'Accent Color Two', 'travel-monster' ),
+            'value' => get_theme_mod( 'accent_color_two',$defaults['accent_color_two'] ),
+        );
     
         $response->set_data( $data );
     
@@ -93,6 +104,8 @@ if( ! function_exists( 'travel_monster_display_global_colors_elementor' ) ) :
         $slug_map['body_font_color']   = 3;
         $slug_map['section_bg_color'] = 4;
         $slug_map['site_bg_color'] = 5;
+        $slug_map['accent_color_one'] = 6;
+        $slug_map['accent_color_two'] = 7;
 
         $rest_id = substr( $route, strrpos( $route, '/' ) + 1 );
     
@@ -132,7 +145,17 @@ if( ! function_exists( 'travel_monster_display_global_colors_elementor' ) ) :
                 'id'    => 'site_bg_color',
                 'title' => 'site_bg_color',
                 'value' => get_theme_mod( 'site_bg_color',$defaults['site_bg_color'] ),
-            )
+            ),
+            array(
+                'id'    => 'accent_color_one',
+                'title' => 'accent_color_one',
+                'value' => get_theme_mod( 'accent_color_one',$defaults['accent_color_one'] ),
+            ),
+            array(
+                'id'    => 'accent_color_two',
+                'title' => 'accent_color_two',
+                'value' => get_theme_mod( 'accent_color_two',$defaults['accent_color_two'] ),
+            ),
         );
         return $response;
     }
