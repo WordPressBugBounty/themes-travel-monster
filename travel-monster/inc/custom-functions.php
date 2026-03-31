@@ -629,16 +629,55 @@ function travel_monster_archive_heading( $title ){
 			$title = $page_title;                                   
 		}
 	}elseif( is_tax() ) {
-		$tax        = get_taxonomy( get_queried_object()->taxonomy );
-		$page_title = $ed_title ? '<h1 class="page-title">' . single_term_title( '', false ) . '</h1>' : '';
+		$tax            = get_taxonomy( get_queried_object()->taxonomy );
+		$wte_taxonomies = array( 'destination', 'activities', 'trip_types', 'difficulty', 'trip_tag' );
 
-		if( $ed_prefix ){
-			$title = '<div class="archive-title-wrapper"><span class="sub-title">' . $tax->labels->singular_name . '</span>'. $page_title .'</div>';
-		}else{
-			$title = $page_title;                                   
+		if ( travel_monster_is_wpte_activated() && in_array( get_queried_object()->taxonomy, $wte_taxonomies ) ) {
+			$wte_settings       = get_option( 'wp_travel_engine_settings', array() );
+			$wte_show_title     = ! isset( $wte_settings['hide_term_title'] ) || 'yes' !== $wte_settings['hide_term_title'];
+			$archive_title_type = $wte_settings['archive']['title_type'] ?? 'default';
+
+			if ( $wte_show_title ) {
+				if ( $archive_title_type === 'custom' && ! empty( $wte_settings['archive']['title'] ) ) {
+					$page_title = '<h1 class="page-title">' . esc_html( $wte_settings['archive']['title'] ) . '</h1>';
+				} else {
+					$page_title = '<h1 class="page-title">' . single_term_title( '', false ) . '</h1>';
+				}
+				if ( $ed_prefix ) {
+					$title = '<div class="archive-title-wrapper"><span class="sub-title">' . $tax->labels->singular_name . '</span>' . $page_title . '</div>';
+				} else {
+					$title = $page_title;
+				}
+			} else {
+				$title = '';
+			}
+		} else {
+			$page_title = $ed_title ? '<h1 class="page-title">' . single_term_title( '', false ) . '</h1>' : '';
+
+			if( $ed_prefix ){
+				$title = '<div class="archive-title-wrapper"><span class="sub-title">' . $tax->labels->singular_name . '</span>'. $page_title .'</div>';
+			}else{
+				$title = $page_title;
+			}
 		}
 	}elseif( is_post_type_archive( 'trip' ) ){
-		$title = '<h1 class="page-title">' . post_type_archive_title( '', false ) . '</h1>';
+		if ( travel_monster_is_wpte_activated() ) {
+			$wte_settings       = get_option( 'wp_travel_engine_settings', array() );
+			$wte_show_title     = ! isset( $wte_settings['hide_term_title'] ) || 'yes' !== $wte_settings['hide_term_title'];
+			$archive_title_type = $wte_settings['archive']['title_type'] ?? 'default';
+
+			if ( $wte_show_title ) {
+				if ( $archive_title_type === 'custom' && ! empty( $wte_settings['archive']['title'] ) ) {
+					$title = '<h1 class="page-title">' . esc_html( $wte_settings['archive']['title'] ) . '</h1>';
+				} else {
+					$title = '<h1 class="page-title">' . post_type_archive_title( '', false ) . '</h1>';
+				}
+			} else {
+				$title = '';
+			}
+		} else {
+			$title = '<h1 class="page-title">' . post_type_archive_title( '', false ) . '</h1>';
+		}
 	}
 
 	return $title;

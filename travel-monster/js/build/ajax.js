@@ -87,19 +87,6 @@
                                 //Temporary hold the post from pagination and append it to #main
                                 load_html = $('.pagination_holder').html();
                                 $('.pagination_holder').html('');
-
-                                if (travel_monster_ajax.bp_layout == 'masonry_grid') {
-                                    // Make jQuery object from HTML string
-                                    moreBlocks = $(load_html).filter('article.travel-monster-post');
-
-                                    // Append new blocks to container
-                                    $('.travel-monster-container-wrap').append(moreBlocks).imagesLoaded(function () {
-                                        // Have Masonry position new blocks
-                                        $('.travel-monster-container-wrap').masonry('appended', moreBlocks);
-                                    });
-                                } else {
-                                    $('.site-main article:last').after(load_html); // just simply append content without massonry
-                                }
                             });
 
                         } else {

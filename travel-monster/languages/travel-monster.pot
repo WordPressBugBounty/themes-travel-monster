@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Travel Monster 1.3.4\n"
+"Project-Id-Version: Travel Monster 1.3.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/travel-monster\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-01-20T10:56:33+00:00\n"
+"POT-Creation-Date: 2026-03-31T05:05:42+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: travel-monster\n"
@@ -184,38 +184,38 @@ msgstr ""
 msgid "Dismiss"
 msgstr ""
 
-#: inc/custom-functions.php:594
+#: inc/custom-functions.php:595
 msgid "Category:"
 msgstr ""
 
-#: inc/custom-functions.php:602
+#: inc/custom-functions.php:603
 msgid "Tag"
 msgstr ""
 
-#: inc/custom-functions.php:607
+#: inc/custom-functions.php:608
 msgctxt "yearly archives date format"
 msgid "Y"
 msgstr ""
 
-#: inc/custom-functions.php:610
+#: inc/custom-functions.php:611
 msgid "Year"
 msgstr ""
 
-#: inc/custom-functions.php:615
+#: inc/custom-functions.php:616
 msgctxt "monthly archives date format"
 msgid "F Y"
 msgstr ""
 
-#: inc/custom-functions.php:618
+#: inc/custom-functions.php:619
 msgid "Month"
 msgstr ""
 
-#: inc/custom-functions.php:623
+#: inc/custom-functions.php:624
 msgctxt "daily archives date format"
 msgid "F j, Y"
 msgstr ""
 
-#: inc/custom-functions.php:626
+#: inc/custom-functions.php:627
 msgid "Day"
 msgstr ""
 
@@ -503,7 +503,7 @@ msgid "Sidebar"
 msgstr ""
 
 #: inc/customizer/panels/general/sidebar.php:37
-#: inc/metabox/metabox.php:29
+#: inc/metabox/metabox.php:31
 msgid "Sidebar Layout"
 msgstr ""
 
@@ -516,7 +516,7 @@ msgstr ""
 #: inc/customizer/sections/blog.php:378
 #: inc/customizer/sections/page.php:136
 #: inc/customizer/sections/post.php:65
-#: inc/metabox/metabox.php:49
+#: inc/metabox/metabox.php:50
 msgid "Right Sidebar"
 msgstr ""
 
@@ -525,7 +525,7 @@ msgstr ""
 #: inc/customizer/sections/blog.php:382
 #: inc/customizer/sections/page.php:140
 #: inc/customizer/sections/post.php:69
-#: inc/metabox/metabox.php:54
+#: inc/metabox/metabox.php:55
 msgid "Left Sidebar"
 msgstr ""
 
@@ -1057,7 +1057,7 @@ msgstr ""
 
 #: inc/customizer/sections/page.php:144
 #: inc/customizer/sections/post.php:73
-#: inc/metabox/metabox.php:59
+#: inc/metabox/metabox.php:60
 msgid "Full Width"
 msgstr ""
 
@@ -1192,14 +1192,6 @@ msgstr ""
 
 #: inc/customizer/sections/seo.php:124
 msgid "Enable to show last updated post date on listing as well as in single post."
-msgstr ""
-
-#: inc/customizer/sections/singletrip.php:19
-msgid "Single Trip"
-msgstr ""
-
-#: inc/customizer/sections/singletrip.php:38
-msgid "Enable sticky booking form"
 msgstr ""
 
 #: inc/customizer/sections/site.php:63
@@ -1533,16 +1525,16 @@ msgctxt "submit button"
 msgid "Search"
 msgstr ""
 
-#: inc/metabox/metabox.php:44
+#: inc/metabox/metabox.php:45
 #: inc/widgets.php:20
 msgid "Default Sidebar"
 msgstr ""
 
-#: inc/metabox/metabox.php:64
+#: inc/metabox/metabox.php:65
 msgid "Full Width Centered"
 msgstr ""
 
-#: inc/metabox/metabox.php:84
+#: inc/metabox/metabox.php:85
 msgid "Choose Sidebar Template"
 msgstr ""
 
@@ -1697,12 +1689,12 @@ msgid "Return to the Dashboard"
 msgstr ""
 
 #: inc/tgmpa/class-tgm-plugin-activation.php:400
-#: inc/tgmpa/class-tgm-plugin-activation.php:3311
+#: inc/tgmpa/class-tgm-plugin-activation.php:3316
 msgid "Plugin activated successfully."
 msgstr ""
 
 #: inc/tgmpa/class-tgm-plugin-activation.php:401
-#: inc/tgmpa/class-tgm-plugin-activation.php:3103
+#: inc/tgmpa/class-tgm-plugin-activation.php:3108
 msgid "The following plugin was activated successfully:"
 msgid_plural "The following plugins were activated successfully:"
 msgstr[0] ""
@@ -1764,7 +1756,7 @@ msgid "The remote plugin package consists of more than one file, but the files a
 msgstr ""
 
 #: inc/tgmpa/class-tgm-plugin-activation.php:1243
-#: inc/tgmpa/class-tgm-plugin-activation.php:3099
+#: inc/tgmpa/class-tgm-plugin-activation.php:3104
 msgctxt "plugin A *and* plugin B"
 msgid "and"
 msgstr ""
@@ -1956,73 +1948,73 @@ msgstr ""
 msgid "No plugins are available to be activated at this time."
 msgstr ""
 
-#: inc/tgmpa/class-tgm-plugin-activation.php:3310
+#: inc/tgmpa/class-tgm-plugin-activation.php:3315
 msgid "Plugin activation failed."
 msgstr ""
 
 #. translators: 1: plugin name, 2: action number 3: total number of actions.
-#: inc/tgmpa/class-tgm-plugin-activation.php:3655
+#: inc/tgmpa/class-tgm-plugin-activation.php:3660
 #, php-format
 msgid "Updating Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
 #. translators: 1: plugin name, 2: error message.
-#: inc/tgmpa/class-tgm-plugin-activation.php:3658
+#: inc/tgmpa/class-tgm-plugin-activation.php:3663
 #, php-format
 msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
 msgstr ""
 
 #. translators: 1: plugin name.
-#: inc/tgmpa/class-tgm-plugin-activation.php:3660
+#: inc/tgmpa/class-tgm-plugin-activation.php:3665
 #, php-format
 msgid "The installation of %1$s failed."
 msgstr ""
 
-#: inc/tgmpa/class-tgm-plugin-activation.php:3664
+#: inc/tgmpa/class-tgm-plugin-activation.php:3669
 msgid "The installation and activation process is starting. This process may take a while on some hosts, so please be patient."
 msgstr ""
 
 #. translators: 1: plugin name.
-#: inc/tgmpa/class-tgm-plugin-activation.php:3666
+#: inc/tgmpa/class-tgm-plugin-activation.php:3671
 #, php-format
 msgid "%1$s installed and activated successfully."
 msgstr ""
 
-#: inc/tgmpa/class-tgm-plugin-activation.php:3667
+#: inc/tgmpa/class-tgm-plugin-activation.php:3672
 msgid "All installations and activations have been completed."
 msgstr ""
 
 #. translators: 1: plugin name, 2: action number 3: total number of actions.
-#: inc/tgmpa/class-tgm-plugin-activation.php:3669
+#: inc/tgmpa/class-tgm-plugin-activation.php:3674
 #, php-format
 msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
-#: inc/tgmpa/class-tgm-plugin-activation.php:3672
+#: inc/tgmpa/class-tgm-plugin-activation.php:3677
 msgid "The installation process is starting. This process may take a while on some hosts, so please be patient."
 msgstr ""
 
 #. translators: 1: plugin name.
-#: inc/tgmpa/class-tgm-plugin-activation.php:3674
+#: inc/tgmpa/class-tgm-plugin-activation.php:3679
 #, php-format
 msgid "%1$s installed successfully."
 msgstr ""
 
-#: inc/tgmpa/class-tgm-plugin-activation.php:3675
+#: inc/tgmpa/class-tgm-plugin-activation.php:3680
 msgid "All installations have been completed."
 msgstr ""
 
 #. translators: 1: plugin name, 2: action number 3: total number of actions.
-#: inc/tgmpa/class-tgm-plugin-activation.php:3677
+#: inc/tgmpa/class-tgm-plugin-activation.php:3682
 #, php-format
 msgid "Installing Plugin %1$s (%2$d/%3$d)"
 msgstr ""
 
-#: inc/tgmpa/class-tgm-plugin-activation.php:3682
+#: inc/tgmpa/class-tgm-plugin-activation.php:3687
 msgid "Show Details"
 msgstr ""
 
-#: inc/tgmpa/class-tgm-plugin-activation.php:3682
+#: inc/tgmpa/class-tgm-plugin-activation.php:3687
 msgid "Hide Details"
 msgstr ""
 
@@ -2080,11 +2072,11 @@ msgstr ""
 msgid "Add footer four widgets here."
 msgstr ""
 
-#: inc/wte/wte-compatibility.php:89
+#: inc/wte/wte-compatibility.php:72
 msgid " Review"
 msgstr ""
 
-#: inc/wte/wte-compatibility.php:91
+#: inc/wte/wte-compatibility.php:74
 msgid " Reviews"
 msgstr ""
 

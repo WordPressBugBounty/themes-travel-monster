@@ -5,7 +5,7 @@ Contributors: wptravelengine
 Requires at least: 6.2
 Requires PHP: 7.3
 Tested up to: 6.9
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 License: GNU General Public License v3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: one-column, two-columns, right-sidebar, left-sidebar, footer-widgets, custom-background, custom-header, custom-menu, custom-logo, featured-images, threaded-comments, full-width-template, rtl-language-support, translation-ready, theme-options, food-and-drink, holiday, entertainment
@@ -75,6 +75,11 @@ All other images including icon image used in screenshot and images used in cust
 
 == Changelog ==
 	
+	1.3.5 - March 31, 2026
+	* Fix: Sticker Header issue has been fixed.
+	* Fix: Tgmpa plugin installation issue has been fixed.
+	* Update: Updated the Google Fonts library to the latest version.
+
 	1.3.4 - January 29, 2026
 	* Fix: Broken Access Control Vulnerability fixed.
 	* Enhancement: Optimized asset loading to improve performance.

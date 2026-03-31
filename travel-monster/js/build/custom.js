@@ -589,8 +589,8 @@ function travelMonsterDomReady(fn) {
 travelMonsterDomReady(function () {
   travelMonster.toggles.init(); // Handle toggles.
   travelMonster.coverModals.init(); // Handle cover modals.
-  travelMonster.makeHeaderSticky.init(); // Handle sticky header.
   travelMonster.submenuPosition.init(); // Handle submenu overflow detection.
+  travelMonster.makeHeaderSticky.init(); // Handle sticky header.
 });
 
 /* Toggle an attribute ----------------------- */
@@ -871,102 +871,6 @@ function travelMonsterFindParents(target, query) {
     }
   }
 
-  // Sticky header (legacy)
-  const stickyHolder = document.querySelector(".sticky-header .sticky-holder");
-  const headerB = document.querySelector(".sticky-header .header-b");
-
-  if (stickyHolder && headerB) {
-    const topTotal = getOuterHeight(headerB);
-    let isScrolling = false;
-
-    const handleStickyScroll = () => {
-      if (!isScrolling) {
-        window.requestAnimationFrame(() => {
-          const shouldBeSticky = window.pageYOffset > topTotal;
-          const isCurrentlySticky = stickyHolder.classList.contains("sticky");
-
-          if (shouldBeSticky && !isCurrentlySticky) {
-            stickyHolder.classList.add("sticky");
-          } else if (!shouldBeSticky && isCurrentlySticky) {
-            stickyHolder.classList.remove("sticky");
-          }
-
-          isScrolling = false;
-        });
-        isScrolling = true;
-      }
-    };
-
-    window.addEventListener("scroll", handleStickyScroll, { passive: true });
-  }
-
-  /* Sticky Header Builder
-    --------------------------------------------- */
-  travelMonster.stickyHeader = document.querySelector(
-    ".sticky-header .site-header.wte-header-builder",
-  );
-  travelMonster.makeHeaderSticky = {
-    init: function () {
-      const headerHeightDiv = document.querySelector(
-        ".sticky-header .site-header+div",
-      );
-
-      if (null !== travelMonster.stickyHeader && null !== headerHeightDiv) {
-        let isScrolling = false;
-        let headerHeight = headerHeightDiv.offsetTop;
-
-        const updateHeaderHeight = () => {
-          headerHeight = headerHeightDiv.offsetTop;
-        };
-
-        const handleScroll = () => {
-          if (!isScrolling) {
-            window.requestAnimationFrame(() => {
-              const shouldBeSticky = window.scrollY > headerHeight;
-              const isCurrentlySticky =
-                travelMonster.stickyHeader.classList.contains("is-sticky");
-
-              if (shouldBeSticky && !isCurrentlySticky) {
-                travelMonster.stickyHeader.classList.add("is-sticky");
-              } else if (!shouldBeSticky && isCurrentlySticky) {
-                travelMonster.stickyHeader.classList.remove("is-sticky");
-              }
-
-              isScrolling = false;
-            });
-            isScrolling = true;
-          }
-        };
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        window.addEventListener("resize", updateHeaderHeight, {
-          passive: true,
-        });
-
-        travelMonster.stickyHeader._scrollHandler = handleScroll;
-        travelMonster.stickyHeader._resizeHandler = updateHeaderHeight;
-      }
-    },
-
-    destroy: function () {
-      if (
-        travelMonster.stickyHeader &&
-        travelMonster.stickyHeader._scrollHandler
-      ) {
-        window.removeEventListener(
-          "scroll",
-          travelMonster.stickyHeader._scrollHandler,
-        );
-        window.removeEventListener(
-          "resize",
-          travelMonster.stickyHeader._resizeHandler,
-        );
-        delete travelMonster.stickyHeader._scrollHandler;
-        delete travelMonster.stickyHeader._resizeHandler;
-      }
-    },
-  };
-
   /************ Mobile Menu *************/
   document
     .querySelectorAll(".mobile-menu-wrapper ul li.menu-item-has-children > a")
@@ -1053,29 +957,123 @@ function travelMonsterFindParents(target, query) {
     });
   }
 
-  // Masonry Layout
-  if (
-    travel_monster_custom.bp_layout === "masonry_grid" &&
-    (document.body.classList.contains("blog") ||
-      document.body.classList.contains("search") ||
-      document.body.classList.contains("archive"))
-  ) {
-    const masonryContainer = document.querySelector(
-      ".travel-monster-container-wrap",
-    );
-    if (
-      masonryContainer &&
-      typeof imagesLoaded !== "undefined" &&
-      typeof Masonry !== "undefined"
-    ) {
-      imagesLoaded(masonryContainer, () => {
-        new Masonry(masonryContainer, {
-          itemSelector: ".travel-monster-post",
-          isOriginLeft: mrtl,
+  // Sticky header (legacy)
+  const stickyHolder = document.querySelector(".sticky-header .sticky-holder");
+  const headerB = document.querySelector(".sticky-header .header-b");
+
+  if (stickyHolder && headerB) {
+    let topTotal = getOuterHeight(headerB);
+    let isScrolling = false;
+
+    const updateTopTotal = () => {
+      // Recalculate trigger point on resize
+      if (headerB && headerB.offsetParent !== null) {
+        topTotal = getOuterHeight(headerB);
+      }
+    };
+
+    const handleStickyScroll = () => {
+      if (!isScrolling) {
+        window.requestAnimationFrame(() => {
+          // Check if element still exists in document (offsetParent would be null with position:fixed)
+          if (!stickyHolder || !document.body.contains(stickyHolder)) {
+            return;
+          }
+
+          const shouldBeSticky = window.scrollY > topTotal;
+          const isCurrentlySticky = stickyHolder.classList.contains("sticky");
+
+          if (shouldBeSticky && !isCurrentlySticky) {
+            stickyHolder.classList.add("sticky");
+          } else if (!shouldBeSticky && isCurrentlySticky) {
+            stickyHolder.classList.remove("sticky");
+          }
+
+          isScrolling = false;
         });
-      });
-    }
+        isScrolling = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleStickyScroll, { passive: true });
+    window.addEventListener("resize", updateTopTotal, { passive: true });
   }
+
+  /* Sticky Header Builder
+    --------------------------------------------- */
+  travelMonster.makeHeaderSticky = {
+    init: function () {
+      // Query elements inside init to ensure DOM is ready
+      travelMonster.stickyHeader = document.querySelector(
+        ".sticky-header .site-header.wte-header-builder",
+      );
+      const headerHeightDiv = document.querySelector(
+        ".sticky-header .site-header+div",
+      );
+
+      if (null !== travelMonster.stickyHeader && null !== headerHeightDiv) {
+        let isScrolling = false;
+        let headerHeight = headerHeightDiv.offsetTop;
+
+        const updateHeaderHeight = () => {
+          // Check if element still exists in DOM before accessing properties
+          if (headerHeightDiv && headerHeightDiv.offsetParent !== null) {
+            headerHeight = headerHeightDiv.offsetTop;
+          }
+        };
+
+        const handleScroll = () => {
+          if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+              // Check if sticky header still exists in document (offsetParent would be null with position:fixed)
+              if (!travelMonster.stickyHeader || !document.body.contains(travelMonster.stickyHeader)) {
+                return;
+              }
+
+              const shouldBeSticky = window.scrollY > headerHeight;
+              const isCurrentlySticky =
+                travelMonster.stickyHeader.classList.contains("is-sticky");
+
+              if (shouldBeSticky && !isCurrentlySticky) {
+                travelMonster.stickyHeader.classList.add("is-sticky");
+              } else if (!shouldBeSticky && isCurrentlySticky) {
+                travelMonster.stickyHeader.classList.remove("is-sticky");
+              }
+
+              isScrolling = false;
+            });
+            isScrolling = true;
+          }
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        window.addEventListener("resize", updateHeaderHeight, {
+          passive: true,
+        });
+
+        travelMonster.stickyHeader._scrollHandler = handleScroll;
+        travelMonster.stickyHeader._resizeHandler = updateHeaderHeight;
+      }
+    },
+
+    destroy: function () {
+      if (
+        travelMonster.stickyHeader &&
+        travelMonster.stickyHeader._scrollHandler
+      ) {
+        window.removeEventListener(
+          "scroll",
+          travelMonster.stickyHeader._scrollHandler,
+        );
+        window.removeEventListener(
+          "resize",
+          travelMonster.stickyHeader._resizeHandler,
+        );
+        delete travelMonster.stickyHeader._scrollHandler;
+        delete travelMonster.stickyHeader._resizeHandler;
+      }
+    },
+  };
 
   // Alignfull js
   const updateAlignfullWidths = () => {

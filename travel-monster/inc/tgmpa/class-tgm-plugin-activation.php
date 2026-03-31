@@ -3088,6 +3088,11 @@ if ( ! class_exists( 'TGMPA_List_Table' ) ) {
 				}
 
 				// Now we are good to go - let's start activating plugins.
+				// Ensure active_plugins option is an array to prevent PHP 8.x TypeError in in_array().
+				$active_plugins = get_option( 'active_plugins' );
+				if ( ! is_array( $active_plugins ) ) {
+					update_option( 'active_plugins', array() );
+				}
 				$activate = activate_plugins( $plugins_to_activate );
 
 				if ( is_wp_error( $activate ) ) {

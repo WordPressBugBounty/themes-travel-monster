@@ -15,7 +15,7 @@
     */
     do_action( 'travel_monster_doctype' );
 ?>
-<head <?php travel_monster_microdata( 'head' ); ?>>
+<head <?php if ( function_exists( 'travel_monster_microdata' ) ) travel_monster_microdata( 'head' ); ?>>
 <?php 
     /**
      * Before wp_head
@@ -27,7 +27,7 @@
 	wp_head(); ?>
 </head>
 
-<body <?php body_class(); travel_monster_microdata( 'body' ); ?>>
+<body <?php body_class(); if ( function_exists( 'travel_monster_microdata' ) ) travel_monster_microdata( 'body' ); ?>>
 <?php 
 	
 	wp_body_open(); 
