@@ -138,7 +138,7 @@ travelMonster.coverModals = {
     document.addEventListener(
       "keydown",
       function (event) {
-        if (event.keyCode === 27) {
+        if (event.key === "Escape") {
           event.preventDefault();
           document.querySelectorAll(".cover-modal.active").forEach(
             function (element) {
@@ -155,7 +155,6 @@ travelMonster.coverModals = {
     var _doc = document,
       _win = window,
       modals = _doc.querySelectorAll(".cover-modal"),
-      htmlStyle = _doc.documentElement.style,
       adminBar = _doc.querySelector("#wpadminbar");
 
     function getAdminBarHeight(negativeValue) {
@@ -187,11 +186,6 @@ travelMonster.coverModals = {
     // Show the modal.
     modals.forEach(function (modal) {
       modal.addEventListener("toggle-target-before-inactive", function (event) {
-        var styles = htmlStyles(),
-          offsetY = _win.pageYOffset,
-          paddingTop = Math.abs(getAdminBarHeight()) - offsetY + "px",
-          mQuery = _win.matchMedia("(max-width: 600px)");
-
         if (event.target !== modal) {
           return;
         }
@@ -268,6 +262,8 @@ travelMonster.coverModals = {
         selectors = "input, a, button";
         modal = _doc.querySelector(toggleTarget);
 
+        if (!modal) return;
+
         elements = modal.querySelectorAll(selectors);
         elements = Array.prototype.slice.call(elements);
 
@@ -318,7 +314,7 @@ travelMonster.coverModals = {
         lastEl = elements[elements.length - 1];
         firstEl = elements[0];
         activeEl = _doc.activeElement;
-        tabKey = event.keyCode === 9;
+        tabKey = event.key === "Tab";
         shiftKey = event.shiftKey;
 
         if (!shiftKey && tabKey && lastEl === activeEl) {
@@ -455,7 +451,7 @@ travelMonster.toggles = {
 
       if (
         self.clickedEl &&
-        -1 !== toggle.getAttribute("class").indexOf("close-")
+        (toggle.getAttribute("class") || "").indexOf("close-") !== -1
       ) {
         travelMonsterToggleAttribute(
           self.clickedEl,
@@ -586,13 +582,6 @@ function travelMonsterDomReady(fn) {
   document.addEventListener("DOMContentLoaded", fn, false);
 }
 
-travelMonsterDomReady(function () {
-  travelMonster.toggles.init(); // Handle toggles.
-  travelMonster.coverModals.init(); // Handle cover modals.
-  travelMonster.submenuPosition.init(); // Handle submenu overflow detection.
-  travelMonster.makeHeaderSticky.init(); // Handle sticky header.
-});
-
 /* Toggle an attribute ----------------------- */
 
 function travelMonsterToggleAttribute(element, attribute, trueVal, falseVal) {
@@ -661,7 +650,7 @@ function travelMonsterFindParents(target, query) {
     element.style.paddingBottom = 0;
     element.style.marginTop = 0;
     element.style.marginBottom = 0;
-    element.offsetHeight;
+    void element.offsetHeight;
     element.style.transition = `height ${duration}ms ease, padding ${duration}ms ease, margin ${duration}ms ease`;
     element.style.height = height + "px";
     element.style.removeProperty("padding-top");
@@ -677,7 +666,7 @@ function travelMonsterFindParents(target, query) {
 
   const slideUp = (element, duration = 300) => {
     element.style.height = element.offsetHeight + "px";
-    element.offsetHeight;
+    void element.offsetHeight;
     element.style.overflow = "hidden";
     element.style.transition = `height ${duration}ms ease, padding ${duration}ms ease, margin ${duration}ms ease`;
     element.style.height = 0;
@@ -755,9 +744,6 @@ function travelMonsterFindParents(target, query) {
     return height;
   };
 
-  // RTL configuration
-  const mrtl = travel_monster_custom.rtl !== "1";
-
   /* Header Search toggle
     --------------------------------------------- */
   function trapFocus(container) {
@@ -770,7 +756,11 @@ function travelMonsterFindParents(target, query) {
     const first = visible[0];
     const last = visible[visible.length - 1];
 
-    function handleTab(e) {
+    if (container._trapFocusHandler) {
+      container.removeEventListener("keydown", container._trapFocusHandler);
+    }
+
+    container._trapFocusHandler = function (e) {
       if (e.key === "Tab") {
         if (e.shiftKey && document.activeElement === first) {
           e.preventDefault();
@@ -780,10 +770,9 @@ function travelMonsterFindParents(target, query) {
           first.focus();
         }
       }
-    }
+    };
 
-    container.removeEventListener("keydown", handleTab);
-    container.addEventListener("keydown", handleTab);
+    container.addEventListener("keydown", container._trapFocusHandler);
     if (first) first.focus();
   }
 
@@ -793,7 +782,10 @@ function travelMonsterFindParents(target, query) {
       const form = btn.parentElement.querySelector(".search-toggle-form");
       document.querySelectorAll(".search-toggle-form").forEach((f) => {
         f.style.display = "none";
-        f.removeEventListener("keydown", trapFocus);
+        if (f._trapFocusHandler) {
+          f.removeEventListener("keydown", f._trapFocusHandler);
+          f._trapFocusHandler = null;
+        }
       });
       form.style.display = "block";
       trapFocus(form);
@@ -1116,7 +1108,6 @@ function travelMonsterFindParents(target, query) {
   window.addEventListener("load", updateAlignfullWidths);
   window.addEventListener("resize", updateAlignfullWidths, { passive: true });
 
-
   // Single trip tab sticky
   const isInViewport = (element) => {
     if (!element) return false;
@@ -1236,3 +1227,11 @@ function travelMonsterFindParents(target, query) {
     );
   };
 })();
+
+travelMonsterDomReady(function () {
+  travelMonster.toggles.init();
+  travelMonster.coverModals.init();
+  travelMonster.modalMenu.init();
+  travelMonster.submenuPosition.init();
+  travelMonster.makeHeaderSticky.init();
+});
